@@ -1,0 +1,62 @@
+   <div class="container" ng-controller="LoginController as loginController">
+
+		<div class="col-md-12 col-sm-12 col-xs-12" align="middle">
+			<img src="images/logoLogin.png" style="">
+		</div>
+		
+		<div class="col-md-5 col-sm-5 col-xs-5">
+		<div class="form-signin">
+		  <!--form action="#" method="POST" class="form-signin"-->
+			<h2 class="form-signin-heading">Please sign in</h2>
+			
+			<h4 class="form-signin-heading" style="color:red">{{loginController.msg}}</h4>
+
+			<input type="text" name="username" id="username" class="form-control" placeholder="Student ID" required autofocus ng-model="loginController.username">
+
+			<input type="password" name ="password" id ="password" class="form-control" placeholder="Password" required ng-model="loginController.password">
+
+			<button class="btn btn-lg btn-primary btn-block" ng-click="loginController.signin()" >Sign in</button>
+
+			<label> </label>
+			<a href="/forgotpass">Forgot your password?</a>
+		  <!--/form-->
+		  </div>
+		</div>
+		
+		<div class="col-md-2 col-sm-2 col-xs-2" align="middle">
+			<img src="images/split.png" style="height:300px;">
+		</div>
+		
+
+
+		<div class="col-md-5 col-sm-5 col-xs-5">
+		  <form action="/reg" method="POST" class="form-signin">
+			<h2 class="form-signin-heading">
+				Register
+			</h2>
+			<input type="text" name="regstudentid" id="username" class="form-control" placeholder="Student ID" required autofocus>
+			<input type="password" name ="regauthkey" id ="password" class="form-control" placeholder="Authorization Code" required>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+		  </form>
+		</div>
+
+
+
+
+    </div> <!-- /container -->
+<div class="container text-center">
+<!-- 	<a href="/allstudent">
+		<button class="btn btn-default">View All Students</button>
+	</a>
+
+	<a href="/allauthkey">
+	  <button class="btn btn-default">View All AuthKeys</button>
+	</a> -->
+
+	<a href="/gentempkey">
+	  <button class="btn btn-default">Generate Authorization Code</button>
+	</a>
+
+<!-- <a href="/testing">
+	<button class='btn btn-default'>Testing</button>
+</a> -->
