@@ -1,15 +1,15 @@
-angular.module("main").service("loginService", function($http){
+angular.module("main").service("loginService", function($http, $localStorage){
 
 	this.login = function(user, pass){
 		
 		var req = {
 		 method: 'POST',
-		 url: 'https://pure-caverns-19135.herokuapp.com/nglogin',
+		 url: 'https://tokentezt.herokuapp.com/api/authenticate',
 		 dataType: 'json',
 		 headers: {
 		   'Content-Type': 'application/json'
 		 },
-		 data: { username: user,
+		 data: { email: user,
 		 		password: pass 
 		 		}
 		}
@@ -18,7 +18,10 @@ angular.module("main").service("loginService", function($http){
 		return $http(req)
 			.then(function(response) {
 	        	//First function handles success
-	        	console.log(response.data.success);
+
+	        	console.log(response.data);
+	        	$localStorage.token = response.data.token;
+	        	console.log($localStorage.token);
 		        return response.data.success;
 
 		    }, function(response) {

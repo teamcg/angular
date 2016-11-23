@@ -1,4 +1,5 @@
 angular.module("main").controller("LoginController", function(loginService,$location){
+	
 	var loginController = this;
 
 	loginController.username = "";
@@ -7,21 +8,28 @@ angular.module("main").controller("LoginController", function(loginService,$loca
 
 	loginController.signin = function(){
 		
-		
+		loginController.msg = "Proccessing .... ";
+
 		var result = loginService.login(this.username, this.password)
 		.then(function (result) {
 	      if(result){
-				console.log("Returnoooooo");
+				console.log("Portal");
 				$location.path("/portal");
 			}else{
 				console.log("Not Logged");
 				loginController.msg = "User/Password wrong. Try again!";
 			}
 	    }); 
-		
 
-		//$location.path("/");
 	}
+
+	loginController.goToGenAuthCode = function(){
+		console.log("goToGenAuthCode");
+		
+		$location.path("/gotoauthgen");
+	
+	}
+
 
 
 });

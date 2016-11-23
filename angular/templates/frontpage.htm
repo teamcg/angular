@@ -1,4 +1,5 @@
-   <div class="container" ng-controller="LoginController as loginController">
+   <div  ng-controller="LoginController as loginController">
+   <div class="container" >
 
 		<div class="col-md-12 col-sm-12 col-xs-12" align="middle">
 			<img src="images/logoLogin.png" style="">
@@ -14,6 +15,7 @@
 			<input type="text" name="username" id="username" class="form-control" placeholder="Student ID" required autofocus ng-model="loginController.username">
 
 			<input type="password" name ="password" id ="password" class="form-control" placeholder="Password" required ng-model="loginController.password">
+			
 
 			<button class="btn btn-lg btn-primary btn-block" ng-click="loginController.signin()" >Sign in</button>
 
@@ -53,10 +55,10 @@
 	  <button class="btn btn-default">View All AuthKeys</button>
 	</a> -->
 
-	<a href="/gentempkey">
-	  <button class="btn btn-default">Generate Authorization Code</button>
-	</a>
-
+	
+	  <button class="btn btn-default" ng-click="loginController.goToGenAuthCode()">Generate Authorization Code</button>
+	
 <!-- <a href="/testing">
 	<button class='btn btn-default'>Testing</button>
 </a> -->
+</div>
