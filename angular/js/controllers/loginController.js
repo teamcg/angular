@@ -1,4 +1,5 @@
-angular.module("main").controller("LoginController", function(loginService,$location){
+angular.module("main")
+	.controller("LoginController", function(loginService,$location){
 	
 	var loginController = this;
 

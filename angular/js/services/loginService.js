@@ -4,7 +4,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
 		
 		var req = {
 		 method: 'POST',
-		 url: 'https://tokentezt.herokuapp.com/api/authenticate',
+		 url: 'http://localhost:3000/api/authenticate',
 		 dataType: 'json',
 		 headers: {
 		   'Content-Type': 'application/json'
@@ -17,15 +17,12 @@ angular.module("main").service("loginService", function($http, $localStorage){
 
 		return $http(req)
 			.then(function(response) {
-	        	//First function handles success
-
 	        	console.log(response.data);
 	        	$localStorage.token = response.data.token;
 	        	console.log($localStorage.token);
 		        return response.data.success;
 
 		    }, function(response) {
-		        //Second function handles error
 		        console.log("Error trying to log in.");
 		        return false;
 		    });
