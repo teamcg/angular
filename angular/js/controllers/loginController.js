@@ -24,10 +24,10 @@ angular.module("main")
 
 	}
 
-	loginController.goToGenAuthCode = function(){
+    	loginController.gak = function(){
 		console.log("goToGenAuthCode");
 		
-		$location.path("/gotoauthgen");
+		$location.path("/gak");
 	
 	}
 

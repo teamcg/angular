@@ -1,31 +1,32 @@
-var app = angular.module("main", ["ngRoute","ngStorage"]);
+var app = angular.module("main", ["ngRoute", "ngStorage"]);
 
 
 
-app.config(function($routeProvider, $httpProvider){
+app.config(function ($routeProvider, $httpProvider){
 	
 	$routeProvider
 	.when("/",{
-		templateUrl : "/templates/frontpage.htm",
+		templateUrl : "./templates/frontpage.htm",
 		controller : "LoginController"
 	})
 	.when("/portal",{
-		templateUrl: "/templates/portal.htm",
+		templateUrl: "./templates/portal.htm",
 		controller: "PortalController"
 	})
-	.when("/gotoauthgen",{
-		templateUrl: "/templates/gotoauthgen.htm",
-		controller: "LoginController"
+	.when("/gak",{
+		templateUrl: "./templates/genauthkey.htm",
+		controller: "GenAuthkeyController"
 	})
 	.otherwise({
 		templateUrl : "/templates/error404.htm"
 	});
 
-	
+
 });
 
 
 
+//INTERCEPTOR FOR TOKEN AUTHENTICATION
 // register the interceptor as a service
 app.factory('AuthInterceptor', function($q,$localStorage) {
   return {
@@ -74,7 +75,6 @@ app.config(function($httpProvider){
 
 
 });
-
 
 
 

@@ -1,0 +1,30 @@
+
+
+
+    <div class="container" ng-controller='GenAuthkeyController as muffin'>
+		<!-- <div class="col-md-4 col-sm-3 col-xs-3"></div> -->
+		<div class="col-md-12 col-sm-12 col-xs-12" align="middle">
+			<img src="images/logoPassGen.png" style="">
+		</div>
+        
+
+		
+		<div class="col-md-12 col-sm-12 col-xs-12">
+
+				<input type="text" name="genauthkey[studentid]" id="username" ng-model='muffin.studentid' class="form-control" placeholder="Student ID" required autofocus>
+                
+
+                
+				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click='muffin.submit()'>
+					Generate Code
+				</button>
+                <input type="text" ng-model="muffin.authCode"/>
+                
+            
+				<a href="/">
+					Back
+				</a>
+
+		</div>
+
+    </div> <!-- /container -->
