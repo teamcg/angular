@@ -21,26 +21,56 @@ app.config(function($routeProvider, $httpProvider){
 		templateUrl : "/templates/error404.htm"
 	});
 
+	
+});
 
 
 
-$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
-        return {
-                'request': function (config) {
-                    config.headers = config.headers || {};
-                    if ($localStorage.token) {
-                        config.headers.Authorization = $localStorage.token;
-                    }
-                    return config;
-                },
-                'responseError': function(response) {
-                    if(response.status === 401 || response.status === 403) {
-                        $location.path('/signin');
-                    }
-                    return $q.reject(response);
-                }
-            };
-        }]);
+// register the interceptor as a service
+app.factory('AuthInterceptor', function($q,$localStorage) {
+  return {
+    // optional method
+    'request': function(request) {
+      // do something on success
+      console.log("myHttpInterceptor request");
+      request.headers['Authorization'] = $localStorage.token;
+      
+      return request;
+    },
+
+    // optional method
+   'requestError': function(rejection) {
+      // do something on error
+      if (canRecover(rejection)) {
+        return responseOrNewPromise
+      }
+      return $q.reject(rejection);
+    },
+
+
+
+    // optional method
+    'response': function(response) {
+      // do something on success
+      console.log("myHttpInterceptor response");
+      return response;
+    },
+
+    // optional method
+   'responseError': function(rejection) {
+      // do something on error
+      if (canRecover(rejection)) {
+        return responseOrNewPromise
+      }
+      return $q.reject(rejection);
+    }
+  };
+});
+
+
+app.config(function($httpProvider){
+	
+	$httpProvider.interceptors.push('AuthInterceptor');
 
 
 });
