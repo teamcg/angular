@@ -1,4 +1,4 @@
-var app = angular.module("main", ["ngRoute", "ngStorage"]);
+var app = angular.module("main", ["ngRoute", "ngStorage", "ngMaterial"]);
 
 
 
@@ -11,12 +11,20 @@ app.config(function ($routeProvider, $httpProvider){
 	})
 	.when("/portal",{
 		templateUrl: "./templates/portal.htm",
-		controller: "PortalController"
+		controller: "LoginController"
 	})
 	.when("/gak",{
 		templateUrl: "./templates/genauthkey.htm",
 		controller: "GenAuthkeyController"
 	})
+    .when("/register",{
+        templateUrl: "./templates/register.htm",
+        controller: "RegisterController"
+    })
+    .when("/page5",{
+        templateUrl: "./templates/demo1.html",
+        controller: "RegisterController"
+    })
 	.otherwise({
 		templateUrl : "/templates/error404.htm"
 	});

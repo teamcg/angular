@@ -14,8 +14,8 @@ app.controller('GenAuthkeyController', function(genauthkeyService, $location){
         .then(function(result){
             if(result){
                 console.log("Returned result data")
-                console.log(result.authkey);
-                genauthkeyController.authCode = result.authkey;
+                console.log(result.authcode);
+                genauthkeyController.authCode = result.authcode;
             } else {
                 genauthkeyController.msg = 'Student id is wrong!';
             }

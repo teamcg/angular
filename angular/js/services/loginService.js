@@ -28,13 +28,13 @@ angular.module("main").service("loginService", function($http, $localStorage){
 //		    });
 //
 //	}
-    
+
     
     this.login = function(user, pass){
 		
 		var req = {
 		 method: 'POST',
-		 url: 'https://tokentezt.herokuapp.com/api/authenticate',
+		 url: 'https://edenzproj.herokuapp.com/authenticate',
 		 dataType: 'json',
 		 headers: {
 		   'Content-Type': 'application/json'
@@ -47,7 +47,9 @@ angular.module("main").service("loginService", function($http, $localStorage){
 
 		return $http(req)
 			.then(function(response) {
-	        	console.log(response.data);
+	        	console.log(response.data.data.firstname);
+                $localStorage.firstname = response.data.data.firstname;
+                $localStorage.lastname = response.data.data.lastname;
 	        	$localStorage.token = response.data.token;
 	        	console.log($localStorage.token);
 		        return response.data.success;
@@ -64,7 +66,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
 		
 		var req = {
 		 method: 'GET',
-		 url: 'https://tokentezt.herokuapp.com/api/dashboard',
+		 url: 'https://edenzproj.herokuapp.com/authenticate',
 		 dataType: 'json',
 		 headers: {
 		   'Content-Type': 'application/json'

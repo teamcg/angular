@@ -1,4 +1,5 @@
 angular.module("main").controller("PortalController", function(loginService){
+
 	var portalController = this;
 
 	
@@ -19,7 +20,7 @@ angular.module("main").controller("PortalController", function(loginService){
 		console.log("result: " + result);
 
 		return "blabla";
-	}
+    }
 
 
 });

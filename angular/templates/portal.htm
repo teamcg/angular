@@ -1,11 +1,108 @@
-<html>
-	<head>
+<div ng-controller='LoginController as loginController'>
 		
-	</head>
-	<body>
-		<div ng-controller="PortalController as portalController">
-			<button ng-click="portalController.doSomethingAuth()"> Authentication Thing</button>
-		</div>
-	</body>
+    <div ng-cloak class="container">
+      <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+          <md-tab label="My Profile">
+            <md-content class="md-padding">
+              <h1 class="md-display-2">Welcome {{loginController.firstname}} {{loginController.lastname}}</h1>
+                <h2></h2>
+                <p>Paris is the capital of Brasil.</p>
+            </md-content>
+          </md-tab>
+          <md-tab label="Create CV">
+            <md-content class="md-padding">
+<!--              START HERE-->
+                
+<div ng-cloak>
+  <md-content>
+    <md-tabs md-dynamic-height md-border-bottom>
+      <md-tab label="Personal Info">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Personal Information</h1>
+            
+        </md-content>
+      </md-tab>
+      <md-tab label="Personal Statement">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Personal statement</h1>
+          
+        </md-content>
+      </md-tab>
+      <md-tab label="Experience">
+        <md-content class="md-padding">
+          <h1 class="md-display-2">Experience</h1>
 
-</html>
+        </md-content>
+      </md-tab>
+      <md-tab label="Education">
+    <md-content class="md-padding">
+      <h1 class="md-display-2">Education</h1>
+
+    </md-content>
+  </md-tab>
+         <md-tab label="Key Skills & Competencies">
+    <md-content class="md-padding">
+      <h1 class="md-display-2">Key Skills</h1>
+
+    </md-content>
+  </md-tab>
+    </md-tabs>
+  </md-content>
+</div>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+<!--                END HERE-->
+            </md-content>
+          </md-tab>
+          <md-tab label="My CV">
+            <md-content class="md-padding">
+                                    <h2>My CVs</h2>
+                        <table class="table">
+                            <tr>
+                              <th>CV Name</th>
+                              <th>Date created</th>
+                              <th>Date modified</th>
+                            </tr>
+                            <tr>
+                              <td><a href="javascript:void(0)">My Web-Dev CV</a></td>
+                              <td>31/04/2016 4:30pm</td>
+                              <td>08/11/2016 2:15pm</td>
+                            </tr>
+                            <tr>
+                              <td><a href="javascript:void(0)">My Sales CV</a></td>
+                              <td>20/05/2016 4:30pm</td>
+                              <td>16/10/2016 2:15pm</td>
+                            </tr>
+                            <tr>
+                              <td><a href="javascript:void(0)">My Mobile-Dev CV</a></td>
+                              <td>28/01/2016 4:30pm</td>
+                              <td>28/01/2016 2:15pm</td>
+                            </tr>
+                          </table>
+            </md-content>
+          </md-tab>
+        </md-tabs>
+      </md-content>
+    </div>
+</div>
+
+		

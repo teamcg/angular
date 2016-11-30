@@ -1,0 +1,76 @@
+<div class="container" ng-controller="StudentRegController as studentregController">
+  	<h1 class="text-center">Register</h1>
+
+   <div class="form-group">
+      <label for="studentid" class="col-sm-2 control-label">Student ID</label>
+      <div class="col-sm-10">
+        <input type="number" name="studentid" class="form-control" id="studentid"  ng-model="studentregController.studentid">
+      </div>
+       {{studentregController.studentid}}
+    </div>
+    
+    
+    <div class="form-group">
+      <label for="authKey" class="col-sm-2 control-label">Authorization Key</label>
+      <div class="col-sm-10">
+        <input type="text" name="authcode" class="form-control" id="authcode"  ng-model="studentregController.authcode">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="firstname" class="col-sm-2 control-label">First name</label>
+      <div class="col-sm-10">
+        <input type="text" name="firstname" class="form-control" id="firstname" placeholder="Firstname" required ng-model="studentregController.firstname">
+      </div>
+    </div>
+      
+       <div class="form-group">
+      <label for="lastname" class="col-sm-2 control-label">Last name</label>
+      <div class="col-sm-10">
+        <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Lastname" required ng-model="studentregController.lastname">
+      </div>
+    </div>
+ 
+    <div class="form-group">
+      <label for="email" class="col-sm-2 control-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" name="email" class="form-control" id="email" placeholder="Email" required ng-model="studentregController.email">
+      </div>
+    </div>
+      
+    <div class="form-group">
+      <label for="inputPassword" class="col-sm-2 control-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" name="password" class="form-control" id="pass1" placeholder="Password" required ng-model="studentregController.password">
+      </div>
+    </div>
+      
+    <div class="form-group">
+      <label for="inputPassword" class="col-sm-2 control-label">Confirm Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="pass2" placeholder="Confirm Password"  required>
+          <span id="confirmMessage" class="confirmMessage"></span>
+      </div>
+    </div>
+      
+       <div class="form-group">
+      <label for="portfolio" class="col-sm-2 control-label">Portfolio</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="portfolio" placeholder="Portfolio" required>
+      </div>
+    </div>
+      
+      <div class="form-group">
+      <label for="linkedin" class="col-sm-2 control-label">Linked In</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="linkedin" placeholder="Linked In" required>
+      </div>
+    </div>
+      
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default" id="buttonSubmit"  ng-click="studentregController.register()">Submit</button>
+      </div>
+    </div>
+
+</div>

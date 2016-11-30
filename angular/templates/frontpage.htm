@@ -1,12 +1,14 @@
-   <div  ng-controller="LoginController as loginController">
+   
    <div class="container" >
+       
 
 		<div class="col-md-12 col-sm-12 col-xs-12" align="middle">
 			<img src="images/logoLogin.png" style="">
 		</div>
 		
 		<div class="col-md-5 col-sm-5 col-xs-5">
-		<div class="form-signin">
+		<div class="form-signin" ng-controller="LoginController as loginController">
+            
 		  <!--form action="#" method="POST" class="form-signin"-->
 			<h2 class="form-signin-heading">Please sign in</h2>
 			
@@ -31,22 +33,22 @@
 		
 
 
-		<div class="col-md-5 col-sm-5 col-xs-5">
-		  <form action="/reg" method="POST" class="form-signin">
+		<div class="col-md-5 col-sm-5 col-xs-5"  ng-controller="RegisterController as registerController">
+		  
 			<h2 class="form-signin-heading">
 				Register
 			</h2>
-			<input type="text" name="regstudentid" id="username" class="form-control" placeholder="Student ID" required autofocus>
-			<input type="password" name ="regauthkey" id ="password" class="form-control" placeholder="Authorization Code" required>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-		  </form>
+			<input type="text" name="regstudentid" id="username" class="form-control" placeholder="Student ID" required autofocus ng-model="registerController.studentid">
+			<input type="password" name ="regauthkey" id ="password" class="form-control" placeholder="Authorization Code" required ng-model="registerController.authcode">
+			<button class="btn btn-lg btn-primary btn-block"  ng-click="registerController.register()">Register</button>
+	
 		</div>
 
 
 
 
     </div> <!-- /container -->
-<div class="container text-center">
+<div class="container text-center" ng-controller="LoginController as loginController">
 <!-- 	<a href="/allstudent">
 		<button class="btn btn-default">View All Students</button>
 	</a>
@@ -57,8 +59,12 @@
 
 	
 	  <button class="btn btn-default" ng-click="loginController.gak()">Generate Authorization Code</button>
+</div>
+
+
+
+
 	
 <!-- <a href="/testing">
 	<button class='btn btn-default'>Testing</button>
 </a> -->
-</div>

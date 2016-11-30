@@ -1,20 +1,24 @@
-angular.module("main")
-	.controller("LoginController", function(loginService,$location){
-	
+var app = angular.module("main");
+app.controller("LoginController", function(loginService,$location, $localStorage){
+
 	var loginController = this;
 
 	loginController.username = "";
 	loginController.password = "";
 	loginController.msg = "";
+    
+    loginController.firstname = $localStorage.firstname;
+    loginController.lastname = $localStorage.lastname;
+    
 
 	loginController.signin = function(){
 		
 		loginController.msg = "Proccessing .... ";
 
 		var result = loginService.login(this.username, this.password)
-		.then(function (result) {
+		.then(function(result) {
 	      if(result){
-				console.log("Portal");
+                console.log(result);
 				$location.path("/portal");
 			}else{
 				console.log("Not Logged");
@@ -32,5 +36,6 @@ angular.module("main")
 	}
 
 
-
 });
+
+
