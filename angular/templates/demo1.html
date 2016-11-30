@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+		
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+	</head>
+	<body>
+
+		<div class="container"> <div class="col-sm-8 col-sm-offset-2">	 
+			<div class="panel-group" id="accordion">
+			
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Personal Info</a> </h4>
+					</div>
+					<div id="collapse1" class="panel-collapse collapse"> <div class="panel-body">
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="first name">First Name:</label> </div>
+							<div class="col-sm-5"> <input type="text" class="form-control" name="thecv[first-name]" placeholder="First Name" required> </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="last name">Last Name:</label> </div>
+							<div class="col-sm-5"> <input type="text" class="form-control" name="thecv[last-name]" placeholder="Last Name" required> </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="address">Address:</label> </div>
+							<div class="col-sm-5"> <input type="text" class="form-control" name="thecv[address]" placeholder="Address" required> </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="suburb">Suburb:</label> </div>
+							<div class="col-sm-5"> <input type="text" class="form-control" name="thecv[suburb]" placeholder="Suburb" required> </div>
+						</div>
+						<div class="row">
+							<div class="col-md-3 control-label"> <label for="city">City:</label> </div>
+							<div class="col-sm-5"> <input type="text" class="form-control" name="thecv[city]" placeholder="City" required> </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="postcode">Post Code:</label> </div>
+							<div class="col-sm-3"> <input type="text" name="thecv[postcode]" class="form-control" placeholder="Post Code" required> </div>
+							<div class="col-sm-2"> <label name="thecv[postcodefinder]"><u><a href="demo.html">Find your post code</a></u></label> </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="phone">Mobile Phone:</label> </div>
+							<div class="col-sm-5"> <input type="text" class="form-control" name="thecv[phone]" placeholder="Mobile Phone" required> </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="email">Email:</label> </div>
+							<div class="col-sm-5"> <input type="text" class="form-control" name="thecv[email]"  placeholder="abc@domain.com" required> </div>
+						</div>
+						
+					</div></div>
+				</div> <!-- end Personal Info div -->
+			
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Personal Statement</a> </h4>
+					</div>
+					<div id="collapse2" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-sm-6 col-sm-offset-2">
+									<br />
+									<textarea name="thecv[personalstatement]"  required="required" class="form-control" rows="6" placeholder="With my experience in retail and technology, I am looking for a retail position that will utilise my good customer service, attention to detail and knowledge of business to enhance your business and customer experience."></textarea>
+									<br />			
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> <!-- end Personal Statement div -->
+			
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Experience</a> </h4>
+					</div>
+					<div id="collapse3" class="panel-collapse collapse"> <div class="panel-body">					  
+						<div class="row">
+							<div class="col-sm-3 control-label"> 
+								<label for="experience.category">Category:</label>
+							</div>
+							<div class="col-sm-5">	
+								<select class="form-control" id="expcategoryInput" name="thecv[experience.category]" required autofocus>
+									<option>Project Manager</option>
+									<option>Programmer</option>  
+								</select>			
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="experience.role">Role:</label> </div>
+							<div class="col-sm-5">	
+								<input type="text" class="form-control" id="exproleInput" name="thecv[experience.role]" placeholder="Role" required>				
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="experience.company">Company Description:</label> </div>
+							<div class="col-sm-5">	 
+								<textarea name="thecv[experience.companydesc]" id="companydescInput"  required="required" class="form-control" rows="4"></textarea>					
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="experience.company">Company:</label> </div>
+							<div class="col-sm-5">	
+								<input type="text" name="thecv[experience.company]" id="companyInput" class="form-control" placeholder="Company" required>				
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3 control-label"> <label for="experience.city">City:</label> </div>
+							<div class="col-sm-5">	
+								<input type="text" class="form-control" id="expcityInput" name="thecv[experience.city]" placeholder="City" required>				
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="experience.country">Country:</label> </div>
+							<div class="col-sm-5">	
+								<input type="text" name="thecv[experience.country]" id="expcountryInput" class="form-control"  placeholder="Country" required>			
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="experience.start">Start Date:</label> </div>
+							<div class="col-sm-3">	
+								<select class="form-control" id="expstartmonthInput" name="thecv[experience.starttmonth]" required>
+									<option>January</option>
+									<option>February</option>
+									<option>March</option>
+									<option>April</option>
+									<option>May</option>
+									<option>June</option>
+									<option>July</option>
+									<option>August</option>
+									<option>September</option>
+									<option>October</option>
+									<option>November</option>
+									<option>December</option>
+								</select>					
+							</div>
+							<div class="col-sm-2">	
+								<select class="form-control" id="expstartyearInput" name="thecv[experience.startyear]" required>
+									<option>2002</option>
+									<option>2003</option>
+									<option>2004</option>
+									<option>2005</option>
+									<option>2006</option>
+									<option>2007</option>
+									<option>2008</option>
+									<option>2009</option>
+									<option>2010</option>
+									<option>2011</option>
+									<option>2012</option>
+									<option>2013</option>
+									<option>2014</option>
+									<option>2015</option>
+									<option>2016</option>
+									<option>2017</option>
+								</select>					
+							</div>
+						</div> 
+						<div class="row">
+							<div class="col-sm-3 control-label">
+								<label for="experience.end">End Date:</label>
+							</div>
+							<div class="col-sm-3">	
+								<select class="form-control" id="expendmonthInput" name="experience.endmonth" required>
+									<option>January</option>
+									<option>February</option>
+									<option>March</option>
+									<option>April</option>
+									<option>May</option>
+									<option>June</option>
+									<option>July</option>
+									<option>August</option>
+									<option>September</option>
+									<option>October</option>
+									<option>November</option>
+									<option>December</option>
+								</select>					
+							</div>
+							<div class="col-sm-2">	
+								<select class="form-control" id="expendyearInput" name="experience.endyear" required>
+									<option>2002</option>
+									<option>2003</option>
+									<option>2004</option>
+									<option>2005</option>
+									<option>2006</option>
+									<option>2007</option>
+									<option>2008</option>
+									<option>2009</option>
+									<option>2010</option>
+									<option>2011</option>
+									<option>2012</option>
+									<option>2013</option>
+									<option>2014</option>
+									<option>2015</option>
+									<option>2016</option>
+									<option>2017</option>
+								</select>					
+							</div>
+						</div>
+						<div class="row"> <div class="col-sm-5 control-label">
+						<br>
+						<button type="button" class="btn btn-default addBtn"  id="addExpBtn" aria-label="save" onclick="Javascript:addExpRow()"> Save job </button>
+						<br>  
+						<button type="button" class="btn btn-default saveBtn"  id="saveExpBtn" aria-label="save" style="display:none" onclick="Javascript:saveExpRow()"> Save job </button>
+						<input type="text" class="form-control" id="rowExpBeEdt" name="rowBeingEditing" style="display:none">
+						<br>  
+						</div></div> 
+						<div class="row">
+							<div class="col-sm-12"> 
+								<div class="table-responsive">
+									<br>
+									<table class="table  table-hover" id="tableExperience">
+										<thead><tr>
+											<th></th>
+											<th></th>
+											<th>Role</th>
+											<th>Company</th>
+											<th>Company Decscription</th>
+											<th>City</th> 
+											<th>Country</th>
+											<th>Start month</th>
+											<th>Start year</th>
+											<th>End month</th> 
+											<th>End year</th>
+											<th>Category</th>
+										</tr></thead>
+										<tbody></tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div> </div>
+				</div> <!-- end Experience div -->
+			  
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">Education</a> </h4>
+					</div>
+					<div id="collapse4" class="panel-collapse collapse"> <div class="panel-body">
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="education.category">Category:</label> </div>
+							<div class="col-sm-5">	
+								<select class="form-control" id="eduCategoryInput" name="thecv[education.category]" required autofocus>
+									<option>Project Manager</option>
+									<option>Programmer</option> 
+								</select>			
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="education.school">School Name:</label> </div>
+							<div class="col-sm-5"> 
+								<input type="text" class="form-control" id="eduSchoolNameInput" name="thecv[experience.school]" placeholder="School Name" required> 
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-3 control-label"> <label for="education.city">City:</label> </div>
+							<div class="col-sm-5"> 
+								<input type="text" class="form-control" id="eduCityInput" name="thecv[education.city]" placeholder="City" required> 
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="education.country">Country:</label> </div>
+							<div class="col-sm-5"> 
+								<input type="text" class="form-control" id="eduCountryInput" name="thecv[education.country]" placeholder="Country" required> 
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="education.start">Start Date:</label> </div>
+							<div class="col-sm-3">	
+								<select class="form-control" id="eduStartMonthInput" name="thecv[education.starttmonth]" required>
+									<option>January</option>
+									<option>February</option>
+									<option>March</option>
+									<option>April</option>
+									<option>May</option>
+									<option>June</option>
+									<option>July</option>
+									<option>August</option>
+									<option>September</option>
+									<option>October</option>
+									<option>November</option>
+									<option>December</option>
+								</select>					
+							</div>
+							<div class="col-sm-2">	
+								<select class="form-control" id="eduStartYearInput" name="thecv[education.startyear]" required>
+									<option>2002</option>
+									<option>2003</option>
+									<option>2004</option>
+									<option>2005</option>
+									<option>2006</option>
+									<option>2007</option>
+									<option>2008</option>
+									<option>2009</option>
+									<option>2010</option>
+									<option>2011</option>
+									<option>2012</option>
+									<option>2013</option>
+									<option>2014</option>
+									<option>2015</option>
+									<option>2016</option>
+									<option>2017</option>
+								</select>					
+							</div>
+						</div> 
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="education.end">End Date:</label> </div>
+							<div class="col-sm-3">	
+								<select class="form-control" id="eduEndMonthInput" name="education.endmonth" required>
+									<option>January</option>
+									<option>February</option>
+									<option>March</option>
+									<option>April</option>
+									<option>May</option>
+									<option>June</option>
+									<option>July</option>
+									<option>August</option>
+									<option>September</option>
+									<option>October</option>
+									<option>November</option>
+									<option>December</option>
+								</select>					
+							</div>
+							<div class="col-sm-2">	
+								<select class="form-control" id="eduEndYearInput" name="education.endyear" required>
+									<option>2002</option>
+									<option>2003</option>
+									<option>2004</option>
+									<option>2005</option>
+									<option>2006</option>
+									<option>2007</option>
+									<option>2008</option>
+									<option>2009</option>
+									<option>2010</option>
+									<option>2011</option>
+									<option>2012</option>
+									<option>2013</option>
+									<option>2014</option>
+									<option>2015</option>
+									<option>2016</option>
+									<option>2017</option>
+								</select>					
+							</div>
+						</div> 
+						<div class="row">
+							<div class="col-sm-5 col-sm-push-3 control-label">
+								<br>
+								<button type="button" class="btn btn-default addBtn"  id="addEduBtn" aria-label="save" onclick="Javascript:addEduRow()"> Save Education </button>
+								<br>  
+								<button type="button" class="btn btn-default saveBtn"  id="saveEduBtn" aria-label="save" style="display:none" onclick="Javascript:saveEduRow()"> Save Education </button>
+								<input type="text" class="form-control" id="rowEduBeEdt" name="rowBeingEditing" style="display:none">
+								<br>  
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12"> <div class="table-responsive">
+								<br>
+								<table class="table  table-hover" id="tableEducation">
+									<thead>
+										<tr><th></th>
+											<th></th>
+											<th>School</th>
+											<th>City</th> 
+											<th>Country</th>
+											<th>Start Month</th>
+											<th>Start Year</th>
+											<th>End Month</th>                      
+											<th>End Year</th>
+											<th>Category</th> 
+										</tr>
+									</thead>
+									<tbody></tbody>
+								</table>
+							</div></div>
+						</div>
+					</div></div>
+				</div> <!-- end Education div -->
+			  
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title"> <a data-toggle="collapse" data-parent="#accordion" href="#collapse5">Key Skills & Competencies</a> </h4>
+					</div>
+					<div id="collapse5" class="panel-collapse collapse"> <div class="panel-body">
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="keyskills.title">Title:</label> </div>
+							<div class="col-sm-5"> <input type="text" class="form-control" name="thecv[keyskills.title]" placeholder="Title" required> </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3 control-label"> <label for="keyskills.description">Description:</label> </div>
+							<div class="col-sm-5"> <textarea name="thecv[keyskills.description]"  required="required" class="form-control" rows="4"></textarea>	</div>
+						</div>
+					</div> </div>
+				</div> <!-- end Key Skills div -->
+				
+				
+			</div> <!-- end acordion div -->
+		</div></div>
+		
+		<script type="text/javascript">
+			
+			function addExpRow() {          
+				var expCategory = document.getElementById("expcategoryInput");
+				var expRole = document.getElementById("exproleInput");
+				var expCompanyDesc = document.getElementById("companydescInput");
+				var expCompany = document.getElementById("companyInput");
+				var expCity = document.getElementById("expcityInput");
+				var expCountry = document.getElementById("expcountryInput");
+				var expstartMonth = document.getElementById("expstartmonthInput");
+				var expstartYear = document.getElementById("expstartyearInput");
+				var expendMonth = document.getElementById("expendmonthInput");
+				var expendYear = document.getElementById("expendyearInput");
+					
+				var table = document.getElementById("tableExperience");
+			 
+				var rowCount = table.rows.length;
+				var row = table.insertRow(rowCount);
+				row.insertCell(0).innerHTML= '<span class="glyphicon glyphicon glyphicon-pencil" onClick="Javacsript:editExpRow(this)"></span>';   
+				row.insertCell(1).innerHTML= '<span class="glyphicon glyphicon glyphicon-trash" onClick="Javacsript:deleteExpRow(this)"></span>';
+				row.insertCell(2).innerHTML= expRole.value;
+				row.insertCell(3).innerHTML= expCompany.value;
+				row.insertCell(4).innerHTML= expCompanyDesc.value;
+				row.insertCell(5).innerHTML= expCity.value;
+				row.insertCell(6).innerHTML= expCountry.value;
+				row.insertCell(7).innerHTML= expstartMonth.value;
+				row.insertCell(8).innerHTML= expstartYear.value;
+				row.insertCell(9).innerHTML= expendMonth.value;
+				row.insertCell(10).innerHTML= expendYear.value;
+				row.insertCell(11).innerHTML= expCategory.value;
+				
+				document.getElementById("expcategoryInput").value = "";
+				document.getElementById("exproleInput").value = "";
+				document.getElementById("companydescInput").value = "";
+				document.getElementById("companyInput").value = "";
+				document.getElementById("expcityInput").value = "";
+				document.getElementById("expcountryInput").value = "";
+				document.getElementById("expstartmonthInput").value = "";
+				document.getElementById("expstartyearInput").value = "";
+				document.getElementById("expendmonthInput").value = "";
+				document.getElementById("expendyearInput").value = "";
+			}
+	 
+			function deleteExpRow(obj) {
+				var index = obj.parentNode.parentNode.rowIndex;
+				var table = document.getElementById("tableExperience");
+				table.deleteRow(index);
+			}
+			
+			function editExpRow(obj) {
+				document.getElementById("addExpBtn").style.display = "none";
+				document.getElementById("saveExpBtn").style.display = "block";
+				
+				document.getElementById("exproleInput").value = obj.parentNode.parentNode.childNodes[2].childNodes[0].nodeValue;
+				document.getElementById("companydescInput").value = obj.parentNode.parentNode.childNodes[3].childNodes[0].nodeValue;
+				document.getElementById("companyInput").value = obj.parentNode.parentNode.childNodes[4].childNodes[0].nodeValue;
+				document.getElementById("expcityInput").value = obj.parentNode.parentNode.childNodes[5].childNodes[0].nodeValue;
+				document.getElementById("expcountryInput").value = obj.parentNode.parentNode.childNodes[6].childNodes[0].nodeValue;
+				document.getElementById("expstartmonthInput").value = obj.parentNode.parentNode.childNodes[7].childNodes[0].nodeValue;
+				document.getElementById("expstartyearInput").value = obj.parentNode.parentNode.childNodes[8].childNodes[0].nodeValue;
+				document.getElementById("expendmonthInput").value = obj.parentNode.parentNode.childNodes[9].childNodes[0].nodeValue;
+				document.getElementById("expendyearInput").value = obj.parentNode.parentNode.childNodes[10].childNodes[0].nodeValue;
+				document.getElementById("expcategoryInput").value = obj.parentNode.parentNode.childNodes[11].childNodes[0].nodeValue;
+				
+				//row: obj.parentNode.parentNode
+				document.getElementById("rowExpBeEdt").value = obj.parentNode.parentNode.rowIndex;
+				obj.parentNode.parentNode.style.visibility = "hidden";
+			}
+			
+			function saveExpRow() {
+				document.getElementById("addExpBtn").style.display = "block";
+				document.getElementById("saveExpBtn").style.display = "none";
+				
+				var row = document.getElementById("tableExperience").rows[document.getElementById("rowExpBeEdt").value]
+				
+				row.childNodes[2].childNodes[0].nodeValue = document.getElementById("exproleInput").value;
+				row.childNodes[3].childNodes[0].nodeValue = document.getElementById("companydescInput").value;
+				row.childNodes[4].childNodes[0].nodeValue = document.getElementById("companyInput").value;
+				row.childNodes[5].childNodes[0].nodeValue = document.getElementById("expcityInput").value;
+				row.childNodes[6].childNodes[0].nodeValue = document.getElementById("expcountryInput").value;
+				row.childNodes[7].childNodes[0].nodeValue = document.getElementById("expstartmonthInput").value;
+				row.childNodes[8].childNodes[0].nodeValue = document.getElementById("expstartyearInput").value;
+				row.childNodes[9].childNodes[0].nodeValue = document.getElementById("expendmonthInput").value;
+				row.childNodes[10].childNodes[0].nodeValue = document.getElementById("expendyearInput").value;
+				row.childNodes[11].childNodes[0].nodeValue = document.getElementById("expcategoryInput").value;
+				
+				document.getElementById("expcategoryInput").value = "";
+				document.getElementById("exproleInput").value = "";
+				document.getElementById("companydescInput").value = "";
+				document.getElementById("companyInput").value = "";
+				document.getElementById("expcityInput").value = "";
+				document.getElementById("expcountryInput").value = "";
+				document.getElementById("expstartmonthInput").value = "";
+				document.getElementById("expstartyearInput").value = "";
+				document.getElementById("expendmonthInput").value = "";
+				document.getElementById("expendyearInput").value = "";
+				
+				document.getElementById("rowExpBeEdt").value = "";
+				row.style.visibility = "visible";
+			}
+			
+			function addEduRow() {
+				var table = document.getElementById("tableEducation");
+				var rowCount = table.rows.length;
+				var row = table.insertRow(rowCount);
+				
+				row.insertCell(0).innerHTML = '<span class="glyphicon glyphicon glyphicon-pencil" onClick="Javacsript:editEduRow(this)"></span>';   
+				row.insertCell(1).innerHTML = '<span class="glyphicon glyphicon glyphicon-trash" onClick="Javacsript:deleteEduRow(this)"></span>';
+				row.insertCell(2).innerHTML = document.getElementById("eduSchoolNameInput").value;
+				row.insertCell(3).innerHTML = document.getElementById("eduCityInput").value;
+				row.insertCell(4).innerHTML = document.getElementById("eduCountryInput").value;
+				row.insertCell(5).innerHTML = document.getElementById("eduStartMonthInput").value;
+				row.insertCell(6).innerHTML = document.getElementById("eduStartYearInput").value;
+				row.insertCell(7).innerHTML = document.getElementById("eduEndMonthInput").value;
+				row.insertCell(8).innerHTML = document.getElementById("eduEndYearInput").value;
+				row.insertCell(9).innerHTML = document.getElementById("eduCategoryInput").value;
+				
+				document.getElementById("eduCategoryInput").value = "";
+				document.getElementById("eduSchoolNameInput").value = "";
+				document.getElementById("eduCityInput").value = "";
+				document.getElementById("eduCountryInput").value = "";
+				document.getElementById("eduStartMonthInput").value = "";
+				document.getElementById("eduStartYearInput").value = "";
+				document.getElementById("eduEndMonthInput").value = "";
+				document.getElementById("eduEndYearInput").value = "";
+			}
+	 
+			function deleteEduRow(obj) {
+				var index = obj.parentNode.parentNode.rowIndex;
+				var table = document.getElementById("tableEducation");
+				table.deleteRow(index);
+			}
+			
+			function editEduRow(obj) {
+				document.getElementById("addEduBtn").style.display = "none";
+				document.getElementById("saveEduBtn").style.display = "block";
+				
+				document.getElementById("eduSchoolNameInput").value = obj.parentNode.parentNode.childNodes[2].childNodes[0].nodeValue;
+				document.getElementById("eduCityInput").value = obj.parentNode.parentNode.childNodes[3].childNodes[0].nodeValue;
+				document.getElementById("eduCountryInput").value = obj.parentNode.parentNode.childNodes[4].childNodes[0].nodeValue;
+				document.getElementById("eduStartMonthInput").value = obj.parentNode.parentNode.childNodes[5].childNodes[0].nodeValue;
+				document.getElementById("eduStartYearInput").value = obj.parentNode.parentNode.childNodes[6].childNodes[0].nodeValue;
+				document.getElementById("eduEndMonthInput").value = obj.parentNode.parentNode.childNodes[7].childNodes[0].nodeValue;
+				document.getElementById("eduEndYearInput").value = obj.parentNode.parentNode.childNodes[8].childNodes[0].nodeValue;
+				document.getElementById("eduCategoryInput").value = obj.parentNode.parentNode.childNodes[9].childNodes[0].nodeValue;
+				
+				//row: obj.parentNode.parentNode
+				document.getElementById("rowEduBeEdt").value = obj.parentNode.parentNode.rowIndex;
+				obj.parentNode.parentNode.style.visibility = "hidden";
+			}
+			
+			function saveEduRow() {
+				document.getElementById("addEduBtn").style.display = "block";
+				document.getElementById("saveEduBtn").style.display = "none";
+				
+				var row = document.getElementById("tableEducation").rows[document.getElementById("rowEduBeEdt").value]
+				
+				row.childNodes[2].childNodes[0].nodeValue = document.getElementById("eduSchoolNameInput").value;
+				row.childNodes[3].childNodes[0].nodeValue = document.getElementById("eduCityInput").value;
+				row.childNodes[4].childNodes[0].nodeValue = document.getElementById("eduCountryInput").value;
+				row.childNodes[5].childNodes[0].nodeValue = document.getElementById("eduStartMonthInput").value;
+				row.childNodes[6].childNodes[0].nodeValue = document.getElementById("eduStartYearInput").value;
+				row.childNodes[7].childNodes[0].nodeValue = document.getElementById("eduEndMonthInput").value;
+				row.childNodes[8].childNodes[0].nodeValue = document.getElementById("eduEndYearInput").value;
+				row.childNodes[9].childNodes[0].nodeValue = document.getElementById("eduCategoryInput").value;
+				
+				document.getElementById("eduCategoryInput").value = "";
+				document.getElementById("eduSchoolNameInput").value = "";
+				document.getElementById("eduCityInput").value = "";
+				document.getElementById("eduCountryInput").value = "";
+				document.getElementById("eduStartMonthInput").value = "";
+				document.getElementById("eduStartYearInput").value = "";
+				document.getElementById("eduEndMonthInput").value = "";
+				document.getElementById("eduEndYearInput").value = "";
+				
+				document.getElementById("rowEduBeEdt").value = "";
+				row.style.visibility = "visible";
+			}
+			
+
+		</script>
+	</body>
+</html>
