@@ -34,11 +34,10 @@
             
             
 
-<div ng-controller="DemoCtrl" layout="column" ng-cloak class="md-inline-form">
 
   <md-content layout-padding>
     <div>
-      <form name="userForm">
+
 
 
 
@@ -92,11 +91,10 @@
           
           <md-button ng-click='loginController.cvpersonalinfo()'> Submit </md-button>
 
-      </form>
     </div>
   </md-content>
 
-</div>
+
 
 
             
@@ -105,15 +103,118 @@
       <md-tab label="Personal Statement">
         <md-content class="md-padding">
           <h1 class="md-display-2">Personal statement</h1>
-          
+        
         </md-content>
       </md-tab>
+        
+<!--EXPERIENCE-->
       <md-tab label="Experience">
         <md-content class="md-padding">
           <h1 class="md-display-2">Experience</h1>
+  <md-content layout-padding>
+    <div>
 
+
+
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Category</label>
+            <input ng-model="cvexperience.category">
+
+          </md-input-container>
+
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Role</label>
+            <input ng-model="cvexperience.role">
+          </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+
+        <md-input-container class="md-block">
+          <label>Company</label>
+          <input ng-model="cvexperience.company">
+        </md-input-container>
+            
+          <md-input-container class="md-block" >
+            <label>Company Description</label>
+            <input name="postalCode" ng-model="cvexperience.companydesc"
+                   required>
+          </md-input-container>
+            
+        <md-input-container class="md-block">
+          <label>City</label>
+          <input ng-model="cvexperience.city">
+        </md-input-container>
+    
+        <md-input-container class="md-block">
+          <label>Country</label>
+          <input ng-model="cvexperience.country">
+        </md-input-container>
+
+        </div>
+        
+        <md-input-container>
+            <label>Start date</label>
+            <md-datepicker ng-model="cvexperience.startdate"></md-datepicker>
+        </md-input-container>
+        
+        <md-input-container>
+            <label>End date</label>
+            <md-datepicker ng-model="cvexperience.enddate"></md-datepicker>
+        </md-input-container>
+            
+          <md-button ng-click='expsubmit()'> Submit </md-button>
+
+        
+        <div class="row">
+                <div class="col-sm-12"> 
+                    <div class="table-responsive">
+                        <br>
+                        <table class="table  table-hover" id="tableExperience">
+                            <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Role</th>
+                                    <th>Company</th>
+                                    <th>Company Decscription</th>
+                                    <th>City</th> 
+                                    <th>Country</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th> 
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat='info in tableexp'>
+                                <th>{{info.category}}</th>
+                                <th>{{info.role}}</th>
+                                <th>{{info.company}}</th>
+                                <th>{{info.companydescription}}</th>
+                                <th>{{info.city}}</th>
+                                <th>{{info.country}}</th>
+                                <th>{{info.startdate}}</th>
+                                <th>{{info.enddate}}</th>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+						
+    </div>
+
+  </md-content>
+            
+            
+            
+            
+            
+            
+            
         </md-content>
       </md-tab>
+        
+        
+        
+<!--EDUCATION-->
       <md-tab label="Education">
     <md-content class="md-padding">
       <h1 class="md-display-2">Education</h1>

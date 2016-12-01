@@ -1,5 +1,5 @@
 var app = angular.module("main");
-app.controller("LoginController", function(loginService,$location, $localStorage){
+app.controller("LoginController", function(loginService,$location, $localStorage, $scope){
 
 	var loginController = this;
 
@@ -15,8 +15,20 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         email: '',
         website: '',
         linkedin: '',
-        
     }
+    
+    $scope.cvexperience = {
+        category: '',
+        role: '',
+        company: '',
+        companydesc: '',
+        city: '',
+        country: '',
+        startdate: '',
+        enddate: ''
+    }
+    
+
     
     loginController.firstname = $localStorage.firstname;
     loginController.lastname = $localStorage.lastname;
@@ -65,6 +77,7 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                 });
         }
         
+        
         loginController.cvpersonalinfo = function(){
             
             var result = loginService.cvpi(this.student.firstname, this.student.lastname, this.student.address, this.student.postcode, this.student.email, this.student.website, this.student.linkedin, this.student.phone)
@@ -78,34 +91,48 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                 });
         }
 
+        
+        
+        
+        $scope.expsubmit = function(){
+            
+            var result = loginService.cvexp(
+                this.cvexperience.category, 
+                this.cvexperience.role, 
+                this.cvexperience.company,
+                this.cvexperience.companydesc,
+                this.cvexperience.city,
+                this.cvexperience.country,
+                this.cvexperience.startdate,
+                this.cvexperience.enddate
+            )
+                .then(function(result){
+                    if(result){
+                        console.log(result);
+                        console.log($localStorage.cvexperience);
+                        $scope.tableexp = $localStorage.cvexperience;
+                       
+                        //Clear the experience input fields
+                        $scope.cvexperience = {
+                            category: '',
+                            role: '',
+                            company: '',
+                            companydesc: '',
+                            city: '',
+                            country: '',
+                            startdate: '',
+                            enddate: ''
+                        }
+                        
+                        
+                    } else {
+                        console.log('Exp CTRL error');
+                    }
+                });   
+        }
 });
 
 
-  app.controller('DemoCtrl', function($scope) {
-    $scope.user = {
-      firstName: '',
-      lastName: '',
-      address: '',
-      city: '',
-      suburb: '',
-      postalCode: ''
-    };
-
-    $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
-    'MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI ' +
-    'WY').split(' ').map(function(state) {
-        return {abbrev: state};
-      });
-  })
-  .config(function($mdThemingProvider) {
-
-    // Configure a dark theme with primary foreground yellow
-
-    $mdThemingProvider.theme('docs-dark', 'default')
-      .primaryPalette('yellow')
-      .dark();
-
-  });
 
 
 

@@ -6,7 +6,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
 		
 		var req = {
 		 method: 'POST',
-		 url: 'https://edenzproj.herokuapp.com/authenticate',
+		 url: 'http://localhost:3000/authenticate',
 		 dataType: 'json',
 		 headers: {
 		   'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
         return $http(CVpersonalinfo)
             .then(function(response){
             console.log(response.data);
-            return true
+            return true;
         }, function(response){
             console.log('Error!');
             return false;
@@ -115,6 +115,54 @@ angular.module("main").service("loginService", function($http, $localStorage){
     }
     
     
-    
+    this.cvexp = function(category, role, company, companydesc, city, country, startdate, enddate){
+        var currentCV = $localStorage.currentcv;
+        
+        var CVexperience = {
+            method: 'POST',
+            url: 'http://localhost:3000/cvexperience',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                id: currentCV,
+                category: category,
+                role: role,
+                company: company,
+                companydesc: companydesc,
+                city: city,
+                country: country,
+                startdate: startdate,
+                enddate: enddate
+            }
+        }
+        
+        var cvUpdateExp = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcvexperience',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                id: currentCV
+            }
+        }
+        
+        return $http(CVexperience)
+            .then(function(response){
+                console.log(response.data);
+                return $http(cvUpdateExp)
+                    .then(function(response2){
+                        console.log(response2.data.info.experience);
+                        $localStorage.cvexperience = response2.data.info.experience;
+                        return true;
+            }, function(error2){
+                    console.log('update EXP erro!');
+                    return false;
+                });
+        }, function(error){
+            console.log('EXPERIENCE error');
+            return false;
+        });
+    }
+        
     
 });
