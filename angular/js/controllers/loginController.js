@@ -6,6 +6,17 @@ app.controller("LoginController", function(loginService,$location, $localStorage
 	loginController.username = "";
 	loginController.password = "";
 	loginController.msg = "";
+    loginController.student = {
+        firstname: '',
+        lastname: '',
+        address: '',
+        postcode: '',
+        phone: '',
+        email: '',
+        website: '',
+        linkedin: '',
+        
+    }
     
     loginController.firstname = $localStorage.firstname;
     loginController.lastname = $localStorage.lastname;
@@ -34,23 +45,50 @@ app.controller("LoginController", function(loginService,$location, $localStorage
 		$location.path("/gak");
 	
 	}
-
+        
+        
+        
+        loginController.cv = '';    
+        loginController.cvname = '';
+    
+    
+        loginController.createcv = function(){
+            
+            var result = loginService.cvname(this.cvname)
+                .then(function(result){
+                    if(result){
+                        console.log(result);
+                        loginController.cv = $localStorage.currentcv;
+                    } else {
+                        console.log('error!');
+                    }
+                });
+        }
+        
+        loginController.cvpersonalinfo = function(){
+            
+            var result = loginService.cvpi(this.student.firstname, this.student.lastname, this.student.address, this.student.postcode, this.student.email, this.student.website, this.student.linkedin, this.student.phone)
+                .then(function(result){
+                    if(result){
+                        console.log(result);
+                        
+                    } else {
+                        console.log('error!');
+                    }
+                });
+        }
 
 });
 
 
   app.controller('DemoCtrl', function($scope) {
     $scope.user = {
-      title: 'Developer',
-      email: 'ipsum@lorem.com',
       firstName: '',
       lastName: '',
-      company: 'Google',
-      address: '1600 Amphitheatre Pkwy',
-      city: 'Mountain View',
-      state: 'CA',
-      biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
-      postalCode: '94043'
+      address: '',
+      city: '',
+      suburb: '',
+      postalCode: ''
     };
 
     $scope.states = ('AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS ' +
@@ -68,5 +106,10 @@ app.controller("LoginController", function(loginService,$location, $localStorage
       .dark();
 
   });
+
+
+
+
+
 
 
