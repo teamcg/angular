@@ -18,3 +18,4 @@ Dec 2 <br>
 
 Dec 4 <br>
 -- Added hide, show and ngAnimate for creating CV <br>
+-- Added toolbar on portal <br>
