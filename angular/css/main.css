@@ -67,3 +67,28 @@ body {
   margin: 20px;
   background-color: #FFF2E0; }
 
+
+#createcvname.ng-enter, #createdcvname.ng-enter, #cvcontent.ng-enter {
+    transition: 0.3s ease all;
+    opacity: 0;
+
+}
+
+#createcvname.ng-enter-active, #createdcvname.ng-enter-active, #cvcontent.ng-enter-active {
+    opacity: 1;
+
+}
+
+#createcvname.ng-leave, #createdcvname.ng-leave, #cvcontent.ng-leave {
+    transition: 0.3s ease all;
+    opacity: 1;
+
+}
+
+#createcvname.ng-leave-active, #createdcvname.ng-leave-active, #cvcontent.ng-leave-active {
+    opacity: 0;
+
+}
+
+
+

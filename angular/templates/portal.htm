@@ -17,17 +17,25 @@
 <div ng-cloak>
   <md-content>
       
-      <section layout="row" layout-align="center center" layout-wrap layout-sm="column">
+      <section id="createcvname" layout="row" layout-align="center center" layout-wrap layout-sm="column" ng-if="loginController.cv === ''">
           <md-input-container>
           <label>CV Name</label>
           <input  ng-model="loginController.cvname"/>
-              {{loginController.cvname}}
           </md-input-container>
           <md-button class="md-raised md-primary" ng-click="loginController.createcv()">Create CV</md-button>
       </section>
+      
+     <section id="createdcvname" layout-align="center center" layout-wrap layout-sm="column" ng-if="loginController.cv != null && loginController.cv != ''">
+        <h2 class="text-center">Editing {{loginController.cvname}}</h2>
+    </section>
+      
+      
+      
+      
       <input value="{{loginController.cv}}" ng-model="loginController.cvid" readonly hidden>
       
-    <md-tabs md-dynamic-height md-border-bottom>
+      
+    <md-tabs id="cvcontent" md-dynamic-height md-border-bottom ng-show='loginController.cv != "" && loginController.cv != null'>
       <md-tab label="Personal Info">
         <md-content class="md-padding">
           <h1 class="md-display-2">Personal Information</h1>
@@ -156,7 +164,7 @@
         
         <md-input-container>
             <label>Start date</label>
-            <md-datepicker ng-model="cvexperience.startdate"></md-datepicker>
+            <md-datepicker ng-model="cvexperience.startdate" disabled="true"></md-datepicker>
         </md-input-container>
         
         <md-input-container>
