@@ -11,7 +11,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
 		 headers: {
 		   'Content-Type': 'application/json'
 		 },
-		 data: { email: user,
+		 data: { studentid: user,
 		 		password: pass 
 		 		}
 		}
@@ -19,11 +19,9 @@ angular.module("main").service("loginService", function($http, $localStorage){
 
 		return $http(req)
 			.then(function(response) {
-	        	console.log(response.data.data.firstname);
                 $localStorage.firstname = response.data.data.firstname;
                 $localStorage.lastname = response.data.data.lastname;
 	        	$localStorage.token = response.data.token;
-	        	console.log($localStorage.token);
 		        return response.data.success;
 
 		    }, function(response) {
@@ -162,6 +160,58 @@ angular.module("main").service("loginService", function($http, $localStorage){
             console.log('EXPERIENCE error');
             return false;
         });
+    }
+    
+    
+    this.cvedu = function(category, school, city, country, startdate, enddate){
+        var currentCV = $localStorage.currentcv;
+        
+        var CVeducation = {
+            method: 'POST',
+            url: 'http://localhost:3000/cveducation',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                id: currentCV,
+                category: category,
+                school: school,
+                city: city,
+                country: country,
+                startdate: startdate,
+                enddate: enddate
+            }
+        }
+        
+        var cvUpdateEducation = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducation',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                id: currentCV
+            }
+        }
+        
+        return $http(CVeducation)
+            .then(function(response){
+            console.log(response);
+            return $http(cvUpdateEducation)
+                .then(function(response2){
+                console.log(response2.data.info.education);
+                $localStorage.cveducation = response2.data.info.education;
+                return true;
+            }, function(error2){
+                console.log(error2);
+                return false;
+            });
+        
+        }, function(err){
+            console.log(err);
+            return false;
+        
+        });
+    
+    
     }
         
     

@@ -1,5 +1,5 @@
 var app = angular.module("main");
-app.controller("RegisterController", function(registerService,$location){
+app.controller("RegisterController", function(registerService,$location, $localStorage){
                
                var registerController = this;
     
@@ -12,6 +12,10 @@ app.controller("RegisterController", function(registerService,$location){
                     var result = registerService.register(this.studentid, this.authcode)
                     .then(function(result){
                         if(result){
+                            $localStorage.a = {
+                                studentid: registerController.studentid,
+                                authcode: registerController.authcode
+                            }
                             console.log("Register");
                             $location.path("/register");
                         }else{

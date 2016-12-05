@@ -1,7 +1,9 @@
 <div ng-controller='LoginController as loginController'>
 
     
-    
+
+
+
       
     
     
@@ -25,13 +27,12 @@
       </div>
     </md-toolbar>
     
-      <md-content>
+<md-content>
         <md-tabs md-dynamic-height md-border-bottom>
           <md-tab label="My Profile">
             <md-content class="md-padding">
               <h1 class="md-display-2">Welcome {{loginController.firstname}} {{loginController.lastname}}</h1>
                 <h2></h2>
-                <p>Paris is the capital of Brasil.</p>
             </md-content>
           </md-tab>
           <md-tab label="Create CV">
@@ -59,7 +60,7 @@
       <input value="{{loginController.cv}}" ng-model="loginController.cvid" readonly hidden>
       
       
-    <md-tabs id="cvcontent" md-dynamic-height md-border-bottom ng-show='loginController.cv != "" && loginController.cv != null'>
+    <md-tabs  id="cvcontent" md-dynamic-height md-border-bottom ng-show='loginController.cv != "" && loginController.cv != null'>
       <md-tab label="Personal Info">
         <md-content class="md-padding">
           <h1 class="md-display-2">Personal Information</h1>
@@ -134,7 +135,12 @@
       </md-tab>
       <md-tab label="Personal Statement">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Personal statement</h1>
+        
+        <md-input-container class="md-block">
+         <label>Personal Statement</label>
+                <textarea ng-model="cvpersonalstatement"  rows="3" md-select-on-focus ></textarea>
+             <md-button class="md-raised md-primary" ng-click='pssubmit()'> Submit </md-button>
+        </md-input-container>
         
         </md-content>
       </md-tab>
@@ -142,30 +148,39 @@
 <!--EXPERIENCE-->
       <md-tab label="Experience">
         <md-content class="md-padding">
-          <h1 class="md-display-2">Experience</h1>
   <md-content layout-padding>
     <div>
 
 
+<form>
+    <div layout-fill layout="column" class="inset" ng-cloak paddi>
+        <div layout="row" layout-align="space-between">
+          <div style="width:50px"></div>
+          <md-button ng-click="showSimpleToast()">
+            Show Simple
+          </md-button>
 
-
+          <div style="width:90px"></div>
+        </div>
+    </div>
         <div layout-gt-sm="row">
+            
           <md-input-container class="md-block" flex-gt-sm>
             <label>Category</label>
-            <input ng-model="cvexperience.category">
+            <input ng-model="cvexperience.category" required>
 
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-sm>
             <label>Role</label>
-            <input ng-model="cvexperience.role">
+            <input ng-model="cvexperience.role" required>
           </md-input-container>
         </div>
         <div layout-gt-sm="row">
 
         <md-input-container class="md-block">
           <label>Company</label>
-          <input ng-model="cvexperience.company">
+          <input ng-model="cvexperience.company" required>
         </md-input-container>
             
           <md-input-container class="md-block" >
@@ -176,44 +191,44 @@
             
         <md-input-container class="md-block">
           <label>City</label>
-          <input ng-model="cvexperience.city">
+          <input ng-model="cvexperience.city" required>
         </md-input-container>
     
         <md-input-container class="md-block">
           <label>Country</label>
-          <input ng-model="cvexperience.country">
+          <input ng-model="cvexperience.country" required>
         </md-input-container>
 
         </div>
         
         <md-input-container>
             <label>Start date</label>
-            <md-datepicker ng-model="cvexperience.startdate" disabled="true"></md-datepicker>
+            <md-datepicker ng-model="cvexperience.startdate" required></md-datepicker>
         </md-input-container>
         
         <md-input-container>
             <label>End date</label>
-            <md-datepicker ng-model="cvexperience.enddate"></md-datepicker>
+            <md-datepicker ng-model="cvexperience.enddate" required></md-datepicker>
         </md-input-container>
             
-          <md-button ng-click='expsubmit()'> Submit </md-button>
-
-        
+          <md-button type="submit" ng-click='expsubmit()'> Submit </md-button>
+      </form>
+        <h3 class="text-center">List of Experiences</h3>
         <div class="row">
                 <div class="col-sm-12"> 
                     <div class="table-responsive">
                         <br>
                         <table class="table  table-hover" id="tableExperience">
                             <thead>
-                                <tr>
-                                    <th>Category</th>
-                                    <th>Role</th>
-                                    <th>Company</th>
-                                    <th>Company Decscription</th>
-                                    <th>City</th> 
-                                    <th>Country</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th> 
+                                <tr >
+                                    <th class="text-center"><h4>Category</h4></th>
+                                    <th class="text-center"><h4>Role</h4></th>
+                                    <th class="text-center"><h4>Company</h4></th>
+                                    <th class="text-center"><h4>Company Description</h4></th>
+                                    <th class="text-center"><h4>City</h4></th> 
+                                    <th class="text-center"><h4>Country</h4></th>
+                                    <th class="text-center"><h4>Start Date</h4></th>
+                                    <th class="text-center"><h4>End Date</h4></th> 
                                 </tr>
                             </thead>
                             <tbody ng-repeat='info in tableexp'>
@@ -234,7 +249,7 @@
     </div>
 
   </md-content>
-            
+
             
             
             
@@ -247,15 +262,116 @@
         
         
 <!--EDUCATION-->
-      <md-tab label="Education">
+<md-tab label="Education">
     <md-content class="md-padding">
-      <h1 class="md-display-2">Education</h1>
+
+       <md-content layout-padding>
+    <div>
+
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Category</label>
+            <input ng-model="cveducation.category">
+
+          </md-input-container>
+            
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>School</label>
+                <input ng-model="cveducation.school">
+            </md-input-container>
+        </div>
+        
+        
+        <div layout-gt-sm="row">        
+        <md-input-container class="md-block">
+          <label>City</label>
+          <input ng-model="cveducation.city">
+        </md-input-container>
+    
+        <md-input-container class="md-block">
+          <label>Country</label>
+          <input ng-model="cveducation.country">
+        </md-input-container>
+       
+        <md-input-container>
+            <label>Start date</label>
+            <md-datepicker ng-model="cveducation.startdate"></md-datepicker>
+        </md-input-container>
+        
+        <md-input-container>
+            <label>End date</label>
+            <md-datepicker ng-model="cveducation.enddate"></md-datepicker>
+        </md-input-container>
+        </div>
+            
+          <md-button class="md-raised md-primary" ng-click='edusubmit()'> Submit </md-button>
+
+        <h3 class="text-center">List of Educations</h3>
+        <div class="row">
+                <div class="col-sm-12"> 
+                    <div class="table-responsive">
+                        <br>
+                        <table class="table  table-hover" id="tableEducation">
+                            <thead>
+                                <tr>
+                                    <th><h4>Category</h4></th>
+                                    <th><h4>School</h4></th> 
+                                    <th><h4>City</h4></th> 
+                                    <th><h4>Country</h4></th>
+                                    <th><h4>Start Date</h4></th>
+                                    <th><h4>End Date</h4></th> 
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat='info in tableeducation'>
+                                <th>{{info.category}}</th>
+                                <th>{{info.school}}</th>
+                                <th>{{info.city}}</th>
+                                <th>{{info.country}}</th>
+                                <th>{{info.startdate}}</th>
+                                <th>{{info.enddate}}</th>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+						
+    </div>
+
+  </md-content>        
+        
+        
+        
+        
+        
+        
+        
+        
+
+
 
     </md-content>
-  </md-tab>
+</md-tab>
+        
+        
+        
+        
+        
+        
+        
+<!--SKILLS-->
          <md-tab label="Key Skills & Competencies">
     <md-content class="md-padding">
-      <h1 class="md-display-2">Key Skills</h1>
+      
+        <md-input-container class="md-block">
+          <label>Title</label>
+          <input ng-model="cvkeyskills.title">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+         <label>Description</label>
+                <textarea ng-model="cvkeyskills.description"  rows="3" md-select-on-focus ></textarea>
+             <md-button class="md-raised md-primary" ng-click='keyskillsubmit()'> Submit </md-button>
+        </md-input-container>
 
     </md-content>
   </md-tab>

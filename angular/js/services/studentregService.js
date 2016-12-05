@@ -3,13 +3,11 @@ var app = angular.module('main');
 app.service("studentregService", function($http){
     console.log("Student Service Worked!");
     
-    this.register = function(studentid, authcode, firstname, lastname, password, email){
-                    console.log("student register inside service");
-                    console.log(studentid + authcode + firstname + lastname + password + email);
+    this.register = function(studentid, authcode, firstname, lastname, password, email, linkedin, website, address){
                     
                     var req = {
                         method: 'POST',
-                        url: 'https://edenzproj.herokuapp.com/register',
+                        url: 'http://localhost:3000/register',
                         dataType: 'json',
                         headers: {
                             'Content-Type': 'application/json'
@@ -21,12 +19,15 @@ app.service("studentregService", function($http){
                             firstname: firstname,
                             lastname: lastname,
                             password: password,
-                            email: email
+                            email: email,
+                            linkedin: linkedin,
+                            website: website,
+                            address: address
                         }
                     }
                     return $http(req)
                         .then(function(result){
-                        console.log("service " + result.data);
+                        console.log('Register Successfully!');
                         return result.data;
             
                         }, function(error){

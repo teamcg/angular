@@ -7,7 +7,7 @@ app.service('genauthkeyService', function($http){
         console.log(studentid);
         var req = {
             method: 'POST',
-            url: 'https://edenzproj.herokuapp.com/getkey',
+            url: 'http://localhost:3000/getkey',
             dataType: 'json',
             headers: {
                 'Content-Type': 'application/json'

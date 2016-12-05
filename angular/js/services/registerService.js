@@ -1,17 +1,15 @@
 var app = angular.module('main');
 
 app.service("registerService", function($http){
-    console.log("Register Service Worked!");
-    this.register = function(studentid,authcode){
-        console.log("register inside service");
+    this.register = function(studentid, authcode){
         var req = {
             method: 'POST',
-            url: 'https://edenzproj.herokuapp.com/authreg',
+            url: 'http://localhost:3000/authreg',
             dataType: 'json',
             contentType: 'application/json',
             data: {
                 studentid: studentid,
-                authkey: authcode
+                authcode: authcode
             }
         }
         return $http(req)

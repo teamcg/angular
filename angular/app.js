@@ -19,11 +19,7 @@ app.config(function ($routeProvider, $httpProvider){
 	})
     .when("/register",{
         templateUrl: "./templates/register.htm",
-        controller: "RegisterController"
-    })
-    .when("/page5",{
-        templateUrl: "./templates/demo1.html",
-        controller: "RegisterController"
+        controller: "StudentRegController"
     })
 	.otherwise({
 		templateUrl : "/templates/error404.htm"
