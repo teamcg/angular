@@ -73,9 +73,13 @@
             
             <md-input-container class="md-block" flex-gt-sm>
             <label>Confirm Password</label>
-            <input type="password" id="pass2" ng-model="user.city">
+            <input type="password" id="pass2">
           </md-input-container>
         </div>
+        
+                <span>
+            <h4>{{studentregController.message}}</h4>
+        </span>
         <md-button class="md-raised md-primary" ng-click="studentregController.register()">Register</md-button>
     </div>
   </md-content>
