@@ -26,3 +26,11 @@ Dec 5 <br>
 -- Added service in LoginService for saving experience and getting the updated info on NodeJS thru querying the DB <br>
 -- fixed the login, instead of using email, it uses studentid <br>
 -- reworked the register inputs, migrated to angular material <br>
+
+Dec 6 <br>
+-- Reworked the frontpage (login, register and generate authorization code), migrated to Angular Material. Removed the BODY background-color. <br>
+-- Added input on the skills tab <br>
+-- Added input on the My Profile <br>
+-- Removed the Personal Info under Create CV <br>
+-- Added function in LoginController for saving Skills and adding the updated info on the table <br>
+-- Added service in LoginController for saving skills and updating the table thru querying the database <br>

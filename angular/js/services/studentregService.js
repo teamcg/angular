@@ -3,7 +3,7 @@ var app = angular.module('main');
 app.service("studentregService", function($http){
     console.log("Student Service Worked!");
     
-    this.register = function(studentid, authcode, firstname, lastname, password, email, linkedin, website, address){
+    this.register = function(studentid, authcode, firstname, lastname, password, email, linkedin, website, address, phone){
                     
                     var req = {
                         method: 'POST',
@@ -22,7 +22,8 @@ app.service("studentregService", function($http){
                             email: email,
                             linkedin: linkedin,
                             website: website,
-                            address: address
+                            address: address,
+                            phone: phone
                         }
                     }
                     return $http(req)

@@ -31,10 +31,22 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         enddate: ''
     }
     
+    $scope.cvskill = {
+        name: '',
+        description: ''
+    }
+    
 
     
-    loginController.firstname = $localStorage.firstname;
-    loginController.lastname = $localStorage.lastname;
+    loginController.studentinfo = {
+        firstname: $localStorage.studentFirstname,
+        lastname: $localStorage.studentLastname,
+        address: $localStorage.studentAddress,
+        phone: $localStorage.studentPhone,
+        email: $localStorage.studentEmail,
+        website: $localStorage.studentWebsite,
+        linkedin: $localStorage.studentLinkedin
+    }
     
 
 	loginController.signin = function(){
@@ -78,6 +90,26 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                         console.log('error!');
                     }
                 });
+        }
+        
+        
+        loginController.updateProfile = function(){
+            var result = loginService.profileUpdate(
+                this.studentinfo.address, 
+                this.studentinfo.email, 
+                this.studentinfo.phone, 
+                this.studentinfo.linkedin, 
+                this.studentinfo.website
+            )
+                .then(function(result){
+                    if(result){
+                        console.log(result);
+                        $scope.myProfileToast();
+                    } else {
+                        console.log('ERROR! on updating profile!!');
+                    }
+                });
+            
         }
         
         
@@ -159,9 +191,31 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         }
         
         
+        $scope.skillsubmit = function(){
+            var result = loginService.cvskills(
+                this.cvskill.name,
+                this.cvskill.description
+            )
+            
+            .then(function(result){
+                if(result){
+                    console.log(result);
+                    $scope.tableskill = $localStorage.cvskill;
+                    $scope.skillToast();
+                } else {
+                    console.log('ERROR SKILL SUBMIT');
+                }
+            });
+            
+        }
         
         
-        //TOAST
+        
+        
+        
+        
+        
+        //TOAST FUNCTIONALITY
           var last = {
               bottom: false,
               top: true,
@@ -207,6 +261,29 @@ app.controller("LoginController", function(loginService,$location, $localStorage
     $mdToast.show(
       $mdToast.simple()
         .textContent('Education successfully added!')
+        .position(pinTo)
+        .hideDelay(2000)
+    );
+  };
+    
+         $scope.myProfileToast = function() {
+    var pinTo = $scope.getToastPosition();
+
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Profile successfully updated!')
+        .position(pinTo)
+        .hideDelay(2000)
+    );
+  };
+    
+    
+     $scope.skillToast = function() {
+    var pinTo = $scope.getToastPosition();
+
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Skill successfully added!')
         .position(pinTo)
         .hideDelay(2000)
     );

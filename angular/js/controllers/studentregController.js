@@ -5,7 +5,6 @@ app.controller("StudentRegController", function(studentregService,$location, $lo
     
                 studentregController.studentid = $localStorage.a.studentid;
                 studentregController.authcode = $localStorage.a.authcode;
-                studentregController.msg = "";
                 studentregController.firstname = "";
                 studentregController.lastname = "";
                 studentregController.password = "";
@@ -13,19 +12,22 @@ app.controller("StudentRegController", function(studentregService,$location, $lo
                 studentregController.linkedin = "";
                 studentregController.website = "";
                 studentregController.address = "";
+                studentregController.phone = "";            
+    
+                studentregController.message = '';
                 
            
                studentregController.register= function(){
                    
-                   var result  = studentregService.register(this.studentid, this.authcode, this.firstname, this.lastname, this.password, this.email, this.linkedin, this.website, this.address)
+                   var result  = studentregService.register(this.studentid, this.authcode, this.firstname, this.lastname, this.password, this.email, this.linkedin, this.website, this.address, this.phone)
                    .then(function(result){
                        if(result.success){
-        
+
                            console.log("register success");
                             $location.path("/");
                        }else{
-                            console.log("Error! Try again.");
-                            registerController.msg = "Please Try again!";
+                           studentregController.message = 'Email already used! Try another one!';
+
                         }
                    });
                }

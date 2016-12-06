@@ -6,7 +6,7 @@ app.config(function ($routeProvider, $httpProvider){
 	
 	$routeProvider
 	.when("/",{
-		templateUrl : "./templates/frontpage.htm",
+		templateUrl : "./templates/frontp.htm",
 		controller : "LoginController"
 	})
 	.when("/portal",{

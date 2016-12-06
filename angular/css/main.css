@@ -1,20 +1,6 @@
-  .loginForm, .regForm, .authForm {
-	
-	border: 2px solid black;
-	margin: 2em 0;
-	padding: 1em 1em;
-}
 
-body {
-/*  padding-top: 40px;*/
-  padding-bottom: 40px;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  background-color: #eee;
-}
 
+/*
 .form-signin {
   max-width: 280px;
   padding: 15px;
@@ -49,6 +35,7 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+*/
 
 .skillsInput {
   margin: 0.1em 0;
@@ -91,4 +78,7 @@ body {
 }
 
 
+.inputBlackColor {
+    color: black !important;
+}
 
