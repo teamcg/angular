@@ -1,6 +1,6 @@
 var app = angular.module("main");
 
-app.controller('GenAuthkeyController', function(genauthkeyService, $location){
+app.controller('GenAuthkeyController', function(genauthkeyService, $location, $localStorage){
     
     var genauthkeyController = this;
     
@@ -13,11 +13,11 @@ app.controller('GenAuthkeyController', function(genauthkeyService, $location){
         var result = genauthkeyService.generate(this.studentid)
         .then(function(result){
             if(result){
-                console.log("Returned result data")
-                console.log(result.authcode);
-                genauthkeyController.authCode = result.authcode;
+                console.log(result);
+                genauthkeyController.authCode = $localStorage.authcode;
             } else {
-                genauthkeyController.msg = 'Student id is wrong!';
+                genauthkeyController.studentid = '';
+                genauthkeyController.msg = 'Student ID already exists!';
             }
         })
     }

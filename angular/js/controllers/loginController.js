@@ -36,6 +36,14 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         description: ''
     }
     
+    $scope.personalInfo = {
+        address: '',
+        email: '',
+        phone: '',
+        website: '',
+        linkedin: ''
+    }
+    
 
     
     loginController.studentinfo = {
@@ -51,12 +59,11 @@ app.controller("LoginController", function(loginService,$location, $localStorage
 
 	loginController.signin = function(){
 		
-		loginController.msg = "Proccessing .... ";
+		loginController.msg = "Logging in...";
 
 		var result = loginService.login(this.username, this.password)
 		.then(function(result) {
 	      if(result){
-                console.log(result);
 				$location.path("/portal");
 			}else{
 				console.log("Not Logged");
@@ -84,6 +91,11 @@ app.controller("LoginController", function(loginService,$location, $localStorage
             var result = loginService.cvname(this.cvname)
                 .then(function(result){
                     if(result){
+                        $scope.personalInfo.address = $localStorage.studentAddress;
+                        $scope.personalInfo.phone = $localStorage.studentPhone;
+                        $scope.personalInfo.email = $localStorage.studentEmail;
+                        $scope.personalInfo.linkedin = $localStorage.studentLinkedin;
+                        $scope.personalInfo.website = $localStorage.studentWebsite;
                         console.log(result);
                         loginController.cv = $localStorage.currentcv;
                     } else {
@@ -113,17 +125,37 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         }
         
         
-        loginController.cvpersonalinfo = function(){
-            
-            var result = loginService.cvpi(this.student.firstname, this.student.lastname, this.student.address, this.student.postcode, this.student.email, this.student.website, this.student.linkedin, this.student.phone)
+        $scope.piSubmit = function(){
+            var result = loginService.cvpi(
+                this.personalInfo.address,
+                this.personalInfo.phone,
+                this.personalInfo.email,
+                this.personalInfo.website,
+                this.personalInfo.linkedin
+            )
+                
+                .then(function(result){
+                    console.log('CONTROLLER');
+                    if(result){ 
+                        console.log(result);
+                    } else {
+                        console.log('Personal Info submit failed');
+                    }
+                });
+        }
+        
+        
+        $scope.psSubmit = function(){
+            var result = loginService.cvps(this.cvpersonalstatement)
                 .then(function(result){
                     if(result){
                         console.log(result);
-                        
+                        $scope.personalStatementToast();
                     } else {
-                        console.log('error!');
+                        console.log('error');
                     }
                 });
+            
         }
 
         
@@ -244,7 +276,10 @@ app.controller("LoginController", function(loginService,$location, $localStorage
     last = angular.extend({},current);
   }
 
-      $scope.expToast = function() {
+    
+    
+    
+$scope.expToast = function() {
     var pinTo = $scope.getToastPosition();
 
     $mdToast.show(
@@ -255,7 +290,7 @@ app.controller("LoginController", function(loginService,$location, $localStorage
     );
   };
 
-     $scope.eduToast = function() {
+$scope.eduToast = function() {
     var pinTo = $scope.getToastPosition();
 
     $mdToast.show(
@@ -266,7 +301,7 @@ app.controller("LoginController", function(loginService,$location, $localStorage
     );
   };
     
-         $scope.myProfileToast = function() {
+$scope.myProfileToast = function() {
     var pinTo = $scope.getToastPosition();
 
     $mdToast.show(
@@ -278,7 +313,7 @@ app.controller("LoginController", function(loginService,$location, $localStorage
   };
     
     
-     $scope.skillToast = function() {
+$scope.skillToast = function() {
     var pinTo = $scope.getToastPosition();
 
     $mdToast.show(
@@ -289,7 +324,17 @@ app.controller("LoginController", function(loginService,$location, $localStorage
     );
   };
         
-        
+
+$scope.personalStatementToast = function() {
+    var pinTo = $scope.getToastPosition();
+
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Personal Statement updated!')
+        .position(pinTo)
+        .hideDelay(2000)
+    );
+  };
         
         
 });

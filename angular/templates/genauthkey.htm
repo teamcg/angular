@@ -13,6 +13,7 @@
                         <md-input-container class="md-block"> 
                              <label>Student Id</label>
                              <input class="inputBlackColor" type="text" name="genauthkey[studentid]" id="username" required autofocus ng-model='genauthkeycontroller.studentid'>
+                            <h6>{{genauthkeycontroller.msg}}</h6>
                         </md-input-container>
                        
                         <md-input-container class="md-block"> 
@@ -21,9 +22,11 @@
                        </md-input-container>
                        
                         <md-button class="md-raised md-primary"  ng-click="genauthkeycontroller.submit()">Generate Code</md-button>  
-                    <a href="/">
+<!--
+                    <a href="/register">
 					 <md-button class="md-raised md-primary">Back</md-button>
 				    </a>
+-->
                  </md-input-container>  
                        
               </section>

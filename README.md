@@ -34,3 +34,10 @@ Dec 6 <br>
 -- Removed the Personal Info under Create CV <br>
 -- Added function in LoginController for saving Skills and adding the updated info on the table <br>
 -- Added service in LoginController for saving skills and updating the table thru querying the database <br>
+
+Dec 7 <br>
+-- Fixed the errors showing on the frontpage. added message to logging in, register and generating authentication code. <br>
+-- Added personal statement input. added functionality in controller and service for personal statement. <br>
+-- Brought back the Personal info on creating CV. But it's input fields will contain the values whatever the My Profile contains <br>
+-- Added back the function for Personal info on Service and Controller. <br>
+-- Added a function on Creating CV. Whenever the user creates cv, it will save automatically on the DB whatever the MY PROFILE input field contains. <br>

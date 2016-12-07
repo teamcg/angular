@@ -1,9 +1,6 @@
 <div class="container" ng-controller="StudentRegController as studentregController">
             <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools">
-        <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
-          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-        </md-button>
         <h1>
           <span>Register</span>
         </h1>
@@ -27,29 +24,29 @@
             
           <md-input-container class="md-block" flex-gt-sm>
             <label>First name (Given name)</label>
-            <input ng-model="studentregController.firstname">
+            <input ng-model="studentregController.firstname" required>
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-sm>
             <label>Last Name (Surname)</label>
-            <input ng-model="studentregController.lastname">
+            <input ng-model="studentregController.lastname" required>
           </md-input-container>
         </div>
 
         <md-input-container class="md-block">
           <label>Address</label>
-          <input ng-model="studentregController.address">
+          <input ng-model="studentregController.address" required>
         </md-input-container>
 
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Phone</label>
-            <input ng-model="studentregController.phone">
+            <input ng-model="studentregController.phone" required>
           </md-input-container>
             
             <md-input-container class="md-block" flex-gt-sm>
             <label>Email</label>
-            <input ng-model="studentregController.email">
+            <input ng-model="studentregController.email" required>
           </md-input-container>
 
         </div>
@@ -68,19 +65,23 @@
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Password</label>
-            <input type="password" id="pass1" required ng-model="studentregController.password">
+            <input type="password" id="pass1" required ng-model="studentregController.password" required>
           </md-input-container>
             
             <md-input-container class="md-block" flex-gt-sm>
             <label>Confirm Password</label>
-            <input type="password" id="pass2">
+            <input type="password" id="pass2" onkeyup="checkPass(); return false" required>
+                <span>
+            <h5 id="messageError"></h5>
+        </span>
           </md-input-container>
         </div>
         
-                <span>
-            <h4>{{studentregController.message}}</h4>
+        <span>
+            <h5 style="color: red">{{studentregController.message}}</h5>
         </span>
-        <md-button class="md-raised md-primary" ng-click="studentregController.register()">Register</md-button>
+        
+        <md-button id="registerButton" class="md-raised md-primary" ng-click="studentregController.register()" ng-disabled="true">Register</md-button>
     </div>
   </md-content>
 

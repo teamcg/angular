@@ -14,7 +14,11 @@ app.service("registerService", function($http){
         }
         return $http(req)
         .then(function(result){
-            return result.data;
+            if(!result.data.success){
+                return false;
+            } else if(result.data.success){
+                return true;
+            }
             
         }, function(error){
             console.log(error);

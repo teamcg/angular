@@ -9,6 +9,8 @@ app.controller("RegisterController", function(registerService,$location, $localS
                
                registerController.register= function(){
                    
+                   registerController.msg = "Validating...";
+                   
                     var result = registerService.register(this.studentid, this.authcode)
                     .then(function(result){
                         if(result){
@@ -16,11 +18,11 @@ app.controller("RegisterController", function(registerService,$location, $localS
                                 studentid: registerController.studentid,
                                 authcode: registerController.authcode
                             }
-                            console.log("Register");
+                            
                             $location.path("/register");
-                        }else{
-                            console.log("Error! Try again.");
-                            registerController.msg = "Try again!";
+                        } else {
+
+                            registerController.msg = "Student ID/Authorisation Code invalid. Try again!";
                         }
                     });
                }

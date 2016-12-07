@@ -21,9 +21,6 @@
                   <md-input-container class="md-block"  flex-gt-xs>
 
                         <h2 class="text-center">Sign in</h2>
-
-                        <h4  style="color:red">{{loginController.msg}}</h4>
-
                         <md-input-container class="md-block" flex-gt-sm> 
                              <label>Student Id</label>
                                 <input class="inputBlackColor" type="text"  name="username" id="username" required ng-model="loginController.username">
@@ -33,6 +30,7 @@
                                 <label>Password</label>
                                 <input class="inputBlackColor" type="password" name="password" id="password" required  ng-model="loginController.password">
                             <a href="/forgotpass">Forgot your password?</a>
+                            <h6  style="color:red">{{loginController.msg}}</h6>
                         </md-input-container>
                       <div class='text-center'>
                         <md-button class="md-raised md-primary" ng-click="loginController.signin()" >Sign in</md-button>
@@ -75,8 +73,9 @@
                     </md-input-container>
 
                     <md-input-container class="md-block" flex-gt-sm> 
-                            <label>Authorization Code</label>
-                            <input class="inputBlackColor" type="password" name="password" id="passwprd" required  ng-model="registerController.authcode">
+                            <label>Authorisation Code</label>
+                            <input class="inputBlackColor" type="password" nahbme="password" id="passwprd" required  ng-model="registerController.authcode">
+                            <h6 style="color: red">{{registerController.msg}}</h6>
                     </md-input-container>
                     <div class="text-center">
                         <md-button class="md-raised md-primary" ng-click="registerController.register()">
@@ -98,7 +97,7 @@
     
     <div ng-cloak class="container text-center" ng-controller="LoginController as loginController">
 	
-      <md-button class="md-raised md-primary" ng-click="loginController.gak()">Generate Authorization Code</md-button>
+      <md-button class="md-raised md-primary" ng-click="loginController.gak()">Generate Authorisation Code</md-button>
   
     </div>
 </section>

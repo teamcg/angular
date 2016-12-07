@@ -1,6 +1,6 @@
 var app = angular.module('main');
 
-app.service('genauthkeyService', function($http){
+app.service('genauthkeyService', function($http, $localStorage){
     console.log('SERVICE WORKED!');
     this.generate = function(studentid){
         console.log('Inside SERVICE FUNCTION');
@@ -19,9 +19,12 @@ app.service('genauthkeyService', function($http){
         
         return $http(req)
         .then(function(result){
-            
-
-            return result.data;
+            if(!result.data.success){
+                return false;
+            } else if(result.data.success){
+                $localStorage.authcode = result.data.authcode;
+                return true;
+            }
             
         }, function(error){
             console.log(error);

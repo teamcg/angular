@@ -21,27 +21,21 @@ angular.module("main").service("loginService", function($http, $localStorage){
 
 		return $http(req)
 			.then(function(response) {
-                console.log(response.data.data);
-//                $localStorage.studentinfo = {
-//                    firstname: response.data.data.firstname,
-//                    lastname: response.data.data.lastname,
-//                    address: response.data.data.address,
-//                    email: response.data.data.email,
-//                    phone: response.data.data.phone,
-//                    linkedin: response.data.data.linkedin,
-//                    website: response.data.data.website
-//                };
-            $localStorage.studentID = response.data.data._id;
-            $localStorage.studentFirstname = response.data.data.firstname;
-            $localStorage.studentLastname = response.data.data.lastname;
-            $localStorage.studentAddress = response.data.data.address;
-            $localStorage.studentEmail = response.data.data.email;
-            $localStorage.studentPhone = response.data.data.phone;
-            $localStorage.studentLinkedin = response.data.data.linkedin;
-            $localStorage.studentWebsite = response.data.data.website;
-	        	$localStorage.token = response.data.token;
-		        return response.data.success;
-
+                if(response.data.success){
+                    console.log(response.data.data);
+                    $localStorage.studentID = response.data.data._id;
+                    $localStorage.studentFirstname = response.data.data.firstname;
+                    $localStorage.studentLastname = response.data.data.lastname;
+                    $localStorage.studentAddress = response.data.data.address;
+                    $localStorage.studentEmail = response.data.data.email;
+                    $localStorage.studentPhone = response.data.data.phone;
+                    $localStorage.studentLinkedin = response.data.data.linkedin;
+                    $localStorage.studentWebsite = response.data.data.website;
+                    $localStorage.token = response.data.token;
+		            return true;
+                } else if(!response.data.success){
+                    return false;
+                }
 		    }, function(response) {
 		        console.log("Error trying to log in.");
 		        return false;
@@ -74,7 +68,8 @@ angular.module("main").service("loginService", function($http, $localStorage){
 //
 //	}
     
-    
+ 
+//MY PROFILE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.profileUpdate = function(address, email, phone, linkedin, website){
         var updatedProfile = {
             method: 'POST',
@@ -106,8 +101,15 @@ angular.module("main").service("loginService", function($http, $localStorage){
         });
         
     }
+
     
+    
+    
+    
+    
+//CV NAME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.cvname = function(cvname){
+        
         
         var CVname = {
             method: 'POST',
@@ -115,6 +117,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
             dataType: 'json',
             contentType: 'application/json',
             data: {
+                id: $localStorage.studentID,
                 cvname: cvname
             }
         }
@@ -122,17 +125,20 @@ angular.module("main").service("loginService", function($http, $localStorage){
         return $http(CVname)
             .then(function(response){
             $localStorage.currentcv = response.data.info._id;
-            console.log(response.data.info);
             return true
         }, function(response){
-                console.log('Error creating CV');
+            console.log('Error creating CV');
             return false
         });
     }
+
     
     
-    this.cvpi = function(firstname, lastname, address, postcode, email, website, linkedin, phone){
+//PERSONAL INFO~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+    this.cvpi = function(address, phone, email, website, linkedin){
         var currentCV = $localStorage.currentcv;
+        
         var CVpersonalinfo = {
             method: 'POST',
             url: 'http://localhost:3000/cvpersonalinfo',
@@ -140,29 +146,48 @@ angular.module("main").service("loginService", function($http, $localStorage){
             contentType: 'application/json',
             data: {
                 id: currentCV,
-                firstname: firstname,
-                lastname: lastname,
+                firstname: $localStorage.studentFirstname,
+                lastname: $localStorage.studentLastname,
                 address: address,
                 phone: phone,
-                website: website,
-                linkedin: linkedin,
                 email: email,
-                postcode: postcode
+                website: website,
+                linkedin: linkedin
             }
         }
         
-        
         return $http(CVpersonalinfo)
             .then(function(response){
-            console.log(response.data);
-            return true;
-        }, function(response){
-            console.log('Error!');
-            return false;
+                console.log('SERVICE!!!');
+                return true;
         });
     }
     
+//PERSONAL STATEMENT~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    this.cvps = function(personalStatement){
+        var currentCV = $localStorage.currentcv;
+        
+        var CVpersonalstatement = {
+            method: 'POST',
+            url: 'http://localhost:3000/cvpersonalstatement',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                id: currentCV,
+                personalStatement: personalStatement
+            }
+        }
+        
+        return $http(CVpersonalstatement)
+            .then(function(response){
+                console.log(response.data);
+                return true;
+        });
+        
+    }
     
+    
+//EXPERIENCE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
     this.cvexp = function(category, role, company, companydesc, city, country, startdate, enddate){
         var currentCV = $localStorage.currentcv;
         
