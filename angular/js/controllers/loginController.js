@@ -224,6 +224,12 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         }
         
         
+
+        
+        
+        
+        
+        
         $scope.edusubmit = function(){
             if($scope.cveducation.category !== "" && $scope.cveducation.school !== "" && $scope.cveducation.city !== "" && $scope.cveducation.country !== "" && $scope.cveducation.startdate !== "" && $scope.cveducation.enddate !== "") {
                 

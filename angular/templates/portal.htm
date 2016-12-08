@@ -233,6 +233,7 @@
         </md-input-container>
             
         <md-button id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expsubmit()"> Submit </md-button>
+        <md-button ng-if="false" id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expeditsubmit()"> Edit </md-button>
 
         <h3 class="text-center">List of Experiences</h3>
         <div class="row">
@@ -242,6 +243,7 @@
                         <table class="table  table-hover" id="tableExperience">
                             <thead>
                                 <tr >
+                                    <th class="text-center"><h4>Action</h4></th>
                                     <th class="text-center"><h4>Category</h4></th>
                                     <th class="text-center"><h4>Role</h4></th>
                                     <th class="text-center"><h4>Company</h4></th>
@@ -253,14 +255,21 @@
                                 </tr>
                             </thead>
                             <tbody ng-repeat='info in tableexp'>
-                                <th>{{info.category}}</th>
-                                <th>{{info.role}}</th>
-                                <th>{{info.company}}</th>
-                                <th>{{info.companydescription}}</th>
-                                <th>{{info.city}}</th>
-                                <th>{{info.country}}</th>
-                                <th>{{info.startdate}}</th>
-                                <th>{{info.enddate}}</th>
+                                <div class="expContent">
+                                    <th>
+                                        <md-button type="submit" class="editExpBTN md-raised md-primary "> Edit </md-button>
+                                        <md-button type="submit" class="md-raised md-primary" ng-click="deleteExperience()"> Delete </md-button>
+                                    </th>
+                                    <th class="expID">{{info._id}}</th>
+                                    <th class="expCategory">{{info.category}}</th>
+                                    <th class="expRole">{{info.role}}</th>
+                                    <th class="expCompany">{{info.company}}</th>
+                                    <th class="expCompanyDesc">{{info.companydescription}}</th>
+                                    <th class="expCity">{{info.city}}</th>
+                                    <th class="expCountry">{{info.country}}</th>
+                                    <th class="expStartdate">{{info.startdate}}</th>
+                                    <th class="expEnddate">{{info.enddate}}</th>
+                                </div>
                             </tbody>
                         </table>
                     </div>

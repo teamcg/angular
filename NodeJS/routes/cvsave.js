@@ -163,6 +163,34 @@ router.post('/getcvexperience', function(req, res){
 });
 
 
+router.post('/editcvexperience', function(req, res){
+
+	var expEditedDate = {
+		category: req.body.category,
+		role: req.body.role,
+		companydescription: req.body.companydesc,
+		company: req.body.company,
+		city: req.body.city,
+		country: req.body.country,
+		startdate: req.body.startdate,
+		enddate: req.body.enddate
+	}
+
+
+	Experience.findByIdAndUpdate(req.body.expid, expEditedData, {new: true}, function(err, editedExp){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: editedExp
+			});
+		}
+	});
+});
+
+
+
 router.post('/cveducation', function(req, res){
 
 	var eduData = {
