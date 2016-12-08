@@ -78,6 +78,36 @@
 }
 
 
+
+
+
+
+#experrormessage.ng-enter, #eduerrormessage.ng-enter {
+    transition: 0.3s ease all;
+    opacity: 0;
+
+}
+
+#experrormessage.ng-enter-active, #eduerrormessage.ng-enter-active {
+    opacity: 1;
+
+}
+
+#experrormessage.ng-leave, #eduerrormessage.ng-leave {
+    transition: 0.3s ease all;
+    opacity: 1;
+
+}
+
+#experrormessage.ng-leave-active, #eduerrormessage.ng-leave-active {
+    opacity: 0;
+
+}
+
+
+
+
+
 .inputBlackColor {
     color: black !important;
 }

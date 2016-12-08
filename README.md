@@ -41,3 +41,7 @@ Dec 7 <br>
 -- Brought back the Personal info on creating CV. But it's input fields will contain the values whatever the My Profile contains <br>
 -- Added back the function for Personal info on Service and Controller. <br>
 -- Added a function on Creating CV. Whenever the user creates cv, it will save automatically on the DB whatever the MY PROFILE input field contains. <br>
+
+Dec 8 <br>
+-- Removed the 'require' attribute on Experience and Education input fields <br>
+-- Added a security function where users can't submit a form unless all input fields are filled-up. Security function added to the LoginController on EDUCATON and EXPERIENCE tab <br>

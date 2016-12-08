@@ -1,14 +1,5 @@
 <div ng-controller='LoginController as loginController'>
 
-    
-
-
-
-      
-    
-    
-    
-    
     <div ng-cloak class="container">
         <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools">
@@ -192,60 +183,57 @@
         <md-content class="md-padding">
   <md-content layout-padding>
     <div>
-
-
-<form>
+<div id="experrormessage" ng-if="expErrorMessage" class="alert alert-danger" role="alert">Fill-up all the input fields to submit </div>
 
         <div layout-gt-sm="row">
             
           <md-input-container class="md-block" flex-gt-sm>
             <label>Category</label>
-            <input ng-model="cvexperience.category" required>
+            <input id="experienceCategory" ng-model="cvexperience.category">
 
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-sm>
             <label>Role</label>
-            <input ng-model="cvexperience.role" required>
+            <input id="experienceRole" ng-model="cvexperience.role">
           </md-input-container>
         </div>
         <div layout-gt-sm="row">
 
         <md-input-container class="md-block" flex-gt-sm>
           <label>Company</label>
-          <input ng-model="cvexperience.company" required>
+          <input id="experienceCompany" ng-model="cvexperience.company">
         </md-input-container>
             
           <md-input-container class="md-block" flex-gt-sm>
             <label>Company Description</label>
-            <input name="postalCode" ng-model="cvexperience.companydesc"
-                   required>
+            <input id="experienceCompanyDescription" ng-model="cvexperience.companydesc">
           </md-input-container>
             
         <md-input-container class="md-block" flex-gt-sm>
           <label>City</label>
-          <input ng-model="cvexperience.city" required>
+          <input id="experienceCity" ng-model="cvexperience.city">
         </md-input-container>
     
         <md-input-container class="md-block" flex-gt-sm>
           <label>Country</label>
-          <input ng-model="cvexperience.country" required>
+          <input id="experienceCountry" ng-model="cvexperience.country">
         </md-input-container>
 
         </div>
         
         <md-input-container>
             <label>Start date</label>
-            <md-datepicker ng-model="cvexperience.startdate" required></md-datepicker>
+            <md-datepicker id="experienceStartdate" ng-model="cvexperience.startdate"></md-datepicker>
         </md-input-container>
         
         <md-input-container>
             <label>End date</label>
-            <md-datepicker ng-model="cvexperience.enddate" required></md-datepicker>
+            <md-datepicker id="experienceEnddate" ng-model="cvexperience.enddate"></md-datepicker>
         </md-input-container>
             
-        <md-button type="submit" class="md-raised md-primary" ng-click='expsubmit()'> Submit </md-button>
-      </form>
+        <md-button id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expsubmit()"> Submit </md-button>
+
         <h3 class="text-center">List of Experiences</h3>
         <div class="row">
                 <div class="col-sm-12"> 
@@ -301,6 +289,8 @@
        <md-content layout-padding>
     <div>
 
+<div id="eduerrormessage" ng-if="eduErrorMessage" class="alert alert-danger" role="alert">Fill-up all the input fields to submit </div>
+        
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Category</label>

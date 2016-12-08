@@ -1,5 +1,5 @@
 var app = angular.module("main");
-app.controller("LoginController", function(loginService,$location, $localStorage, $scope, $mdToast){
+app.controller("LoginController", function(loginService,$location, $localStorage, $scope, $mdToast, $timeout){
 
     
     
@@ -31,6 +31,15 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         enddate: ''
     }
     
+    $scope.cveducation = {
+        category: '',
+        school: '',
+        city: '',
+        country: '',
+        startdate: '',
+        enddate: ''
+    }
+    
     $scope.cvskill = {
         name: '',
         description: ''
@@ -43,6 +52,9 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         website: '',
         linkedin: ''
     }
+    
+    $scope.expErrorMessage = false;
+    $scope.eduErrorMessage = false;
     
 
     
@@ -135,9 +147,9 @@ app.controller("LoginController", function(loginService,$location, $localStorage
             )
                 
                 .then(function(result){
-                    console.log('CONTROLLER');
                     if(result){ 
                         console.log(result);
+                        $scope.personalInfoToast();
                     } else {
                         console.log('Personal Info submit failed');
                     }
@@ -162,8 +174,8 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         
         
         $scope.expsubmit = function(){
-            
-            var result = loginService.cvexp(
+            if($scope.cvexperience.category !== "" && $scope.cvexperience.role !== "" && $scope.cvexperience.company !== "" && $scope.cvexperience.companydesc !== "" && $scope.cvexperience.city !== "" && $scope.cvexperience.country !== "" && $scope.cvexperience.startdate !== "" && $scope.cvexperience.enddate !== ""){
+                var result = loginService.cvexp(
                 this.cvexperience.category, 
                 this.cvexperience.role, 
                 this.cvexperience.company,
@@ -175,10 +187,10 @@ app.controller("LoginController", function(loginService,$location, $localStorage
             )
                 .then(function(result){
                     if(result){
-                        console.log(result);
-                        console.log($localStorage.cvexperience);
+
                         $scope.tableexp = $localStorage.cvexperience;
                         $scope.expToast();
+                        
                         //Clear the experience input fields
                         $scope.cvexperience = {
                             category: '',
@@ -196,30 +208,61 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                         console.log('Exp CTRL error');
                     }
                 });   
+            } else {
+                $scope.expErrorMessage = true;
+                
+                $timeout(function(){
+                    $scope.expErrorMessage = false;
+                }, 2000);
+                
+
+                
+                console.log('Fill up the remaining fields');
+            }
+            
+           
         }
         
         
         $scope.edusubmit = function(){
-            
-            var result = loginService.cvedu(
-            this.cveducation.category,
-                this.cveducation.school,
-                this.cveducation.city,
-                this.cveducation.country,
-                this.cveducation.startdate,
-                this.cveducation.enddate
+            if($scope.cveducation.category !== "" && $scope.cveducation.school !== "" && $scope.cveducation.city !== "" && $scope.cveducation.country !== "" && $scope.cveducation.startdate !== "" && $scope.cveducation.enddate !== "") {
+                
+                var result = loginService.cvedu(
+                    this.cveducation.category,
+                    this.cveducation.school,
+                    this.cveducation.city,
+                    this.cveducation.country,
+                    this.cveducation.startdate,
+                    this.cveducation.enddate
             )
-            
-            .then(function(result){
-                if(result){
-                    console.log(result);
-                    $scope.tableeducation = $localStorage.cveducation;
-                    $scope.eduToast();
-                } else {
-                    console.log('error');
-                }
-            })
-            
+
+                .then(function(result){
+                    if(result){
+
+                        $scope.tableeducation = $localStorage.cveducation;
+                        $scope.eduToast();
+                        $scope.cveducation = {
+                            category: '',
+                            school: '',
+                            city: '',
+                            country: '',
+                            startdate: '',
+                            enddate: ''
+                        }    
+                        
+                    } else {
+                        console.log('error');
+                    }
+                });
+                
+             } else {
+                $scope.eduErrorMessage = true;
+                
+                $timeout(function(){
+                    $scope.eduErrorMessage = false;
+                }, 2000);
+             }
+              
         }
         
         
@@ -335,7 +378,18 @@ $scope.personalStatementToast = function() {
         .hideDelay(2000)
     );
   };
-        
+    
+
+$scope.personalInfoToast = function() {
+    var pinTo = $scope.getToastPosition();
+
+    $mdToast.show(
+      $mdToast.simple()
+        .textContent('Personal Info updated!')
+        .position(pinTo)
+        .hideDelay(2000)
+    );
+  };    
         
 });
 

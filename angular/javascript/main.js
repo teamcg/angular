@@ -38,3 +38,24 @@ function checkPass(){
       message.innerHTML = "Confirm Password Do Not Match!"
      }
 } 
+
+
+//function expFormValidate(){
+//    var expCategory = document.getElementById('experienceCategory');
+//    var expRole = document.getElementById('experienceRole');
+//    var expCompany = document.getElementById('experienceCompany');
+//    var expCompanyDescription = document.getElementById('experienceCompanyDescription');
+//    var expCity = document.getElementById('experienceCity');
+//    var expCountry = document.getElementById('experienceCountry');
+//    var expButton = document.getElementById('experienceSubmit');
+//
+//    var expStartDate = $('#experienceStartdate input');
+//    var expEndDate = $('#experienceEnddate input');
+//    
+//    if(expCategory.value !== "" && expRole.value !== "" && expCompany.value !== "" && expCompanyDescription.value !== "" && expCity.value !== "" && expCountry.value !== "" && expStartDate[0].value !== "" && expEndDate[0].value !== ""){
+//        expButton.disabled = false;
+//    } else {
+//        expButton.disabled = true;
+//    }
+//
+//}
