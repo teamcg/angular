@@ -11,4 +11,4 @@ var ExperienceSchema = new mongoose.Schema({
 	enddate: String
 });
 
-module.exports = mongoose.model('Experience', ExperienceSchema);
+module.exports = ExperienceSchema;

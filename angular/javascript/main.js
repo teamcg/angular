@@ -1,9 +1,13 @@
+$(function(){
+  
 
- $('.editExpBTN').click(function(){
+ $('.editexpbtn').click(function(){
         alert('hey there');
     });
     
     
+});
+
     
     
 

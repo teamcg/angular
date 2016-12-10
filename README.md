@@ -45,3 +45,8 @@ Dec 7 <br>
 Dec 8 <br>
 -- Removed the 'require' attribute on Experience and Education input fields <br>
 -- Added a security function where users can't submit a form unless all input fields are filled-up. Security function added to the LoginController on EDUCATON and EXPERIENCE tab <br>
+
+Dec 10 <br>
+-- Added Edit and Delete button on the Experience and Delete tab <br>
+-- Added function on LoginService and LoginController for Editing and Deleting Experience and Education. <br>
+-- Delete function for Experience and Education is half finish. Refer to the readme of NodeJS <br>

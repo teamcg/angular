@@ -238,6 +238,102 @@ angular.module("main").service("loginService", function($http, $localStorage){
     }
     
     
+//EDIT EXPERIENCE
+    this.cvEditExperience = function(category, role, company, companydesc, city, country, startdate, enddate){
+        console.log(startdate);
+        console.log(enddate);
+        var currentCV = $localStorage.currentcv;
+        var experienceID = $localStorage.editexperienceid;
+        
+        var editExperience = {
+            method: 'POST',
+            url: 'http://localhost:3000/editcvexperience',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                expid: experienceID,
+                category: category,
+                role: role,
+                company: company,
+                companydesc: companydesc,
+                city: city,
+                country: country,
+                startdate: startdate,
+                enddate: enddate
+            }
+        }
+        
+        var cvUpdateExp = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcvexperience',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                id: currentCV
+            }
+        }
+        
+        return $http(editExperience)
+            .then(function(response){
+                return $http(cvUpdateExp)
+                    .then(function(response2){
+                        $localStorage.cvexperience = response2.data.info.experience;
+                        return true;
+                }, function(error2){
+                    console.log(error2);
+                    return false;
+                });
+        }, function(error){
+            console.log(error);
+            return false;
+        });
+        
+        
+        
+    }
+    
+    this.cvDeleteExperience = function(){
+        var currentCV = $localStorage.currentcv;
+        var experienceID = $localStorage.experienceid;
+        
+        var cvDeleteExperience = {
+            method: 'POST',
+            url: 'http://localhost:3000/deletecvexperience',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                id: currentCV,
+                expid: experienceID
+            }
+        }
+        
+        var cvUpdateExp = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcvexperience',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                id: currentCV
+            }
+        }
+        
+        return $http(cvDeleteExperience)
+            .then(function(response){
+                return $http(cvUpdateExp)
+                    .then(function(response2){
+                        $localStorage.cvexperience = response2.data.info.experience;
+                        return true;
+                }, function(error2){
+                    console.log('ERROR DELETING EXP');
+                    return false;
+                });
+        }, function(error){
+            console.log('ERROR DELETING EXP 2');
+            return false;
+        });
+    }
+    
+    
     this.cvedu = function(category, school, city, country, startdate, enddate){
         var currentCV = $localStorage.currentcv;
         
@@ -288,6 +384,102 @@ angular.module("main").service("loginService", function($http, $localStorage){
     
     
     }
+    
+    
+    this.cvEditEducation = function(category, school, city, country, startdate, enddate){
+        var currentCV = $localStorage.currentcv;
+        var educationID = $localStorage.editeducationid;
+        
+        var editEducation = {
+            method: 'POST',
+            url: 'http://localhost:3000/editcveducation',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: educationID,
+                category: category,
+                school: school,
+                city: city,
+                country: country,
+                startdate: startdate,
+                enddate: enddate
+            }
+        }
+        
+        var cvUpdateEducation = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducation',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                id: currentCV
+            }
+        }
+        
+        
+        return $http(editEducation)
+            .then(function(response){
+                return $http(cvUpdateEducation)
+                    .then(function(response2){
+                        console.log(response2);
+                        $localStorage.cveducation = response2.data.info.education;
+                        return true;
+                }, function(error2){
+                    console.log('ERROR EDIT EDU');
+                    return false;
+                });
+        }, function(error){
+            console.log('ERROR1 EDIT EDU');
+            return false;
+        });
+        
+        
+    }
+    
+    
+    this.cvDeleteEducation = function(){
+        var currentCV = $localStorage.currentcv;
+        var educationID = $localStorage.deleteeducationid;
+        
+        var deleteEducation = {
+            method: 'POST',
+            url: 'http://localhost:3000/deletecveducation',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.deleteeducationid
+            }
+        }
+        
+        var cvUpdateEducation = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducation',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                id: currentCV
+            }
+        }
+        
+        return $http(deleteEducation)
+            .then(function(response){
+                return $http(cvUpdateEducation)
+                    .then(function(response2){
+                        $localStorage.cveducation = response2.data.info.education;
+                        return true;
+                }, function(error2){
+                    console.log(error2);
+                    return false;
+                });
+        }, function(error){
+            console.log(error);
+            return false;
+        });
+    }
+    
+    
+    
+    
     
     this.cvskills = function(name, description){
        var currentCV = $localStorage.currentcv;

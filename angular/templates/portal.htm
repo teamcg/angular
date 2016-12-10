@@ -1,3 +1,4 @@
+
 <div ng-controller='LoginController as loginController'>
 
     <div ng-cloak class="container">
@@ -184,6 +185,7 @@
   <md-content layout-padding>
     <div>
 <div id="experrormessage" ng-if="expErrorMessage" class="alert alert-danger" role="alert">Fill-up all the input fields to submit </div>
+        <h3>{{editExperienceMessage}}</h3>
 
         <div layout-gt-sm="row">
             
@@ -232,8 +234,8 @@
             <md-datepicker id="experienceEnddate" ng-model="cvexperience.enddate"></md-datepicker>
         </md-input-container>
             
-        <md-button id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expsubmit()"> Submit </md-button>
-        <md-button ng-if="false" id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expeditsubmit()"> Edit </md-button>
+        <md-button ng-if="submitExp" id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expsubmit()"> Submit </md-button>
+        <md-button ng-if="submitEditExp" id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expUpdatedSubmit()"> Edit </md-button>
 
         <h3 class="text-center">List of Experiences</h3>
         <div class="row">
@@ -257,10 +259,9 @@
                             <tbody ng-repeat='info in tableexp'>
                                 <div class="expContent">
                                     <th>
-                                        <md-button type="submit" class="editExpBTN md-raised md-primary "> Edit </md-button>
+                                        <button class="editexpbtn" ng-click="editExpBTN()"> Edit </button>
                                         <md-button type="submit" class="md-raised md-primary" ng-click="deleteExperience()"> Delete </md-button>
                                     </th>
-                                    <th class="expID">{{info._id}}</th>
                                     <th class="expCategory">{{info.category}}</th>
                                     <th class="expRole">{{info.role}}</th>
                                     <th class="expCompany">{{info.company}}</th>
@@ -336,7 +337,8 @@
         </md-input-container>
         </div>
             
-          <md-button class="md-raised md-primary" ng-click='edusubmit()'> Submit </md-button>
+          <md-button ng-if="submitEducation" class="md-raised md-primary" ng-click='edusubmit()'> Submit </md-button>
+        <md-button ng-if="submitUpdatedEducation" class="md-raised md-primary" ng-click='submitEditedEducation()'>Edit</md-button>
 
         <h3 class="text-center">List of Educations</h3>
         <div class="row">
@@ -346,6 +348,7 @@
                         <table class="table  table-hover" id="tableEducation">
                             <thead>
                                 <tr>
+                                    <th><h4>Action</h4></th>
                                     <th><h4>Category</h4></th>
                                     <th><h4>School</h4></th> 
                                     <th><h4>City</h4></th> 
@@ -355,6 +358,10 @@
                                 </tr>
                             </thead>
                             <tbody ng-repeat='info in tableeducation'>
+                                <th>
+                                    <button class="editEducationBTN" ng-click="editEducationButton()"> Edit </button>
+                                    <md-button type="submit" class="md-raised md-primary" ng-click="deleteEducation()"> Delete </md-button>
+                                </th>
                                 <th>{{info.category}}</th>
                                 <th>{{info.school}}</th>
                                 <th>{{info.city}}</th>

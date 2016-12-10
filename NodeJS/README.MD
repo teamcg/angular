@@ -31,4 +31,8 @@ Dec 7 <br>
 -- reworked the authentication and register. changed the error from 'console.log' to 'res.json' <br>
 -- Added back the Personal Info post route <br>
 
+Dec 10 <br>
+-- Added 4 POST routes. Editing Experience, Editing Education, Deleting Experience & Deleting education <br>
+-- Still have a problem with deleting, it only deletes on Experience Schema, it should also delete on CV Schema <br>
+
 - John Lois Frades

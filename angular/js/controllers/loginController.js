@@ -55,8 +55,14 @@ app.controller("LoginController", function(loginService,$location, $localStorage
     
     $scope.expErrorMessage = false;
     $scope.eduErrorMessage = false;
-    
 
+    $scope.editExperienceMessage = '';
+    
+    $scope.submitExp = true;
+    $scope.submitEditExp = false;
+    
+    $scope.submitEducation = true;
+    $scope.submitUpdatedEducation = false;
     
     loginController.studentinfo = {
         firstname: $localStorage.studentFirstname,
@@ -224,8 +230,80 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         }
         
         
-
+        $scope.editExpBTN = function(){
+            $scope.submitExp = false;
+            $scope.submitEditExp = true;
+            $scope.editExperienceMessage = 'Editing experience ';
+            $scope.cvexperience = {
+                category: this.info.category,
+                role: this.info.role,
+                company: this.info.company,
+                companydesc: this.info.companydescription,
+                city: this.info.city,
+                country: this.info.country,
+                startdate: new Date(this.info.startdate),
+                enddate: new Date(this.info.enddate)
+            }
+            
+            $localStorage.editexperienceid = this.info._id;
+            console.log($localStorage.editexperienceid);
+            
+        }
         
+        
+        $scope.expUpdatedSubmit = function(){
+            var result = loginService.cvEditExperience(
+                this.cvexperience.category, 
+                this.cvexperience.role, 
+                this.cvexperience.company,
+                this.cvexperience.companydesc,
+                this.cvexperience.city,
+                this.cvexperience.country,
+                this.cvexperience.startdate,
+                this.cvexperience.enddate
+            )
+            
+            .then(function(result){
+                if(result){
+                    $scope.tableexp = $localStorage.cvexperience;
+                    $scope.submitExp = true;
+                    $scope.submitEditExp = false;
+                    $scope.editExperienceMessage = '';
+                        
+                    //Clear the experience input fields
+                    $scope.cvexperience = {
+                        category: '',
+                        role: '',
+                        company: '',
+                        companydesc: '',
+                        city: '',
+                        country: '',
+                        startdate: '',
+                        enddate: ''
+                    } 
+                } else {
+                    console.log('Error editing experience. Try again');
+                }
+            });
+            
+        }
+        
+        
+        $scope.deleteExperience = function(){
+
+            $localStorage.experienceid = this.info._id
+            
+            var result = loginService.cvDeleteExperience()
+                .then(function(result){
+                    if(result){
+                        $scope.tableexp = $localStorage.cvexperience;
+                        console.log('Successfully deleted Experience');
+                        
+                    } else {
+                        console.log('ERROR ON EXP DELETION');
+                    }
+                });
+        }
         
         
         
@@ -270,6 +348,74 @@ app.controller("LoginController", function(loginService,$location, $localStorage
              }
               
         }
+        
+        
+        $scope.editEducationButton = function(){
+            $scope.submitEducation = false;
+            $scope.submitUpdatedEducation = true;
+            
+            $scope.cveducation = {
+                category: this.info.category,
+                school: this.info.school,
+                city: this.info.city,
+                country: this.info.country,
+                startdate: new Date(this.info.startdate),
+                enddate: new Date(this.info.enddate)
+            }
+            
+            $localStorage.editeducationid = this.info._id;
+            console.log($localStorage.editeducationid);
+        
+        }
+        
+        
+        $scope.submitEditedEducation = function(){
+            var result = loginService.cvEditEducation(
+             this.cveducation.category,
+             this.cveducation.school,
+             this.cveducation.city,
+             this.cveducation.country,
+             this.cveducation.startdate,
+             this.cveducation.enddate
+            )
+            
+            .then(function(result){
+                if(result){
+                    $scope.tableeducation = $localStorage.cveducation;
+                    $scope.submitEducation = true;
+                    $scope.submitUpdatedEducation = false;
+                    
+                    $scope.cveducation = {
+                        category: '',
+                        school: '',
+                        city: '',
+                        country: '',
+                        startdate: '',
+                        enddate: ''
+                    }
+                } else {
+                    console.log('error! EDITING EDU!!!');
+                }
+            });
+        }
+        
+        
+        $scope.deleteEducation = function(){
+            $localStorage.deleteeducationid = this.info._id;
+            
+            var result = loginService.cvDeleteEducation()
+                .then(function(result){
+                    if(result){
+                        $scope.tableeducation = $localStorage.cveducation;
+                    } else {
+                        console.log('ERROR DELETING EDU');
+                    }
+                });
+        }
+        
+        
+        
+        
         
         
         $scope.skillsubmit = function(){

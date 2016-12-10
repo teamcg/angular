@@ -4,9 +4,13 @@ var router = express.Router();
 var User = require('../app/models/users');
 var CV = require('../app/models/cv');
 var Experience = require('../app/models/experience');
+var ExperienceSchema = require('../app/models/experienceschema');
 var Education = require('../app/models/education');
 var Skill = require('../app/models/skill');
 var moment = require('moment');
+
+
+
 
 
 router.post('/updatemyprofile', function(req, res){
@@ -124,8 +128,8 @@ router.post('/cvexperience', function(req, res){
 		company: req.body.company,
 		city: req.body.city,
 		country: req.body.country,
-		startdate: moment(req.body.startdate).format('MMMM Do YYYY'),
-		enddate: moment(req.body.enddate).format('MMMM Do YYYY')
+		startdate: moment(req.body.startdate).format('L'),
+		enddate: moment(req.body.enddate).format('L')
 	}
 
 	CV.findById(req.body.id, function(err, theCV){
@@ -138,6 +142,7 @@ router.post('/cvexperience', function(req, res){
 				} else {
 					theCV.experience.push(newExp);
 					theCV.save();
+					console.log(theCV);
 					res.json({
 						success: true,
 						info: newExp
@@ -165,15 +170,15 @@ router.post('/getcvexperience', function(req, res){
 
 router.post('/editcvexperience', function(req, res){
 
-	var expEditedDate = {
+	var expEditedData = {
 		category: req.body.category,
 		role: req.body.role,
 		companydescription: req.body.companydesc,
 		company: req.body.company,
 		city: req.body.city,
 		country: req.body.country,
-		startdate: req.body.startdate,
-		enddate: req.body.enddate
+		startdate: moment(req.body.startdate).format('L'),
+		enddate: moment(req.body.enddate).format('L')
 	}
 
 
@@ -191,6 +196,53 @@ router.post('/editcvexperience', function(req, res){
 
 
 
+
+
+
+
+
+// ExperienceSchema.pre('remove', function (next) {
+// 	console.log(this);
+//   this.model('thecv').update(
+
+//     { experience: this }, 
+//     { $pull: { experience: this._id } }, 
+//     { multi: true }
+//   ).exec(next)
+// });
+
+router.post('/deletecvexperience', function(req, res){
+	Experience.findByIdAndRemove({_id: req.body.expid}, function(err, deletedExperience){
+		if(err){
+			console.log(err);
+		} else {
+			deletedExperience.remove();
+				CV.findById(req.body.id).populate('experience').exec(function(err, theCV){
+					if(err){
+						console.log(err);
+					} else {
+						console.log(theCV);
+						for(i = 0; i < theCV.experience.length; i++){
+							if(theCV.experience[i]._id == req.body.expid){
+								theCV.experience.splice(i, 1);
+							}
+						}
+					
+						theCV.save();
+						
+						res.json({
+							success: true,
+							info: theCV
+						});
+					}
+				});
+		}
+	});
+});
+
+
+
+
 router.post('/cveducation', function(req, res){
 
 	var eduData = {
@@ -198,8 +250,8 @@ router.post('/cveducation', function(req, res){
 		school: req.body.school,
 		city: req.body.city,
 		country: req.body.country,
-		startdate: moment(req.body.startdate).format('MMMM Do YYYY'),
-		enddate: moment(req.body.enddate).format('MMMM Do YYYY')
+		startdate: moment(req.body.startdate).format('L'),
+		enddate: moment(req.body.enddate).format('L')
 	}
 
 	CV.findById(req.body.id, function(err, theCV){
@@ -235,6 +287,46 @@ router.post('/getcveducation', function(req, res){
 		}
 	});
 });
+
+
+router.post('/editcveducation', function(req, res){
+	console.log(req.body.eduid);
+	var eduEditedData = {
+		category: req.body.category,
+		school: req.body.school,
+		city: req.body.city,
+		country: req.body.country,
+		startdate: moment(req.body.startdate).format('L'),
+		enddate: moment(req.body.enddate).format('L')
+	}
+
+
+	Education.findByIdAndUpdate(req.body.eduid, eduEditedData, {new: true}, function(err, editedEdu){
+		if(err){
+			console.log(err);
+		} else {
+			console.log(editedEdu);
+			res.json({
+				success: true,
+				info: editedEdu
+			});
+		}
+	});
+});
+
+
+
+router.post('/deletecveducation', function(req, res){
+	Education.findByIdAndRemove(req.body.eduid, function(err, deletedEducation){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({success: true});
+		}
+	});
+});
+
+
 
 
 router.post('/cvskill', function(req, res){
