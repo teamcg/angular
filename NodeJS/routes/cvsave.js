@@ -4,11 +4,9 @@ var router = express.Router();
 var User = require('../app/models/users');
 var CV = require('../app/models/cv');
 var Experience = require('../app/models/experience');
-var ExperienceSchema = require('../app/models/experienceschema');
 var Education = require('../app/models/education');
 var Skill = require('../app/models/skill');
 var moment = require('moment');
-
 
 
 
@@ -37,9 +35,6 @@ router.post('/updatemyprofile', function(req, res){
 
 
 //BIND the profile of user to the CV
-
-
-
 router.post('/cvname', function(req, res){
 	var cvName = {
 		cvname: req.body.cvname
@@ -200,42 +195,23 @@ router.post('/editcvexperience', function(req, res){
 
 
 
-
 // ExperienceSchema.pre('remove', function (next) {
-// 	console.log(this);
-//   this.model('thecv').update(
+// 	console.log('PRE SCHEMA!!!!!!!!!!!! in MAIN');
 
-//     { experience: this }, 
-//     { $pull: { experience: this._id } }, 
-//     { multi: true }
-//   ).exec(next)
+// 		 next();
 // });
 
+
+
 router.post('/deletecvexperience', function(req, res){
-	Experience.findByIdAndRemove({_id: req.body.expid}, function(err, deletedExperience){
+	Experience.findById(req.body.expid, function(err, experience){
 		if(err){
 			console.log(err);
 		} else {
-			deletedExperience.remove();
-				CV.findById(req.body.id).populate('experience').exec(function(err, theCV){
-					if(err){
-						console.log(err);
-					} else {
-						console.log(theCV);
-						for(i = 0; i < theCV.experience.length; i++){
-							if(theCV.experience[i]._id == req.body.expid){
-								theCV.experience.splice(i, 1);
-							}
-						}
-					
-						theCV.save();
-						
-						res.json({
-							success: true,
-							info: theCV
-						});
-					}
-				});
+			experience.remove();
+			res.json({
+							success: true
+			});
 		}
 	});
 });
