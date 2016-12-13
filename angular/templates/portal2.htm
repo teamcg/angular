@@ -17,9 +17,9 @@
         <md-tabs  md-dynamic-height md-border-bottom>
             
 <!--MY PROFILE-->
-          <md-tab label="My Profile">
+          <md-tab style="color: brown" label="My Profile">
             <md-content class="md-padding">
-                <div class="alert alert-success" id="myprofileAddedMessage" ng-if="myprofileAddedMessage" role="alert">Successfully added education!</div>
+              <h1 class="md-display-2"></h1>
                 
                  <div layout="column" ng-cloak class="md-inline-form">
 
@@ -73,10 +73,12 @@
                 
             </md-content>
           </md-tab>
-<!--MY PROFILE-->   
+<!--MY PROFILE-->
+            
+            
           <md-tab label="Create CV">
             <md-content class="md-padding">
-<!--START HERE-->
+<!--              START HERE-->
                 
 <div ng-cloak>
   <md-content>
@@ -90,7 +92,7 @@
       </section>
       
      <section id="createdcvname" layout-align="center center" layout-wrap layout-sm="column" ng-if="loginController.cv != null && loginController.cv != ''">
-        <h2 class="text-center">{{loginController.cvname}}</h2>
+        <h2 class="text-center">Editing {{loginController.cvname}}</h2>
     </section>
       
       
@@ -103,14 +105,14 @@
         
         <md-tab label="Personal Info">
          <md-content class="md-padding">
-             <div class="alert alert-success" id="personalInfoAddedMessage" ng-if="personalInfoAddedMessage" role="alert">Successfully updated Personal Info!</div>
-            <md-content layout-padding>
-     <div>
+             
+             
  
  
+   <md-content layout-padding>
  
  
-<md-input-container class="md-block">
+         <md-input-container class="md-block">
            <label>Address</label>
            <input ng-model="personalInfo.address" value="{{personalInfo.address}}">
          </md-input-container>
@@ -145,28 +147,17 @@
          </div>
            
            <md-button class="md-raised md-primary" ng-click='piSubmit()'> Save </md-button>
-           
 
-     </div>
+ 
    </md-content>
  
- 
- 
- 
-             
+   
          </md-content>
        </md-tab>
-        
-        
-        
-        
-        
-        
-        
+
       
       <md-tab label="Personal Statement">
         <md-content class="md-padding">
-            <div class="alert alert-success" id="personalStatementAddedMessage" ng-if="personalStatementAddedMessage" role="alert">Successfully updated Personal Statement!</div>
         
         <md-input-container class="md-block">
          <label>Personal Statement</label>
@@ -182,14 +173,10 @@
         <md-content class="md-padding">
   <md-content layout-padding>
     <div>
-        
-     <div class="alert alert-info" role="alert" id="editExperienceMessage" ng-if="editExperienceMessage">You're on edit mode</div>
-        
 <div id="experrormessage" ng-if="expErrorMessage" class="alert alert-danger" role="alert">Fill-up all the input fields to submit </div>
-<div class="alert alert-success" id="expAddedMessage" ng-if="experienceAddedMessage" role="alert">Successfully added experience!</div>
-        
+        <h3>{{editExperienceMessage}}</h3>
 
-         <div layout-gt-sm="row">
+        <div layout-gt-sm="row">
             
           <md-input-container class="md-block" flex-gt-sm>
             <label>Category</label>
@@ -232,18 +219,18 @@
         
         <md-input-container>
             <label>Start date</label>
-            <md-datepicker id="experienceStartdate" ng-model="cvexperience.startdate" md-open-on-focus></md-datepicker>
+            <md-datepicker id="experienceStartdate" ng-model="cvexperience.startdate"></md-datepicker>
         </md-input-container>
         
         <md-input-container>
             <label>End date</label>
-            <md-datepicker id="experienceEnddate" ng-model="cvexperience.enddate" md-open-on-focus></md-datepicker>
+            <md-datepicker id="experienceEnddate" ng-model="cvexperience.enddate"></md-datepicker>
         </md-input-container>
             
         </div>
             
         <md-button ng-if="submitExp" id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expsubmit()"> Save </md-button>
-        <md-button ng-if="submitEditExp" id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expUpdatedSubmit()"> Edit and Save  </md-button> 
+        <md-button ng-if="submitEditExp" id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expUpdatedSubmit()"> Edit </md-button>
 
         <h3 class="text-center">List of Experiences</h3>
         <div class="row">
@@ -267,18 +254,18 @@
                             <tbody ng-repeat='info in tableexp'>
                                 <div class="expContent"> 
                                     <tr class="text-center">
-                                    <td class="text-center">  
-                                    <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpBTN()"></span>&nbsp;&nbsp;
-                                    <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExperience()"></span>
-                                    </td>  
-                                    <td class="expCategory">{{info.category}}</td>
-                                    <td class="expRole">{{info.role}}</td>
-                                    <td class="expCompany">{{info.company}}</td>
-                                    <td class="expCompanyDesc">{{info.companydescription}}</td>
-                                    <td class="expCity">{{info.city}}</td>
-                                    <td class="expCountry">{{info.country}}</td>
-                                    <td class="expStartdate">{{info.startdate}}</td>
-                                    <td class="expEnddate">{{info.enddate}}</td>
+                                      <td class="text-center">  
+                                      <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpBTN()"></span>&nbsp;&nbsp;
+                                      <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExperience()"></span>
+                                      </td>  
+                                      <td class="expCategory">{{info.category}}</td>
+                                      <td class="expRole">{{info.role}}</td>
+                                      <td class="expCompany">{{info.company}}</td>
+                                      <td class="expCompanyDesc">{{info.companydescription}}</td>
+                                      <td class="expCity">{{info.city}}</td>
+                                      <td class="expCountry">{{info.country}}</td>
+                                      <td class="expStartdate">{{info.startdate}}</td>
+                                      <td class="expEnddate">{{info.enddate}}</td>
                                     </tr>
                                 </div>
                             </tbody>
@@ -291,12 +278,7 @@
 
   </md-content>
 
-            
-            
-            
-            
-            
-            
+     
         </md-content>
       </md-tab>
         
@@ -310,7 +292,6 @@
     <div>
 
 <div id="eduerrormessage" ng-if="eduErrorMessage" class="alert alert-danger" role="alert">Fill-up all the input fields to submit </div>
-<div class="alert alert-success" id="eduAddedMessage" ng-if="educationAddedMessage" role="alert">Successfully added education!</div>
         
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
@@ -339,12 +320,12 @@
        
         <md-input-container>
             <label>Start date</label>
-            <md-datepicker ng-model="cveducation.startdate" md-open-on-focus></md-datepicker>
+            <md-datepicker ng-model="cveducation.startdate"></md-datepicker>
         </md-input-container>
         
         <md-input-container>
             <label>End date</label>
-            <md-datepicker ng-model="cveducation.enddate" md-open-on-focus></md-datepicker>
+            <md-datepicker ng-model="cveducation.enddate"></md-datepicker>
         </md-input-container>
         </div>
             
@@ -388,30 +369,15 @@
     </div>
 
   </md-content>        
-        
-        
-        
-        
-        
-        
-        
-        
-
-
 
     </md-content>
 </md-tab>
         
-        
-        
-        
-        
-        
+      
         
 <!--SKILLS-->
          <md-tab label="Key Skills & Competencies">
     <md-content class="md-padding">
-        <div class="alert alert-success" id="skillsAddedMessage" ng-if="skillsAddedMessage" role="alert">Successfully added a Skill!</div>
       
         <md-input-container class="md-block">
           <label>Name</label>
@@ -437,29 +403,13 @@
   </md-content>
 </div>
                 
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+               
                 
                 
 <!--                END HERE-->
             </md-content>
           </md-tab>
-          <md-tab label="My CV">
+          <md-tab label="My CVs">
             <md-content class="md-padding">
                                     <h2>My CVs</h2>
                         <table class="table">

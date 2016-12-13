@@ -1,5 +1,5 @@
 var app = angular.module("main");
-app.controller("LoginController", function(loginService,$location, $localStorage, $scope, $mdToast, $timeout){
+app.controller("LoginController", function(loginService,$location, $localStorage, $scope, $timeout){
 
     
     
@@ -52,6 +52,15 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         website: '',
         linkedin: ''
     }
+    $scope.experienceAddedMessage = false;
+    $scope.educationAddedMessage = false;
+    $scope.myprofileAddedMessage = false;
+    $scope.personalInfoAddedMessage = false;
+    $scope.personalStatementAddedMessage = false;
+    $scope.skillsAddedMessage = false;
+    
+    $scope.editExperienceMessage = false;
+
     
     $scope.expErrorMessage = false;
     $scope.eduErrorMessage = false;
@@ -133,8 +142,12 @@ app.controller("LoginController", function(loginService,$location, $localStorage
             )
                 .then(function(result){
                     if(result){
-                        console.log(result);
-                        $scope.myProfileToast();
+                        $scope.myprofileAddedMessage = true;
+                        
+                        $timeout(function(){
+                            $scope.myprofileAddedMessage = false;
+                        }, 1500);
+                        
                     } else {
                         console.log('ERROR! on updating profile!!');
                     }
@@ -154,8 +167,11 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                 
                 .then(function(result){
                     if(result){ 
-                        console.log(result);
-                        $scope.personalInfoToast();
+                        $scope.personalInfoAddedMessage = true;
+                        
+                        $timeout(function(){
+                            $scope.personalInfoAddedMessage = false;
+                        }, 1500);
                     } else {
                         console.log('Personal Info submit failed');
                     }
@@ -167,8 +183,11 @@ app.controller("LoginController", function(loginService,$location, $localStorage
             var result = loginService.cvps(this.cvpersonalstatement)
                 .then(function(result){
                     if(result){
-                        console.log(result);
-                        $scope.personalStatementToast();
+                    $scope.personalStatementAddedMessage = true;
+                        
+                        $timeout(function(){
+                            $scope.personalStatementAddedMessage = false;
+                        }, 1500)
                     } else {
                         console.log('error');
                     }
@@ -195,7 +214,7 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                     if(result){
 
                         $scope.tableexp = $localStorage.cvexperience;
-                        $scope.expToast();
+
                         
                         //Clear the experience input fields
                         $scope.cvexperience = {
@@ -208,6 +227,13 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                             startdate: '',
                             enddate: ''
                         }
+                        
+                        
+                        $scope.experienceAddedMessage = true;
+                        
+                        $timeout(function(){
+                            $scope.experienceAddedMessage = false;
+                        }, 1500);
                         
                         
                     } else {
@@ -233,7 +259,7 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         $scope.editExpBTN = function(){
             $scope.submitExp = false;
             $scope.submitEditExp = true;
-            $scope.editExperienceMessage = 'Editing experience ';
+            $scope.editExperienceMessage = true;
             $scope.cvexperience = {
                 category: this.info.category,
                 role: this.info.role,
@@ -268,7 +294,7 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                     $scope.tableexp = $localStorage.cvexperience;
                     $scope.submitExp = true;
                     $scope.submitEditExp = false;
-                    $scope.editExperienceMessage = '';
+                    $scope.editExperienceMessage = false;
                         
                     //Clear the experience input fields
                     $scope.cvexperience = {
@@ -324,7 +350,6 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                     if(result){
 
                         $scope.tableeducation = $localStorage.cveducation;
-                        $scope.eduToast();
                         $scope.cveducation = {
                             category: '',
                             school: '',
@@ -332,7 +357,13 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                             country: '',
                             startdate: '',
                             enddate: ''
-                        }    
+                        }
+                        
+                        $scope.educationAddedMessage = true;
+                        
+                        $timeout(function(){
+                            $scope.educationAddedMessage = false;
+                        }, 1500);
                         
                     } else {
                         console.log('error');
@@ -426,9 +457,15 @@ app.controller("LoginController", function(loginService,$location, $localStorage
             
             .then(function(result){
                 if(result){
-                    console.log(result);
+
                     $scope.tableskill = $localStorage.cvskill;
-                    $scope.skillToast();
+                    
+                    $scope.skillsAddedMessage = true;
+                    
+                    $timeout(function(){
+                        $scope.skillsAddedMessage = false;
+                    }, 1500);
+                    
                 } else {
                     console.log('ERROR SKILL SUBMIT');
                 }
@@ -440,109 +477,16 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         
         
         
-        
-        
-        //TOAST FUNCTIONALITY
-          var last = {
-              bottom: false,
-              top: true,
-              left: false,
-              right: true
-          };
-    
-     $scope.toastPosition = angular.extend({},last);
-    
-      $scope.getToastPosition = function() {
-    sanitizePosition();
-
-    return Object.keys($scope.toastPosition)
-      .filter(function(pos) { return $scope.toastPosition[pos]; })
-      .join(' ');
-  };
-    
-    function sanitizePosition() {
-    var current = $scope.toastPosition;
-
-    if ( current.bottom && last.top ) current.top = false;
-    if ( current.top && last.bottom ) current.bottom = false;
-    if ( current.right && last.left ) current.left = false;
-    if ( current.left && last.right ) current.right = false;
-
-    last = angular.extend({},current);
-  }
-
+      
     
     
     
-$scope.expToast = function() {
-    var pinTo = $scope.getToastPosition();
-
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('Experience successfully added!')
-        .position(pinTo)
-        .hideDelay(2000)
-    );
-  };
-
-$scope.eduToast = function() {
-    var pinTo = $scope.getToastPosition();
-
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('Education successfully added!')
-        .position(pinTo)
-        .hideDelay(2000)
-    );
-  };
-    
-$scope.myProfileToast = function() {
-    var pinTo = $scope.getToastPosition();
-
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('Profile successfully updated!')
-        .position(pinTo)
-        .hideDelay(2000)
-    );
-  };
     
     
-$scope.skillToast = function() {
-    var pinTo = $scope.getToastPosition();
-
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('Skill successfully added!')
-        .position(pinTo)
-        .hideDelay(2000)
-    );
-  };
-        
-
-$scope.personalStatementToast = function() {
-    var pinTo = $scope.getToastPosition();
-
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('Personal Statement updated!')
-        .position(pinTo)
-        .hideDelay(2000)
-    );
-  };
     
-
-$scope.personalInfoToast = function() {
-    var pinTo = $scope.getToastPosition();
-
-    $mdToast.show(
-      $mdToast.simple()
-        .textContent('Personal Info updated!')
-        .position(pinTo)
-        .hideDelay(2000)
-    );
-  };    
-        
+    
+    
+    
 });
 
 

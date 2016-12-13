@@ -82,24 +82,24 @@
 
 
 
-#experrormessage.ng-enter, #eduerrormessage.ng-enter {
+#experrormessage.ng-enter, #eduerrormessage.ng-enter, #expAddedMessage.ng-enter, #myprofileAddedMessage.ng-enter, #personalInfoAddedMessage.ng-enter, #personalStatementAddedMessage.ng-enter, #editExperienceMessage.ng-enter {
     transition: 0.3s ease all;
     opacity: 0;
 
 }
 
-#experrormessage.ng-enter-active, #eduerrormessage.ng-enter-active {
+#experrormessage.ng-enter-active, #eduerrormessage.ng-enter-active, #expAddedMessage.ng-enter-active, #myprofileAddedMessage.ng-enter-active, #personalInfoAddedMessage.ng-enter-active, #personalStatementAddedMessage.ng-enter-active, #editExperienceMessage.ng-enter-active {
     opacity: 1;
 
 }
 
-#experrormessage.ng-leave, #eduerrormessage.ng-leave {
+#experrormessage.ng-leave, #eduerrormessage.ng-leave,#expAddedMessage.ng-leave, #myprofileAddedMessage.ng-leave, #personalInfoAddedMessage.ng-leave, #personalStatementAddedMessage.ng-leave, #editExperienceMessage.ng-leave {
     transition: 0.3s ease all;
     opacity: 1;
 
 }
 
-#experrormessage.ng-leave-active, #eduerrormessage.ng-leave-active {
+#experrormessage.ng-leave-active, #eduerrormessage.ng-leave-active,#expAddedMessage.ng-leave-active, #myprofileAddedMessage.ng-leave-active, #personalInfoAddedMessage.ng-leave-active, #personalStatementAddedMessage.ng-leave-active, #editExperienceMessage.ng-leave-active {
     opacity: 0;
 
 }
