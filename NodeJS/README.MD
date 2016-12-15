@@ -35,4 +35,10 @@ Dec 10 <br>
 -- Added 4 POST routes. Editing Experience, Editing Education, Deleting Experience & Deleting education <br>
 -- Still have a problem with deleting, it only deletes on Experience Schema, it should also delete on CV Schema <br>
 
+Dec 12 <br>
+-- Delete Experience and Education is now working <br>
+
+Dec 13 <br>
+-- Edited the EducationSchema <br>
+
 - John Lois Frades

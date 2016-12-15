@@ -114,6 +114,7 @@ router.post('/cvpersonalstatement', function(req, res){
 });
 
 
+//Add EXPERIENCE
 router.post('/cvexperience', function(req, res){
 
 	var expData = {
@@ -149,6 +150,7 @@ router.post('/cvexperience', function(req, res){
 
 });
 
+//GET Experience
 router.post('/getcvexperience', function(req, res){
 	CV.findById(req.body.id).populate('experience').exec(function(err, theCV){
 		if(err){
@@ -163,6 +165,7 @@ router.post('/getcvexperience', function(req, res){
 });
 
 
+//Edit EXPERIENCE
 router.post('/editcvexperience', function(req, res){
 
 	var expEditedData = {
@@ -190,19 +193,7 @@ router.post('/editcvexperience', function(req, res){
 });
 
 
-
-
-
-
-
-// ExperienceSchema.pre('remove', function (next) {
-// 	console.log('PRE SCHEMA!!!!!!!!!!!! in MAIN');
-
-// 		 next();
-// });
-
-
-
+//Delete EXPERIENCE
 router.post('/deletecvexperience', function(req, res){
 	Experience.findById(req.body.expid, function(err, experience){
 		if(err){
@@ -218,12 +209,12 @@ router.post('/deletecvexperience', function(req, res){
 
 
 
-
+//ADD Education
 router.post('/cveducation', function(req, res){
 
 	var eduData = {
-		category: req.body.category,
-		school: req.body.school,
+		qualification: req.body.qualification,
+		institution: req.body.institution,
 		city: req.body.city,
 		country: req.body.country,
 		startdate: moment(req.body.startdate).format('L'),
@@ -251,6 +242,9 @@ router.post('/cveducation', function(req, res){
 	});
 });
 
+
+
+//GET Education
 router.post('/getcveducation', function(req, res){
 	CV.findById(req.body.id).populate('education').exec(function(err, theCV){
 		if(err){
@@ -265,11 +259,12 @@ router.post('/getcveducation', function(req, res){
 });
 
 
+//EDIT Education
 router.post('/editcveducation', function(req, res){
 	console.log(req.body.eduid);
 	var eduEditedData = {
-		category: req.body.category,
-		school: req.body.school,
+		qualification: req.body.qualification,
+		institution: req.body.institution,
 		city: req.body.city,
 		country: req.body.country,
 		startdate: moment(req.body.startdate).format('L'),
@@ -291,12 +286,13 @@ router.post('/editcveducation', function(req, res){
 });
 
 
-
+//DELETE Education
 router.post('/deletecveducation', function(req, res){
 	Education.findByIdAndRemove(req.body.eduid, function(err, deletedEducation){
 		if(err){
 			console.log(err);
 		} else {
+			deletedEducation.remove();
 			res.json({success: true});
 		}
 	});

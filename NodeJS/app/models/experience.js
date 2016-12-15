@@ -1,7 +1,6 @@
 var mongoose = require('mongoose');
 
 var ExperienceSchema = new mongoose.Schema({
-	category: String,
 	role: String,
 	companydescription: String,
 	company: String,
@@ -13,8 +12,6 @@ var ExperienceSchema = new mongoose.Schema({
 
 
 ExperienceSchema.pre('remove', function (next) {
-	console.log(this);
-	console.log('PRE SCHEMA IN ORIGINAL');
   this.model('CV').update(
     { experience: this }, 
     { $pull: { experience: this._id } }, 

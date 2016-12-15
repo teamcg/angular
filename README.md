@@ -50,3 +50,9 @@ Dec 10 <br>
 -- Added Edit and Delete button on the Experience and Delete tab <br>
 -- Added function on LoginService and LoginController for Editing and Deleting Experience and Education. <br>
 -- Delete function for Experience and Education is half finish. Refer to the readme of NodeJS <br>
+
+Dec 12 <br>
+-- Delete for Experience and Education fully working <br>
+
+Dec 15 <br>
+-- Added sweet alert 2 for confirm delete message for Education and Experience <br>

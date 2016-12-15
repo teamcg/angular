@@ -19,7 +19,7 @@
 <!--MY PROFILE-->
           <md-tab label="My Profile">
             <md-content class="md-padding">
-                <div class="alert alert-success" id="myprofileAddedMessage" ng-if="myprofileAddedMessage" role="alert">Successfully added education!</div>
+                <div class="alert alert-success" id="myprofileAddedMessage" ng-if="myprofileAddedMessage" role="alert">Successfully updated profile!</div>
                 
                  <div layout="column" ng-cloak class="md-inline-form">
 
@@ -314,14 +314,14 @@
         
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Category</label>
-            <input ng-model="cveducation.category">
+            <label>Name of Qualification</label>
+            <input ng-model="cveducation.qualification">
 
           </md-input-container>
             
             <md-input-container class="md-block" flex-gt-sm>
-                <label>School</label>
-                <input ng-model="cveducation.school">
+                <label>Institution</label>
+                <input ng-model="cveducation.institution">
             </md-input-container>
         </div>
         
@@ -351,7 +351,7 @@
           <md-button ng-if="submitEducation" class="md-raised md-primary" ng-click='edusubmit()'> Save </md-button>
         <md-button ng-if="submitUpdatedEducation" class="md-raised md-primary" ng-click='submitEditedEducation()'>Edit</md-button>
 
-        <h3 class="text-center">List of Educations</h3>
+        <h3 class="text-center">List of Qualifications</h3>
         <div class="row">
                 <div class="col-sm-12"> 
                     <div class="table-responsive">
@@ -360,8 +360,8 @@
                             <thead>
                                 <tr>
                                     <th class="text-center"><h4>Action</h4></th>
-                                    <th class="text-center"><h4>Category</h4></th>
-                                    <th class="text-center"><h4>School</h4></th> 
+                                    <th class="text-center"><h4>Qualification</h4></th>
+                                    <th class="text-center"><h4>Institution</h4></th> 
                                     <th class="text-center"><h4>City</h4></th> 
                                     <th class="text-center"><h4>Country</h4></th>
                                     <th class="text-center"><h4>Start Date</h4></th>
@@ -373,8 +373,8 @@
                                     <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationButton()"></span>&nbsp;&nbsp;
                                     <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducation()"></span>
                                 </td>
-                                <td class="text-center">{{info.category}}</td>
-                                <td class="text-center">{{info.school}}</td>
+                                <td class="text-center">{{info.qualification}}</td>
+                                <td class="text-center">{{info.institution}}</td>
                                 <td class="text-center">{{info.city}}</td>
                                 <td class="text-center">{{info.country}}</td>
                                 <td class="text-center">{{info.startdate}}</td>

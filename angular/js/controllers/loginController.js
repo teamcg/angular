@@ -1,6 +1,21 @@
 var app = angular.module("main");
-app.controller("LoginController", function(loginService,$location, $localStorage, $scope, $timeout){
+app.controller("LoginController", function(loginService, $location, $localStorage, $scope, $timeout){
 
+//swal({
+//  title: 'Do you want to delete experience?',
+//  type: 'warning',
+//  showCancelButton: true,
+//  confirmButtonColor: '#3085d6',
+//  cancelButtonColor: '#d33',
+//  confirmButtonText: 'Yes'
+//}).then(function () {
+//      swal({
+//      type: 'success',
+//      title: 'Experience successfully deleted!',
+//      timer: 1000,
+//      showConfirmButton: false
+//    });
+//});
     
     
     
@@ -32,8 +47,8 @@ app.controller("LoginController", function(loginService,$location, $localStorage
     }
     
     $scope.cveducation = {
-        category: '',
-        school: '',
+        qualification: '',
+        institution: '',
         city: '',
         country: '',
         startdate: '',
@@ -316,30 +331,45 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         
         
         $scope.deleteExperience = function(){
+            var experienceToBeDeleted = this;
+            swal({
+              title: 'Do you want to delete the selected experience?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes'
+            }).then(function () {
+                $localStorage.experienceid = experienceToBeDeleted.info._id
 
-            $localStorage.experienceid = this.info._id
-            
-            var result = loginService.cvDeleteExperience()
-                .then(function(result){
-                    if(result){
-                        $scope.tableexp = $localStorage.cvexperience;
-                        console.log('Successfully deleted Experience');
-                        
-                    } else {
-                        console.log('ERROR ON EXP DELETION');
-                    }
-                });
+                var result = loginService.cvDeleteExperience()
+                    .then(function(result){
+                        if(result){
+                            $scope.tableexp = $localStorage.cvexperience;
+                            console.log('Successfully deleted Experience');
+
+                        } else {
+                            console.log('ERROR ON EXP DELETION');
+                        }
+                    });
+                      swal({
+                      type: 'success',
+                      title: 'Experience successfully deleted!',
+                      timer: 1000,
+                      showConfirmButton: false
+                    });
+            });
         }
         
         
         
         
         $scope.edusubmit = function(){
-            if($scope.cveducation.category !== "" && $scope.cveducation.school !== "" && $scope.cveducation.city !== "" && $scope.cveducation.country !== "" && $scope.cveducation.startdate !== "" && $scope.cveducation.enddate !== "") {
+            if($scope.cveducation.qualification !== "" && $scope.cveducation.institution !== "" && $scope.cveducation.city !== "" && $scope.cveducation.country !== "" && $scope.cveducation.startdate !== "" && $scope.cveducation.enddate !== "") {
                 
                 var result = loginService.cvedu(
-                    this.cveducation.category,
-                    this.cveducation.school,
+                    this.cveducation.qualification,
+                    this.cveducation.institution,
                     this.cveducation.city,
                     this.cveducation.country,
                     this.cveducation.startdate,
@@ -351,8 +381,8 @@ app.controller("LoginController", function(loginService,$location, $localStorage
 
                         $scope.tableeducation = $localStorage.cveducation;
                         $scope.cveducation = {
-                            category: '',
-                            school: '',
+                            qualification: '',
+                            institution: '',
                             city: '',
                             country: '',
                             startdate: '',
@@ -386,8 +416,8 @@ app.controller("LoginController", function(loginService,$location, $localStorage
             $scope.submitUpdatedEducation = true;
             
             $scope.cveducation = {
-                category: this.info.category,
-                school: this.info.school,
+                qualification: this.info.qualification,
+                institution: this.info.institution,
                 city: this.info.city,
                 country: this.info.country,
                 startdate: new Date(this.info.startdate),
@@ -402,8 +432,8 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         
         $scope.submitEditedEducation = function(){
             var result = loginService.cvEditEducation(
-             this.cveducation.category,
-             this.cveducation.school,
+             this.cveducation.qualification,
+             this.cveducation.institution,
              this.cveducation.city,
              this.cveducation.country,
              this.cveducation.startdate,
@@ -417,8 +447,8 @@ app.controller("LoginController", function(loginService,$location, $localStorage
                     $scope.submitUpdatedEducation = false;
                     
                     $scope.cveducation = {
-                        category: '',
-                        school: '',
+                        qualification: '',
+                        institution: '',
                         city: '',
                         country: '',
                         startdate: '',
@@ -432,16 +462,35 @@ app.controller("LoginController", function(loginService,$location, $localStorage
         
         
         $scope.deleteEducation = function(){
-            $localStorage.deleteeducationid = this.info._id;
+            var educationToBeDeleted = this;
             
-            var result = loginService.cvDeleteEducation()
-                .then(function(result){
-                    if(result){
-                        $scope.tableeducation = $localStorage.cveducation;
-                    } else {
-                        console.log('ERROR DELETING EDU');
-                    }
+            swal({
+              title: 'Do you want to delete the selected education?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes'
+            }).then(function () {
+                $localStorage.deleteeducationid = educationToBeDeleted.info._id;
+
+                var result = loginService.cvDeleteEducation()
+                    .then(function(result){
+                        if(result){
+                            $scope.tableeducation = $localStorage.cveducation;
+                        } else {
+                            console.log('ERROR DELETING EDU');
+                        }
+                    });
+                
+                  swal({
+                  type: 'success',
+                  title: 'Education successfully deleted!',
+                  timer: 1000,
+                  showConfirmButton: false
                 });
+            });
+            
         }
         
         

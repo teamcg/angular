@@ -44,30 +44,6 @@ angular.module("main").service("loginService", function($http, $localStorage){
 	}
 
     
-//    this.authenticateUrlTest = function(){
-//		
-//		var req = {
-//		 method: 'GET',
-//		 url: 'https://edenzproj.herokuapp.com/authenticate',
-//		 dataType: 'json',
-//		 headers: {
-//		   'Content-Type': 'application/json'
-//		 }
-//		}
-//		
-//
-//		return $http(req)
-//			.then(function(response) {
-//	        	console.log(response.data);
-//	        	return true;
-//
-//		    }, function(response) {
-//		        console.log("Error trying to log in.");
-//		        return false;
-//		    });
-//
-//	}
-    
  
 //MY PROFILE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     this.profileUpdate = function(address, email, phone, linkedin, website){
@@ -333,8 +309,12 @@ angular.module("main").service("loginService", function($http, $localStorage){
         });
     }
     
+
     
-    this.cvedu = function(category, school, city, country, startdate, enddate){
+//EDUCATION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+    
+    //Add Education
+    this.cvedu = function(qualification, institution, city, country, startdate, enddate){
         var currentCV = $localStorage.currentcv;
         
         var CVeducation = {
@@ -344,8 +324,8 @@ angular.module("main").service("loginService", function($http, $localStorage){
             contentType: 'application/json',
             data: {
                 id: currentCV,
-                category: category,
-                school: school,
+                qualification: qualification,
+                institution: institution,
                 city: city,
                 country: country,
                 startdate: startdate,
@@ -365,10 +345,8 @@ angular.module("main").service("loginService", function($http, $localStorage){
         
         return $http(CVeducation)
             .then(function(response){
-            console.log(response);
             return $http(cvUpdateEducation)
                 .then(function(response2){
-                console.log(response2.data.info.education);
                 $localStorage.cveducation = response2.data.info.education;
                 return true;
             }, function(error2){
@@ -386,7 +364,8 @@ angular.module("main").service("loginService", function($http, $localStorage){
     }
     
     
-    this.cvEditEducation = function(category, school, city, country, startdate, enddate){
+    //Edit Education
+    this.cvEditEducation = function(qualification, institution, city, country, startdate, enddate){
         var currentCV = $localStorage.currentcv;
         var educationID = $localStorage.editeducationid;
         
@@ -397,8 +376,8 @@ angular.module("main").service("loginService", function($http, $localStorage){
             contentType: 'application/json',
             data: {
                 eduid: educationID,
-                category: category,
-                school: school,
+                qualification: qualification,
+                institution: institution,
                 city: city,
                 country: country,
                 startdate: startdate,
@@ -421,7 +400,6 @@ angular.module("main").service("loginService", function($http, $localStorage){
             .then(function(response){
                 return $http(cvUpdateEducation)
                     .then(function(response2){
-                        console.log(response2);
                         $localStorage.cveducation = response2.data.info.education;
                         return true;
                 }, function(error2){
@@ -436,7 +414,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
         
     }
     
-    
+    //Delete Education
     this.cvDeleteEducation = function(){
         var currentCV = $localStorage.currentcv;
         var educationID = $localStorage.deleteeducationid;
