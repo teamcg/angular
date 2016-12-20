@@ -6,7 +6,11 @@ var EducationSchema = new mongoose.Schema({
 	city: String,
 	country: String,
 	startdate: String,
-	enddate: String
+	enddate: String,
+	papers: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'EducationPaper'
+	}]
 });
 
 

@@ -56,3 +56,10 @@ Dec 12 <br>
 
 Dec 15 <br>
 -- Added sweet alert 2 for confirm delete message for Education and Experience <br>
+-- Added Cancel button when editing Experience and Education <br>
+-- Hides the list when on editing mode <br>
+
+Dec 19 <br>
+-- Added icons (added options) for Education and Experience <br>
+-- Added Paper function to controller and service <br>
+-- Fully working Add paper function and binds to Education <br>

@@ -5,8 +5,10 @@ var User = require('../app/models/users');
 var CV = require('../app/models/cv');
 var Experience = require('../app/models/experience');
 var Education = require('../app/models/education');
+var EducationPaper = require('../app/models/educationOptions/papers');
 var Skill = require('../app/models/skill');
 var moment = require('moment');
+
 
 
 
@@ -124,7 +126,7 @@ router.post('/cvexperience', function(req, res){
 		company: req.body.company,
 		city: req.body.city,
 		country: req.body.country,
-		startdate: moment(req.body.startdate).format('L'),
+		startdate: moment(req.body.startdate).format('L'), 
 		enddate: moment(req.body.enddate).format('L')
 	}
 
@@ -201,7 +203,7 @@ router.post('/deletecvexperience', function(req, res){
 		} else {
 			experience.remove();
 			res.json({
-							success: true
+                success: true
 			});
 		}
 	});
@@ -261,7 +263,6 @@ router.post('/getcveducation', function(req, res){
 
 //EDIT Education
 router.post('/editcveducation', function(req, res){
-	console.log(req.body.eduid);
 	var eduEditedData = {
 		qualification: req.body.qualification,
 		institution: req.body.institution,
@@ -276,7 +277,6 @@ router.post('/editcveducation', function(req, res){
 		if(err){
 			console.log(err);
 		} else {
-			console.log(editedEdu);
 			res.json({
 				success: true,
 				info: editedEdu
@@ -297,6 +297,66 @@ router.post('/deletecveducation', function(req, res){
 		}
 	});
 });
+
+
+//Add Paper to Education
+router.post('/cveducationpaper', function(req, res){
+	Education.findById(req.body.eduid, function(err, theEducation){
+		if(err){
+			console.log(err);
+		} else {
+			EducationPaper.create({name: req.body.educationpaper}, function(err, newEduPaper){
+				if(err){
+					console.log(err);
+				} else {
+					theEducation.papers.push(newEduPaper);
+					theEducation.save();
+					res.json({
+						success: true,
+						info: newEduPaper
+					});
+				}
+			});
+		}
+	})
+});
+
+
+//Get CV Education Paper
+router.post('/getcveducationpaper', function(req, res){
+	Education.findById(req.body.eduid).populate('papers').exec(function(err, theEducationPapers){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				info: theEducationPapers
+			});
+		}
+	});
+});
+
+//Edit Education Paper
+router.post('/editeducationpaper', function(req, res){
+	var updatedPaper = {
+		name: req.body.updatedPaper
+	};
+
+	EducationPaper.findByIdAndUpdate(req.body.educationpaperid, updatedPaper, {new:true}, function(err, updatedPaper){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: updatedPaper
+			});
+		}
+	});
+});
+
+
+
+
+
 
 
 

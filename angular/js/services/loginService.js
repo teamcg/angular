@@ -164,7 +164,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
     
     
 //EXPERIENCE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  
-    this.cvexp = function(category, role, company, companydesc, city, country, startdate, enddate){
+    this.cvexp = function(role, company, companydesc, city, country, startdate, enddate){
         var currentCV = $localStorage.currentcv;
         
         var CVexperience = {
@@ -174,7 +174,6 @@ angular.module("main").service("loginService", function($http, $localStorage){
             contentType: 'application/json',
             data: {
                 id: currentCV,
-                category: category,
                 role: role,
                 company: company,
                 companydesc: companydesc,
@@ -197,10 +196,8 @@ angular.module("main").service("loginService", function($http, $localStorage){
         
         return $http(CVexperience)
             .then(function(response){
-                console.log(response.data);
                 return $http(cvUpdateExp)
                     .then(function(response2){
-                        console.log(response2.data.info.experience);
                         $localStorage.cvexperience = response2.data.info.experience;
                         return true;
             }, function(error2){
@@ -215,9 +212,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
     
     
 //EDIT EXPERIENCE
-    this.cvEditExperience = function(category, role, company, companydesc, city, country, startdate, enddate){
-        console.log(startdate);
-        console.log(enddate);
+    this.cvEditExperience = function(role, company, companydesc, city, country, startdate, enddate){
         var currentCV = $localStorage.currentcv;
         var experienceID = $localStorage.editexperienceid;
         
@@ -228,7 +223,6 @@ angular.module("main").service("loginService", function($http, $localStorage){
             contentType: 'application/json',
             data: {
                 expid: experienceID,
-                category: category,
                 role: role,
                 company: company,
                 companydesc: companydesc,
@@ -455,6 +449,98 @@ angular.module("main").service("loginService", function($http, $localStorage){
         });
     }
     
+    
+   //Add Paper to education
+    this.cvAddEducationPaper = function(name){
+        var CVeducationpaper = {
+            method: 'POST',
+            url: 'http://localhost:3000/cveducationpaper',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.papereducationid,
+                educationpaper: name
+            }
+        }
+        
+        var getEducationPaper = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationpaper',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.papereducationid
+            }
+        }
+        
+        
+        return $http(CVeducationpaper)
+            .then(function(response){
+                return $http(getEducationPaper)
+                    .then(function(response2){
+                    $localStorage.cvEducationPapers = response2.data.info.papers;
+                    return true;
+                });
+        });
+    }
+    
+    
+    this.cvGetEducationPaper = function(){
+        
+        var getEducationPaper = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationpaper',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.papereducationid
+            }
+        }
+        
+        return $http(getEducationPaper)
+            .then(function(response){
+                $localStorage.cvEducationPapers = response.data.info.papers;
+                return true;
+        })
+        
+        
+    }
+    
+    //Edit Education Paper
+    
+    this.cvEditEducationPaper = function(papername){
+        
+        var editEducationPaper = {
+            method: 'POST',
+            url: 'http://localhost:3000/editeducationpaper',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                educationpaperid: $localStorage.educationpaperid,
+                updatedPaper: papername
+            }
+        }
+        
+        var getEducationPaper = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationpaper',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.papereducationid 
+            }
+        }
+        
+        return $http(editEducationPaper)
+            .then(function(response){
+                return $http(getEducationPaper)
+                    .then(function(response2){
+                        console.log('Paper service');
+                        $localStorage.cvEducationPapers = response.data.info.papers;
+                        return true;
+                });
+        });
+    }
     
     
     

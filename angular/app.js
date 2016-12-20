@@ -1,4 +1,4 @@
-var app = angular.module("main", ["ngRoute", "ngStorage", "ngMaterial", "ngAnimate"]);
+var app = angular.module("main", ["ngRoute", "ngStorage", "ngMaterial", "ngAnimate", 'ui.bootstrap']);
 
 
 

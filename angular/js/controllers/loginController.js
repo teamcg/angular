@@ -1,6 +1,7 @@
 var app = angular.module("main");
 app.controller("LoginController", function(loginService, $location, $localStorage, $scope, $timeout){
 
+    
 //swal({
 //  title: 'Do you want to delete experience?',
 //  type: 'warning',
@@ -36,7 +37,6 @@ app.controller("LoginController", function(loginService, $location, $localStorag
     }
     
     $scope.cvexperience = {
-        category: '',
         role: '',
         company: '',
         companydesc: '',
@@ -75,7 +75,10 @@ app.controller("LoginController", function(loginService, $location, $localStorag
     $scope.skillsAddedMessage = false;
     
     $scope.editExperienceMessage = false;
-
+    $scope.editEducationMessage = false;
+    
+    $scope.listOfExperience = true;
+    $scope.listOfQualification = true;
     
     $scope.expErrorMessage = false;
     $scope.eduErrorMessage = false;
@@ -87,6 +90,16 @@ app.controller("LoginController", function(loginService, $location, $localStorag
     
     $scope.submitEducation = true;
     $scope.submitUpdatedEducation = false;
+    
+    $scope.educationForm = true;
+    $scope.papersField = false;
+    
+    $scope.paperFieldSubmitButtons = true;
+    $scope.paperFieldEditButton = false;
+    $scope.paper = {
+        name: ''
+    }
+    $scope.paperInfos = true;
     
     loginController.studentinfo = {
         firstname: $localStorage.studentFirstname,
@@ -214,9 +227,8 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         
         $scope.expsubmit = function(){
-            if($scope.cvexperience.category !== "" && $scope.cvexperience.role !== "" && $scope.cvexperience.company !== "" && $scope.cvexperience.companydesc !== "" && $scope.cvexperience.city !== "" && $scope.cvexperience.country !== "" && $scope.cvexperience.startdate !== "" && $scope.cvexperience.enddate !== ""){
-                var result = loginService.cvexp(
-                this.cvexperience.category, 
+            if($scope.cvexperience.role !== "" && $scope.cvexperience.company !== "" && $scope.cvexperience.companydesc !== "" && $scope.cvexperience.city !== "" && $scope.cvexperience.country !== "" && $scope.cvexperience.startdate !== "" && $scope.cvexperience.enddate !== ""){
+                var result = loginService.cvexp( 
                 this.cvexperience.role, 
                 this.cvexperience.company,
                 this.cvexperience.companydesc,
@@ -233,7 +245,6 @@ app.controller("LoginController", function(loginService, $location, $localStorag
                         
                         //Clear the experience input fields
                         $scope.cvexperience = {
-                            category: '',
                             role: '',
                             company: '',
                             companydesc: '',
@@ -272,11 +283,12 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         
         $scope.editExpBTN = function(){
+            
             $scope.submitExp = false;
             $scope.submitEditExp = true;
             $scope.editExperienceMessage = true;
+            $scope.listOfExperience = false;
             $scope.cvexperience = {
-                category: this.info.category,
                 role: this.info.role,
                 company: this.info.company,
                 companydesc: this.info.companydescription,
@@ -287,14 +299,13 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             }
             
             $localStorage.editexperienceid = this.info._id;
-            console.log($localStorage.editexperienceid);
             
         }
         
         
         $scope.expUpdatedSubmit = function(){
+            $scope.listOfExperience = true;
             var result = loginService.cvEditExperience(
-                this.cvexperience.category, 
                 this.cvexperience.role, 
                 this.cvexperience.company,
                 this.cvexperience.companydesc,
@@ -313,7 +324,6 @@ app.controller("LoginController", function(loginService, $location, $localStorag
                         
                     //Clear the experience input fields
                     $scope.cvexperience = {
-                        category: '',
                         role: '',
                         company: '',
                         companydesc: '',
@@ -329,6 +339,25 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             
         }
         
+        $scope.expUpdateCancel = function(){
+            $scope.listOfExperience = true;
+            $scope.cvexperience = {
+                role: '',
+                company: '',
+                companydesc: '',
+                city: '',
+                country: '',
+                startdate: '',
+                enddate: ''
+            }
+            
+            $scope.submitExp = true;
+            $scope.submitEditExp = false;
+            $scope.editExperienceMessage = false;
+            
+        
+        }
+        
         
         $scope.deleteExperience = function(){
             var experienceToBeDeleted = this;
@@ -338,7 +367,8 @@ app.controller("LoginController", function(loginService, $location, $localStorag
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes'
+              confirmButtonText: '<span class="glyphicon glyphicon-ok"></span>',
+              cancelButtonText: '<span class="glyphicon glyphicon-remove"></span>'
             }).then(function () {
                 $localStorage.experienceid = experienceToBeDeleted.info._id
 
@@ -393,7 +423,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
                         
                         $timeout(function(){
                             $scope.educationAddedMessage = false;
-                        }, 1500);
+                        }, 1000);
                         
                     } else {
                         console.log('error');
@@ -413,7 +443,9 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         $scope.editEducationButton = function(){
             $scope.submitEducation = false;
+            $scope.editEducationMessage = true;
             $scope.submitUpdatedEducation = true;
+            $scope.listOfQualification = false;
             
             $scope.cveducation = {
                 qualification: this.info.qualification,
@@ -425,12 +457,13 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             }
             
             $localStorage.editeducationid = this.info._id;
-            console.log($localStorage.editeducationid);
         
         }
         
         
         $scope.submitEditedEducation = function(){
+            $scope.editEducationMessage = false;
+            $scope.listOfQualification = true;
             var result = loginService.cvEditEducation(
              this.cveducation.qualification,
              this.cveducation.institution,
@@ -461,6 +494,29 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         }
         
         
+        
+         $scope.eduUpdateCancel = function(){
+            $scope.listOfQualification = true;
+            $scope.submitUpdatedEducation = false;
+            $scope.editEducationMessage = false;
+            $scope.listOfQualification = true;
+            $scope.cveducation = {
+                qualification: '',
+                institution: '',
+                city: '',
+                country: '',
+                startdate: '',
+                enddate: ''
+            }
+            
+            $scope.submitEducation = true;
+            $scope.submitEditExp = false;
+            $scope.editExperienceMessage = false;
+            
+        
+        }
+        
+        
         $scope.deleteEducation = function(){
             var educationToBeDeleted = this;
             
@@ -470,7 +526,8 @@ app.controller("LoginController", function(loginService, $location, $localStorag
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes'
+              confirmButtonText: '<span class="glyphicon glyphicon-ok"></span>',
+              cancelButtonText: '<span class="glyphicon glyphicon-remove"></span>'
             }).then(function () {
                 $localStorage.deleteeducationid = educationToBeDeleted.info._id;
 
@@ -485,7 +542,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
                 
                   swal({
                   type: 'success',
-                  title: 'Education successfully deleted!',
+                  title: 'Qualification successfully deleted!',
                   timer: 1000,
                   showConfirmButton: false
                 });
@@ -525,18 +582,93 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         
         
+        $scope.openPapers = function(){
+            $localStorage.papereducationid = this.info._id;
+            var result = loginService.cvGetEducationPaper()
+                .then(function(result){
+                    if(result){
+                        $scope.showEducationPapers = $localStorage.cvEducationPapers;
+                    }
+                });
+            
+            
+            $scope.educationForm = false;
+            $scope.papersField = true;
+            
+
+            
+
+        }
         
-      
-    
-    
-    
-    
+        $scope.submitPaper = function(){    
+            var result = loginService.cvAddEducationPaper(this.paper.name)
+                .then(function(result){
+                    if(result){
+                        $scope.showEducationPapers = $localStorage.cvEducationPapers;
+                        $scope.paper = {
+                            name: ''
+                        }
+                    } else {
+                        console.log('error');
+                    }
+                });
+            
+            
+        }
+        
+        $scope.closePaper = function(){
+            $scope.showEducationPapers = '';
+            
+            $scope.educationForm = true;
+            $scope.papersField = false;
+        }
+        
+        
+        $scope.editEducationPaper = function(){          
+            $scope.paper = {
+                name: this.papers.name
+            }
+            $localStorage.educationpaperid = this.papers._id;
+            $scope.paperInfos = false;
+            $scope.paperFieldSubmitButtons = false;
+            $scope.paperFieldEditButton = true;
+            
+            
+        }
+        
+        $scope.cancelEditEducationPaper = function(){
+            $scope.paperInfos = true;
+            $scope.paperFieldEditButton = false;
+            $scope.paperFieldSubmitButtons = true;
+        }
+        
+        
+        $scope.updateEducationPaper = function(){
+            var result = loginService.cvEditEducationPaper(this.paper.name)
+                .then(function(result){
+                    if(result){
+                        $scope.paper = {
+                            name: ''
+                        }
+                        $scope.showEducationPapers = $localStorage.cvEducationPapers;
+                    }
+                });
+            $scope.paperInfos = true;
+            $scope.paperFieldEditButton = false;
+            $scope.paperFieldSubmitButtons = true;
+        }
     
     
     
     
     
 });
+
+//app.config(function($mdDateLocaleProvider) {
+//  $mdDateLocaleProvider.formatDate = function(date) {
+//    return moment(date).format('DD-MM-YYYY');
+//  };
+//});
 
 
 

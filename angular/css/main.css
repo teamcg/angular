@@ -55,24 +55,24 @@
   background-color: #FFF2E0; }
 
 
-#createcvname.ng-enter, #createdcvname.ng-enter, #cvcontent.ng-enter {
+#createcvname.ng-enter, #createdcvname.ng-enter, #cvcontent.ng-enter, #listOfExperience.ng-enter, #listOfQualification.ng-enter {
     transition: 0.3s ease all;
     opacity: 0;
 
 }
 
-#createcvname.ng-enter-active, #createdcvname.ng-enter-active, #cvcontent.ng-enter-active {
+#createcvname.ng-enter-active, #createdcvname.ng-enter-active, #cvcontent.ng-enter-active, #listOfExperience.ng-enter-active, #listOfQualification.ng-enter-active {
     opacity: 1;
 
 }
 
-#createcvname.ng-leave, #createdcvname.ng-leave, #cvcontent.ng-leave {
+#createcvname.ng-leave, #createdcvname.ng-leave, #cvcontent.ng-leave, #listOfExperience.ng-leave, #listOfQualification.ng-leave {
     transition: 0.3s ease all;
     opacity: 1;
 
 }
 
-#createcvname.ng-leave-active, #createdcvname.ng-leave-active, #cvcontent.ng-leave-active {
+#createcvname.ng-leave-active, #createdcvname.ng-leave-active, #cvcontent.ng-leave-active, #listOfExperience.ng-leave-active, #listOfQualification.ng-leave-active {
     opacity: 0;
 
 }
@@ -82,24 +82,24 @@
 
 
 
-#experrormessage.ng-enter, #eduerrormessage.ng-enter, #expAddedMessage.ng-enter, #myprofileAddedMessage.ng-enter, #personalInfoAddedMessage.ng-enter, #personalStatementAddedMessage.ng-enter, #editExperienceMessage.ng-enter {
+#experrormessage.ng-enter, #eduerrormessage.ng-enter, #expAddedMessage.ng-enter, #myprofileAddedMessage.ng-enter, #personalInfoAddedMessage.ng-enter, #personalStatementAddedMessage.ng-enter, #editExperienceMessage.ng-enter, #editEducationMessage.ng-enter, #eduAddedMessage.ng-enter {
     transition: 0.3s ease all;
     opacity: 0;
 
 }
 
-#experrormessage.ng-enter-active, #eduerrormessage.ng-enter-active, #expAddedMessage.ng-enter-active, #myprofileAddedMessage.ng-enter-active, #personalInfoAddedMessage.ng-enter-active, #personalStatementAddedMessage.ng-enter-active, #editExperienceMessage.ng-enter-active {
+#experrormessage.ng-enter-active, #eduerrormessage.ng-enter-active, #expAddedMessage.ng-enter-active, #myprofileAddedMessage.ng-enter-active, #personalInfoAddedMessage.ng-enter-active, #personalStatementAddedMessage.ng-enter-active, #editExperienceMessage.ng-enter-active, #editEducationMessage.ng-enter-active, #eduAddedMessage.ng-enter-active {
     opacity: 1;
 
 }
 
-#experrormessage.ng-leave, #eduerrormessage.ng-leave,#expAddedMessage.ng-leave, #myprofileAddedMessage.ng-leave, #personalInfoAddedMessage.ng-leave, #personalStatementAddedMessage.ng-leave, #editExperienceMessage.ng-leave {
+#experrormessage.ng-leave, #eduerrormessage.ng-leave,#expAddedMessage.ng-leave, #myprofileAddedMessage.ng-leave, #personalInfoAddedMessage.ng-leave, #personalStatementAddedMessage.ng-leave, #editExperienceMessage.ng-leave, #editEducationMessage.ng-leave, #eduAddedMessage.ng-leave {
     transition: 0.3s ease all;
     opacity: 1;
 
 }
 
-#experrormessage.ng-leave-active, #eduerrormessage.ng-leave-active,#expAddedMessage.ng-leave-active, #myprofileAddedMessage.ng-leave-active, #personalInfoAddedMessage.ng-leave-active, #personalStatementAddedMessage.ng-leave-active, #editExperienceMessage.ng-leave-active {
+#experrormessage.ng-leave-active, #eduerrormessage.ng-leave-active,#expAddedMessage.ng-leave-active, #myprofileAddedMessage.ng-leave-active, #personalInfoAddedMessage.ng-leave-active, #personalStatementAddedMessage.ng-leave-active, #editExperienceMessage.ng-leave-active, #editEducationMessage.ng-leave-active, #eduAddedMessage.ng-leave-active {
     opacity: 0;
 
 }
@@ -112,3 +112,14 @@
     color: black !important;
 }
 
+
+
+
+/*GLYPHICONS BOOTSTRAP*/
+.glyphicon.glyphicon.glyphicon-pencil {
+    color: blue;
+}
+
+.glyphicon.glyphicon.glyphicon-trash {
+    color: red;
+}

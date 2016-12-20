@@ -41,4 +41,8 @@ Dec 12 <br>
 Dec 13 <br>
 -- Edited the EducationSchema <br>
 
+Dec 19 <br>
+-- added Education Papers model <br>
+-- Added POST route for Education Paper <br>
+
 - John Lois Frades

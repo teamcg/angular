@@ -1,8 +1,8 @@
 
 <div ng-controller='LoginController as loginController'>
 
-    <div ng-cloak class="container">
-        <md-toolbar class="md-hue-2">
+<div ng-cloak class="container">
+    <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools">
         <h2>
           <span>EDENZ CV Generator</span>
@@ -176,12 +176,39 @@
         
         </md-content>
       </md-tab>
+       
+<!--SKILLS-->
+         <md-tab label="Key Skills & Competencies">
+    <md-content class="md-padding">
+        <div class="alert alert-success" id="skillsAddedMessage" ng-if="skillsAddedMessage" role="alert">Successfully added a Skill!</div>
+      
+        <md-input-container class="md-block">
+          <label>Name</label>
+          <input ng-model="cvskill.name">
+        </md-input-container>
+<form>
+        <md-input-container class="md-block">
+         <label>Description</label>
+                <textarea id="todolist" class="todolist" name="todolist" ng-model="cvskill.description"  rows="10" md-select-on-focus ></textarea>
+             <md-button class="md-raised md-primary" ng-click='skillsubmit()'> Save </md-button>
+        </md-input-container>
+</form>
+        
+        <div ng-repeat="info in tableskill">
+        <h3>{{info.name}}</h3>
+        <h4>{{info.description}}</h4>
+        </div>
+        
+    </md-content>
+  </md-tab>       
+       
+
         
 <!--EXPERIENCE-->
       <md-tab label="Experience">
         <md-content class="md-padding">
   <md-content layout-padding>
-    <div>
+
         
      <div class="alert alert-info" role="alert" id="editExperienceMessage" ng-if="editExperienceMessage">You're on edit mode</div>
         
@@ -190,18 +217,14 @@
         
 
          <div layout-gt-sm="row">
-            
-          <md-input-container class="md-block" flex-gt-sm>
-            <label>Category</label>
-            <input id="experienceCategory" ng-model="cvexperience.category">
-
-          </md-input-container>
 
           <md-input-container class="md-block" flex-gt-sm>
             <label>Role</label>
             <input id="experienceRole" ng-model="cvexperience.role">
           </md-input-container>
         </div>
+        
+        
         <div layout-gt-sm="row">
 
         <md-input-container class="md-block" flex-gt-sm>
@@ -210,7 +233,7 @@
         </md-input-container>
             
           <md-input-container class="md-block" flex-gt-sm>
-            <label>Company Description</label>
+            <label>Company Description (optional)</label>
             <input id="experienceCompanyDescription" ng-model="cvexperience.companydesc">
           </md-input-container>
             
@@ -243,75 +266,82 @@
         </div>
             
         <md-button ng-if="submitExp" id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expsubmit()"> Save </md-button>
-        <md-button ng-if="submitEditExp" id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expUpdatedSubmit()"> Edit and Save  </md-button> 
+        
+        <div ng-if="submitEditExp">
+            <md-button  id="experienceSubmit" type="submit" class="md-raised md-primary" ng-click="expUpdatedSubmit()">Save</md-button> 
+            <md-button type="submit" class="md-raised md-warn" ng-click="expUpdateCancel()">Cancel</md-button> 
+        </div>
 
-        <h3 class="text-center">List of Experiences</h3>
-        <div class="row">
-                <div class="col-sm-12"> 
-                    <div class="table-responsive">
-                        <br>
-                        <table class="table  table-hover" id="tableExperience">
-                            <thead>
-                                <tr >
-                                    <th class="text-center"><h4>Action</h4></th>
-                                    <th class="text-center"><h4>Category</h4></th>
-                                    <th class="text-center"><h4>Role</h4></th>
-                                    <th class="text-center"><h4>Company</h4></th>
-                                    <th class="text-center"><h4>Company Description</h4></th>
-                                    <th class="text-center"><h4>City</h4></th> 
-                                    <th class="text-center"><h4>Country</h4></th>
-                                    <th class="text-center"><h4>Start Date</h4></th>
-                                    <th class="text-center"><h4>End Date</h4></th> 
-                                </tr>
-                            </thead>
-                            <tbody ng-repeat='info in tableexp'>
-                                <div class="expContent"> 
-                                    <tr class="text-center">
-                                    <td class="text-center">  
-                                    <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpBTN()"></span>&nbsp;&nbsp;
-                                    <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExperience()"></span>
-                                    </td>  
-                                    <td class="expCategory">{{info.category}}</td>
-                                    <td class="expRole">{{info.role}}</td>
-                                    <td class="expCompany">{{info.company}}</td>
-                                    <td class="expCompanyDesc">{{info.companydescription}}</td>
-                                    <td class="expCity">{{info.city}}</td>
-                                    <td class="expCountry">{{info.country}}</td>
-                                    <td class="expStartdate">{{info.startdate}}</td>
-                                    <td class="expEnddate">{{info.enddate}}</td>
+        <div ng-if="listOfExperience" id="listOfExperience">
+            <h3 class="text-center">List of Experiences</h3>
+            <div class="row">
+                    <div class="col-sm-12"> 
+                        <div class="table-responsive">
+                            <br>
+                            <table class="table  table-hover" id="tableExperience">
+                                <thead>
+                                    <tr >
+                                        <th class="text-center"><h4>Action</h4></th>
+                                        <th class="text-center"><h4>Role</h4></th>
+                                        <th class="text-center"><h4>Company</h4></th>
+                                        <th class="text-center"><h4>Company Description</h4></th>
+                                        <th class="text-center"><h4>City</h4></th> 
+                                        <th class="text-center"><h4>Country</h4></th>
+                                        <th class="text-center"><h4>Start Date</h4></th>
+                                        <th class="text-center"><h4>End Date</h4></th> 
                                     </tr>
-                                </div>
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody ng-repeat='info in tableexp'>
+                                    <div class="expContent"> 
+                                        <tr class="text-center">
+                                        <td class="text-center">  
+                                            <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpBTN()"></span>&nbsp;&nbsp;
+                                            <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExperience()"></span>
+                                            <span style="font-size: 15px">/</span>
+<!--
+                                            <span class="glyphicon glyphicon-list-alt" ></span>
+                                            <span class="glyphicon glyphicon-briefcase"></span>
+                                            <i class="fa fa-trophy" aria-hidden="true"></i>
+-->
+                                        </td>
+                                        <td class="expRole">{{info.role}}</td>
+                                        <td class="expCompany">{{info.company}}</td>
+                                        <td class="expCompanyDesc">{{info.companydescription}}</td>
+                                        <td class="expCity">{{info.city}}</td>
+                                        <td class="expCountry">{{info.country}}</td>
+                                        <td class="expStartdate">{{info.startdate}}</td>
+                                        <td class="expEnddate">{{info.enddate}}</td>
+                                        </tr>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
-            </div>
-						
-    </div>
+    </div>		
+
+
+
+
+
 
   </md-content>
-
-            
-            
-            
-            
-            
-            
+                 
         </md-content>
       </md-tab>
         
         
+
         
 <!--EDUCATION-->
 <md-tab label="Education">
     <md-content class="md-padding">
-
        <md-content layout-padding>
-    <div>
+            <div class="alert alert-info" role="alert" id="editEducationMessage" ng-if="editEducationMessage">Editing mode</div>
 
 <div id="eduerrormessage" ng-if="eduErrorMessage" class="alert alert-danger" role="alert">Fill-up all the input fields to submit </div>
 <div class="alert alert-success" id="eduAddedMessage" ng-if="educationAddedMessage" role="alert">Successfully added education!</div>
-        
+  <div ng-if="educationForm">
         <div layout-gt-sm="row">
           <md-input-container class="md-block" flex-gt-sm>
             <label>Name of Qualification</label>
@@ -349,8 +379,14 @@
         </div>
             
           <md-button ng-if="submitEducation" class="md-raised md-primary" ng-click='edusubmit()'> Save </md-button>
-        <md-button ng-if="submitUpdatedEducation" class="md-raised md-primary" ng-click='submitEditedEducation()'>Edit</md-button>
-
+          
+        <div ng-if="submitUpdatedEducation"> 
+            <md-button class="md-raised md-primary" ng-click='submitEditedEducation()'>Update</md-button>
+            <md-button class="md-raised md-warn" ng-click='eduUpdateCancel()'>Cancel</md-button>
+        </div> 
+      
+        
+    <div ng-if="listOfQualification" id="listOfQualification">
         <h3 class="text-center">List of Qualifications</h3>
         <div class="row">
                 <div class="col-sm-12"> 
@@ -372,6 +408,10 @@
                                 <td class="text-center">  
                                     <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationButton()"></span>&nbsp;&nbsp;
                                     <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducation()"></span>
+                                    <span style="font-size: 15px">/</span>
+                                    <span class="glyphicon glyphicon-list-alt" ng-click="openPapers()"></span>
+                                    <span class="glyphicon glyphicon-briefcase"></span>
+                                    <i class="fa fa-trophy" aria-hidden="true"></i>
                                 </td>
                                 <td class="text-center">{{info.qualification}}</td>
                                 <td class="text-center">{{info.institution}}</td>
@@ -379,14 +419,46 @@
                                 <td class="text-center">{{info.country}}</td>
                                 <td class="text-center">{{info.startdate}}</td>
                                 <td class="text-center">{{info.enddate}}</td>
+                                
+ 
                             </tbody>
+                            
+                            
+                            
                         </table>
+                           
                     </div>
                 </div>
             </div>
-						
-    </div>
+	</div>					
+</div> 
+     <div ng-if="papersField">
+           <md-input-container class="md-block" flex-gt-sm>
+            <label>Paper Name</label>
+            <input ng-model="paper.name">
+                        <div ng-if="paperFieldSubmitButtons">
+                <md-button class="md-raised md-primary" ng-click="submitPaper()">Add Paper</md-button>
+                <md-button class="md-raised md-warn" ng-click="closePaper()">Go Back</md-button>
+            </div>
+            <div ng-if="paperFieldEditButton">
+               <md-button class="md-raised md-primary" ng-click="updateEducationPaper()">Update</md-button>
+                <md-button class="md-raised md-warn" ng-click="cancelEditEducationPaper()">Cancel</md-button>
+            </div>
+           </md-input-container>
+           
+           
+           
 
+
+            <div ng-repeat="papers in showEducationPapers" ng-if="paperInfos">
+                <h2>{{papers.name}}</h2>
+                <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationPaper()"></span>&nbsp;&nbsp;
+                <span class="glyphicon glyphicon glyphicon-trash"></span>
+            </div>
+
+
+     </div>
+ 
   </md-content>        
         
         
@@ -408,31 +480,7 @@
         
         
         
-<!--SKILLS-->
-         <md-tab label="Key Skills & Competencies">
-    <md-content class="md-padding">
-        <div class="alert alert-success" id="skillsAddedMessage" ng-if="skillsAddedMessage" role="alert">Successfully added a Skill!</div>
-      
-        <md-input-container class="md-block">
-          <label>Name</label>
-          <input ng-model="cvskill.name">
-        </md-input-container>
-<form>
-        <md-input-container class="md-block">
-         <label>Description</label>
-                <textarea id="todolist" class="todolist" name="todolist" ng-model="cvskill.description"  rows="10" md-select-on-focus ></textarea>
-<!--            <textarea id="todolist" class="todolist" name="todolist" rows="10" ng-model="cvskill.description" placeholder="Maintain your pending tasks"></textarea>-->
-             <md-button class="md-raised md-primary" ng-click='skillsubmit()'> Save </md-button>
-        </md-input-container>
-</form>
-        
-        <div ng-repeat="info in tableskill">
-        <h3>{{info.name}}</h3>
-        <h4>{{info.description}}</h4>
-        </div>
-        
-    </md-content>
-  </md-tab>
+
     </md-tabs>
   </md-content>
 </div>
