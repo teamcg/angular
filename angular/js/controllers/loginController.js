@@ -93,13 +93,20 @@ app.controller("LoginController", function(loginService, $location, $localStorag
     
     $scope.educationForm = true;
     $scope.papersField = false;
+    $scope.educationAchievementsField = false;
     
     $scope.paperFieldSubmitButtons = true;
     $scope.paperFieldEditButton = false;
+    $scope.educationAchievementSubmitButtons = true;
+    $scope.educationAchievementEditButton = false;
     $scope.paper = {
         name: ''
     }
+    $scope.educationAchievement = {
+        name: ''
+    }
     $scope.paperInfos = true;
+    $scope.educationAchievementInfos = true;
     
     loginController.studentinfo = {
         firstname: $localStorage.studentFirstname,
@@ -550,55 +557,30 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             
         }
         
-        
-        
-        
-        
-        
-        $scope.skillsubmit = function(){
-            var result = loginService.cvskills(
-                this.cvskill.name,
-                this.cvskill.description
-            )
             
-            .then(function(result){
-                if(result){
-
-                    $scope.tableskill = $localStorage.cvskill;
-                    
-                    $scope.skillsAddedMessage = true;
-                    
-                    $timeout(function(){
-                        $scope.skillsAddedMessage = false;
-                    }, 1500);
-                    
-                } else {
-                    console.log('ERROR SKILL SUBMIT');
-                }
-            });
-            
-        }
         
-        
-        
+    //Education Additional Options    
         
         $scope.openPapers = function(){
-            $localStorage.papereducationid = this.info._id;
+            $localStorage.educationID = this.info._id;
             var result = loginService.cvGetEducationPaper()
                 .then(function(result){
                     if(result){
                         $scope.showEducationPapers = $localStorage.cvEducationPapers;
                     }
-                });
-            
+                });   
+            $scope.educationForm = false;
+            $scope.papersField = true;    
+        }
+        
+        
+        $scope.openEducationAchievements = function(){
+            $localStorage.educationID = this.info._id;
             
             $scope.educationForm = false;
-            $scope.papersField = true;
-            
-
-            
-
+            $scope.educationAchievementsField = true;
         }
+        
         
         $scope.submitPaper = function(){    
             var result = loginService.cvAddEducationPaper(this.paper.name)
@@ -614,6 +596,23 @@ app.controller("LoginController", function(loginService, $location, $localStorag
                 });
             
             
+        }
+        
+        $scope.submitEducationAchievement = function(){
+            var result = loginService.cvAddEducationAchievement(this.educationAchievement.name)
+                .then(function(result){
+                    if(result){
+
+                        $scope.showEducationAchievements = $localStorage.cvEducationAchievements;
+                        $scope.educationAchievement = {
+                            name: ''
+                        }
+                        console.log($scope.showEducationAchievements);
+                        console.log($localStorage.cvEducationAchievements);
+                    } else {
+                        console.log('error in adding education achievement');
+                    }
+                });
         }
         
         $scope.deleteEducationPaper = function(){
@@ -678,7 +677,29 @@ app.controller("LoginController", function(loginService, $location, $localStorag
 
     
     
-    
+           $scope.skillsubmit = function(){
+            var result = loginService.cvskills(
+                this.cvskill.name,
+                this.cvskill.description
+            )
+            
+            .then(function(result){
+                if(result){
+
+                    $scope.tableskill = $localStorage.cvskill;
+                    
+                    $scope.skillsAddedMessage = true;
+                    
+                    $timeout(function(){
+                        $scope.skillsAddedMessage = false;
+                    }, 1500);
+                    
+                } else {
+                    console.log('ERROR SKILL SUBMIT');
+                }
+            });
+            
+        }
     
     
 });

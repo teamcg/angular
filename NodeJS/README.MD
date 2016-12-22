@@ -51,5 +51,8 @@ Dec 20 <br>
 Dec 21 <br>
 -- Added Delete Education Paper and it's binded ID to the Education <br>
 
+Dec 22 <br>
+-- Added add Education Achievement model <br>
+-- Added POST route for adding education achievement and querying the education and populate the achievements <br>
 
 - John Lois Frades

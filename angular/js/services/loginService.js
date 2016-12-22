@@ -458,7 +458,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
             dataType: 'json',
             contentType: 'application/json',
             data: {
-                eduid: $localStorage.papereducationid,
+                eduid: $localStorage.educationID,
                 educationpaper: name
             }
         }
@@ -469,7 +469,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
             dataType: 'json',
             contentType: 'application/json',
             data: {
-                eduid: $localStorage.papereducationid
+                eduid: $localStorage.educationID
             }
         }
         
@@ -485,6 +485,41 @@ angular.module("main").service("loginService", function($http, $localStorage){
     }
     
     
+    //Add Achievements in Education
+    this.cvAddEducationAchievement = function(name){
+        var cvEducationAchievement = {
+            method: 'POST',
+            url: 'http://localhost:3000/cveducationachievement',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.educationID,
+                educationAchievement: name
+            }
+        }
+        
+        var getEducationAchievement = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationachievement',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.educationID
+            }
+        }
+        
+        
+        return $http(cvEducationAchievement)
+            .then(function(response){
+                return $http(getEducationAchievement)
+                    .then(function(response2){
+                        $localStorage.cvEducationAchievements = response2.data.info.achievements;
+                        return true;
+                });
+        });
+    }
+    
+    
     this.cvGetEducationPaper = function(){
         
         var getEducationPaper = {
@@ -493,7 +528,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
             dataType: 'json',
             contentType: 'application/json',
             data: {
-                eduid: $localStorage.papereducationid
+                eduid: $localStorage.educationID
             }
         }
         
@@ -527,7 +562,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
             dataType: 'json',
             contentType: 'application/json',
             data: {
-                eduid: $localStorage.papereducationid 
+                eduid: $localStorage.educationID 
             }
         }
         
@@ -560,7 +595,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
             dataType: 'json',
             contentType: 'application/json',
             data: {
-                eduid: $localStorage.papereducationid 
+                eduid: $localStorage.educationID
             }
         }
         

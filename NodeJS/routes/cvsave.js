@@ -6,6 +6,7 @@ var CV = require('../app/models/cv');
 var Experience = require('../app/models/experience');
 var Education = require('../app/models/education');
 var EducationPaper = require('../app/models/educationOptions/papers');
+var EducationAchievement = require('../app/models/educationOptions/achievements');
 var Skill = require('../app/models/skill');
 var moment = require('moment');
 
@@ -362,6 +363,43 @@ router.post('/deletecveducationpaper', function(req, res){
 		} else {
 			deletedEducationPaper.remove();
 			res.json({success: true});
+		}
+	});
+});
+
+
+//Add Education Achievements
+router.post('/cveducationachievement', function(req, res){
+	Education.findById(req.body.eduid, function(err, theEducation){
+		if(err){
+			console.log(err);
+		} else {
+			EducationAchievement.create({name: req.body.educationAchievement}, function(err, newEducationAchievement){
+				if(err){
+					console.log(err);
+				} else {
+					theEducation.achievements.push(newEducationAchievement);
+					theEducation.save();
+					res.json({
+						success: true,
+						info: newEducationAchievement
+					});
+				}
+			});
+		}
+	});
+});
+
+
+//Get CV Education Achievement
+router.post('/getcveducationachievement', function(req, res){
+	Education.findById(req.body.eduid).populate('achievements').exec(function(err, theEducationAchievements){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				info: theEducationAchievements
+			});
 		}
 	});
 });

@@ -67,3 +67,6 @@ Dec 19 <br>
 Dec 21 <br>
 -- Added Edit education paper function <br>
 -- Added Delete Education paper function in Controller and Service <br>
+
+Dec 22 <br>
+-- Added add functionality to Education Achievement in controller and service <br>
