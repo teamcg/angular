@@ -354,6 +354,17 @@ router.post('/editeducationpaper', function(req, res){
 });
 
 
+//Delete Education Paper
+router.post('/deletecveducationpaper', function(req, res){
+	EducationPaper.findByIdAndRemove(req.body.educationpaperid, function(err, deletedEducationPaper){
+		if(err){
+			console.log(err);
+		} else {
+			deletedEducationPaper.remove();
+			res.json({success: true});
+		}
+	});
+});
 
 
 

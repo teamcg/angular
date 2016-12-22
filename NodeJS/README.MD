@@ -45,4 +45,11 @@ Dec 19 <br>
 -- added Education Papers model <br>
 -- Added POST route for Education Paper <br>
 
+Dec 20 <br>
+-- Added Edit Education Papers route <br>
+
+Dec 21 <br>
+-- Added Delete Education Paper and it's binded ID to the Education <br>
+
+
 - John Lois Frades

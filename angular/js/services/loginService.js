@@ -516,7 +516,7 @@ angular.module("main").service("loginService", function($http, $localStorage){
             dataType: 'json',
             contentType: 'application/json',
             data: {
-                educationpaperid: $localStorage.educationpaperid,
+                educationpaperid: $localStorage.paperInEducationID,
                 updatedPaper: papername
             }
         }
@@ -536,11 +536,45 @@ angular.module("main").service("loginService", function($http, $localStorage){
                 return $http(getEducationPaper)
                     .then(function(response2){
                         console.log('Paper service');
-                        $localStorage.cvEducationPapers = response.data.info.papers;
+                        $localStorage.cvEducationPapers = response2.data.info.papers;
                         return true;
                 });
         });
     }
+    
+    
+    this.cvDeleteEducationPaper = function(){
+        var deleteEducationPaper = {
+            method: 'POST',
+            url: 'http://localhost:3000/deletecveducationpaper',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                educationpaperid: $localStorage.paperInEducationID 
+            }
+        }
+        
+        var getEducationPaper = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationpaper',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.papereducationid 
+            }
+        }
+        
+        return $http(deleteEducationPaper)
+            .then(function(response){
+                return $http(getEducationPaper)
+                    .then(function(response2){
+                        console.log(response2);
+                        $localStorage.cvEducationPapers = response2.data.info.papers;
+                        return true;
+                });        
+        });
+    }
+    
     
     
     

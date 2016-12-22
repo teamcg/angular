@@ -616,6 +616,22 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             
         }
         
+        $scope.deleteEducationPaper = function(){
+            $localStorage.paperInEducationID = this.papers._id;
+            
+            var result = loginService.cvDeleteEducationPaper()
+                .then(function(result){
+                    if(result){
+                        $scope.showEducationPapers = $localStorage.cvEducationPapers;
+                    } else {
+                        console.log('Delete paper education error');
+                    }
+                    
+                });
+            
+            
+        }
+        
         $scope.closePaper = function(){
             $scope.showEducationPapers = '';
             
@@ -628,7 +644,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             $scope.paper = {
                 name: this.papers.name
             }
-            $localStorage.educationpaperid = this.papers._id;
+            $localStorage.paperInEducationID = this.papers._id;
             $scope.paperInfos = false;
             $scope.paperFieldSubmitButtons = false;
             $scope.paperFieldEditButton = true;
@@ -644,6 +660,9 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         
         $scope.updateEducationPaper = function(){
+            $scope.paperInfos = true;
+            $scope.paperFieldEditButton = false;
+            $scope.paperFieldSubmitButtons = true;
             var result = loginService.cvEditEducationPaper(this.paper.name)
                 .then(function(result){
                     if(result){
@@ -653,10 +672,10 @@ app.controller("LoginController", function(loginService, $location, $localStorag
                         $scope.showEducationPapers = $localStorage.cvEducationPapers;
                     }
                 });
-            $scope.paperInfos = true;
-            $scope.paperFieldEditButton = false;
-            $scope.paperFieldSubmitButtons = true;
+
         }
+        
+
     
     
     

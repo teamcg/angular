@@ -63,3 +63,7 @@ Dec 19 <br>
 -- Added icons (added options) for Education and Experience <br>
 -- Added Paper function to controller and service <br>
 -- Fully working Add paper function and binds to Education <br>
+
+Dec 21 <br>
+-- Added Edit education paper function <br>
+-- Added Delete Education paper function in Controller and Service <br>
