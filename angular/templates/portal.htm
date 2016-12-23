@@ -1,7 +1,7 @@
 
 <div ng-controller='LoginController as loginController'>
 
-<div ng-cloak class="container">
+<div ng-cloak style="font-size: 50px">
     <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools">
         <h2>
@@ -12,7 +12,8 @@
 
       </div>
     </md-toolbar>
-    
+    </div>
+    <div class="container">
 <md-content>
         <md-tabs  md-dynamic-height md-border-bottom>
             
@@ -410,8 +411,8 @@
                                     <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducation()"></span>
                                     <span style="font-size: 15px">/</span>
                                     <span class="glyphicon glyphicon-list-alt" ng-click="openPapers()"></span> 
-                                    <span class="glyphicon glyphicon-briefcase" ng-click="openEducationAchievements()"></span>
-                                    <i class="fa fa-trophy" aria-hidden="true"></i>
+                                    <span class="glyphicon glyphicon-briefcase" ng-click="openEducationProjects()"></span>
+                                    <i class="fa fa-trophy" ng-click="openEducationAchievements()" aria-hidden="true"></i>
                                     
                                 </td>
                                 <td class="text-center">{{info.qualification}}</td>
@@ -454,27 +455,36 @@
             </div>
      </div>
      
-     
-    <div ng-if="papersField">
+        <div ng-if="educationProjectsField">
            <md-input-container class="md-block" flex-gt-sm>
-            <label>Paper Name</label>
-            <input ng-model="paper.name">
-                        <div ng-if="paperFieldSubmitButtons">
-                <md-button class="md-raised md-primary" ng-click="submitPaper()">Add Paper</md-button>
-                <md-button class="md-raised md-warn" ng-click="closePaper()">Go Back</md-button>
-            </div>
-            <div ng-if="paperFieldEditButton">
-               <md-button class="md-raised md-primary" ng-click="updateEducationPaper()">Update</md-button>
-                <md-button class="md-raised md-warn" ng-click="cancelEditEducationPaper()">Cancel</md-button>
-            </div>
+            <label>Project Name</label>
+            <input ng-model="educationProject.name">
            </md-input-container>
            
-            <div ng-repeat="papers in showEducationPapers" ng-if="paperInfos">
-                <h2>{{papers.name}}</h2>
-                <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationPaper()"></span>&nbsp;&nbsp;
-                <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducationPaper()"></span>
+            <md-input-container class="md-block" flex-gt-sm>
+            <label>Project Description</label>
+            <input ng-model="educationProject.description">
+           </md-input-container>
+           
+            <div ng-if="educationProjectSubmitButtons">
+                <md-button class="md-raised md-primary" ng-click="submitEducationProject()">Add Project</md-button>
+                <md-button class="md-raised md-warn" ng-click="closeEducationProject()">Go Back</md-button>
+            </div>
+            <div ng-if="educationProjectEditButton">
+               <md-button class="md-raised md-primary" ng-click="updateEducationAchievement()">Update</md-button>
+                <md-button class="md-raised md-warn" ng-click="cancelEditEducationAchievement()">Cancel</md-button>
+            </div>
+           
+           
+            <div ng-repeat="eduProject in showEducationProjects" ng-if="educationProjectInfos">
+                <h2>{{eduProject.name}}</h2>
+                <h3>{{eduProject.description}}</h3>
+                <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationAchievement()"></span>&nbsp;&nbsp;
+                <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducationAchievement()"></span>
             </div>
      </div>
+     
+     
      
      <div ng-if="educationAchievementsField">
            <md-input-container class="md-block" flex-gt-sm>
@@ -482,18 +492,18 @@
             <input ng-model="educationAchievement.name">
             <div ng-if="educationAchievementSubmitButtons">
                 <md-button class="md-raised md-primary" ng-click="submitEducationAchievement()">Add Achievement</md-button>
-                <md-button class="md-raised md-warn" ng-click="closePaper()">Go Back</md-button>
+                <md-button class="md-raised md-warn" ng-click="closeEducationAchievement()">Go Back</md-button>
             </div>
             <div ng-if="educationAchievementEditButton">
-               <md-button class="md-raised md-primary" ng-click="updateEducationPaper()">Update</md-button>
-                <md-button class="md-raised md-warn" ng-click="cancelEditEducationPaper()">Cancel</md-button>
+               <md-button class="md-raised md-primary" ng-click="updateEducationAchievement()">Update</md-button>
+                <md-button class="md-raised md-warn" ng-click="cancelEditEducationAchievement()">Cancel</md-button>
             </div>
            </md-input-container>
            
             <div ng-repeat="eduAchievement in showEducationAchievements" ng-if="educationAchievementInfos">
                 <h2>{{eduAchievement.name}}</h2>
-                <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationPaper()"></span>&nbsp;&nbsp;
-                <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducationPaper()"></span>
+                <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationAchievement()"></span>&nbsp;&nbsp;
+                <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducationAchievement()"></span>
             </div>
      </div>
  

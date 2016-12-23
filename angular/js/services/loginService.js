@@ -520,6 +520,41 @@ angular.module("main").service("loginService", function($http, $localStorage){
     }
     
     
+    //Add Project in Education
+    this.cvAddEducationProject = function(name, description){
+        var addEducationProject = {
+            method: 'POST',
+            url: 'http://localhost:3000/cveducationproject',
+            dataType:'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.educationID,
+                projectName: name,
+                projectDescription: description
+            }
+        }
+        
+        var getEducationProject = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationproject',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.educationID
+            }
+        }
+        
+        return $http(addEducationProject)
+            .then(function(response){
+                return $http(getEducationProject)
+                    .then(function(response2){
+                        $localStorage.cvEducationProjects = response2.data.info.projects;
+                        return true;
+                });
+        });
+    }
+    
+    
     this.cvGetEducationPaper = function(){
         
         var getEducationPaper = {
@@ -577,7 +612,42 @@ angular.module("main").service("loginService", function($http, $localStorage){
         });
     }
     
+    //Edit Education Achievement
+    this.cvEditEducationAchievement = function(name){
+        
+        var editEducationAchievement = {
+            method: 'POST',
+            url: 'http://localhost:3000/editeducationachievement',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                educationAchievement: $localStorage.achievementInEducationID,
+                updatedEducationAchievement: name
+            }
+        }
+        
+        var getEducationAchievement = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationachievement',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.educationID
+            }
+        }
+        
+        return $http(editEducationAchievement)
+            .then(function(response){
+                return $http(getEducationAchievement)
+                    .then(function(response2){
+                        $localStorage.cvEducationAchievements = response2.data.info.achievements;
+                        return true;
+                });
+        });
+    }
     
+    
+    //Delete Education Paper
     this.cvDeleteEducationPaper = function(){
         var deleteEducationPaper = {
             method: 'POST',
@@ -610,6 +680,39 @@ angular.module("main").service("loginService", function($http, $localStorage){
         });
     }
     
+    
+    //Delete Education Achievement
+    this.cvDeleteEducationAchievement = function(){
+        var deleteEducationAchievement = {
+            method: 'POST',
+            url: 'http://localhost:3000/deletecveducationachievement',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                educationAchievementID: $localStorage.achievementInEducationID
+            }
+        }
+        
+        var getEducationAchievement = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationachievement',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.educationID
+            }
+        }
+        
+        return $http(deleteEducationAchievement)
+            .then(function(response){
+                return $http(getEducationAchievement)
+                    .then(function(response2){
+                        $localStorage.cvEducationAchievements = response2.data.info.achievements;
+                        return true;
+                });
+        });
+        
+    }
     
     
     

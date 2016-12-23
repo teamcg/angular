@@ -5,4 +5,13 @@ var EducationAchievementsSchema = new mongoose.Schema({
 });
 
 
+EducationAchievementsSchema.pre('remove', function (next) {
+  this.model('Education').update(
+    { achievements: this }, 
+    { $pull: { achievements: this._id } }, 
+    { multi: true }
+  ).exec(next)
+});
+
+
 module.exports = mongoose.model('EducationAchievement', EducationAchievementsSchema);

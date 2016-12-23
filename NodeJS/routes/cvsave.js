@@ -7,6 +7,7 @@ var Experience = require('../app/models/experience');
 var Education = require('../app/models/education');
 var EducationPaper = require('../app/models/educationOptions/papers');
 var EducationAchievement = require('../app/models/educationOptions/achievements');
+var EducationProject = require('../app/models/educationOptions/projects');
 var Skill = require('../app/models/skill');
 var moment = require('moment');
 
@@ -405,6 +406,74 @@ router.post('/getcveducationachievement', function(req, res){
 });
 
 
+//Edit CV Education Achievement
+router.post('/editeducationachievement', function(req, res){
+	EducationAchievement.findByIdAndUpdate(req.body.educationAchievement, {name: req.body.updatedEducationAchievement}, {new: true}, function(err, updatedEducationAchievement){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: updatedEducationAchievement
+			});
+		}
+	});
+});
+
+
+//Delete CV Education Achievement
+router.post('/deletecveducationachievement', function(req, res){
+	EducationAchievement.findByIdAndRemove(req.body.educationAchievementID, function(err, deletedEducationAchievement){
+		if(err){
+			console.log(err);
+		} else {
+			deletedEducationAchievement.remove();
+			res.json({success: true});
+		}
+	});
+});
+
+
+//Add CV Education Project
+router.post('/cveducationproject', function(req, res){
+	var eduProjData = {
+		name: req.body.projectName,
+		description: req.body.projectDescription
+	}
+	Education.findById(req.body.eduid, function(err, theEducation){
+		if(err){
+			console.log(err);
+		} else {
+			EducationProject.create(eduProjData, function(err, newEducationProject){
+				if(err){
+					console.log(err);
+				} else {
+					theEducation.projects.push(newEducationProject);
+					theEducation.save();
+					res.json({
+						success: true,
+						info: newEducationProject
+					});
+				}
+			});
+		}
+	});
+});
+
+
+//GET CV education project
+router.post('/getcveducationproject', function(req, res){
+	Education.findById(req.body.eduid).populate('projects').exec(function(err, theEducationProjects){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: theEducationProjects
+			});
+		}
+	});
+});
 
 
 

@@ -70,3 +70,7 @@ Dec 21 <br>
 
 Dec 22 <br>
 -- Added add functionality to Education Achievement in controller and service <br>
+
+Dec 23 <br>
+-- Added Edit and Delete function for Education Achievement in service and controller <br>
+-- Added Add function for Education Project in service and Controller <br>

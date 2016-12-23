@@ -55,4 +55,10 @@ Dec 22 <br>
 -- Added add Education Achievement model <br>
 -- Added POST route for adding education achievement and querying the education and populate the achievements <br>
 
+Dec 23 <br>
+-- Added Edit and Delete routes for Education Achievement <br>
+-- Added Education Projects Schema model <br>
+-- Added POST route for adding projects in Education <br>
+
+
 - John Lois Frades

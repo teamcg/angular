@@ -99,14 +99,23 @@ app.controller("LoginController", function(loginService, $location, $localStorag
     $scope.paperFieldEditButton = false;
     $scope.educationAchievementSubmitButtons = true;
     $scope.educationAchievementEditButton = false;
+    $scope.educationProjectSubmitButtons = true;
+    $scope.educationProjectEditButton = false;
+    
     $scope.paper = {
         name: ''
     }
     $scope.educationAchievement = {
         name: ''
     }
+    $scope.educationProject = {
+        name: '',
+        description: ''
+    }
+    
     $scope.paperInfos = true;
     $scope.educationAchievementInfos = true;
+    $scope.educationProjectInfos = true;
     
     loginController.studentinfo = {
         firstname: $localStorage.studentFirstname,
@@ -582,6 +591,14 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         }
         
         
+        $scope.openEducationProjects = function(){
+            $localStorage.educationID = this.info._id;
+            
+            $scope.educationForm = false;
+            $scope.educationProjectsField = true;
+        }
+        
+        
         $scope.submitPaper = function(){    
             var result = loginService.cvAddEducationPaper(this.paper.name)
                 .then(function(result){
@@ -607,10 +624,26 @@ app.controller("LoginController", function(loginService, $location, $localStorag
                         $scope.educationAchievement = {
                             name: ''
                         }
-                        console.log($scope.showEducationAchievements);
-                        console.log($localStorage.cvEducationAchievements);
                     } else {
                         console.log('error in adding education achievement');
+                    }
+                });
+        }
+        
+        $scope.submitEducationProject = function(){
+            var result = loginService.cvAddEducationProject(
+                this.educationProject.name, 
+                this.educationProject.description
+            )
+                .then(function(result){
+                    if(result){
+                        $scope.showEducationProjects = $localStorage.cvEducationProjects;
+                        $scope.educationProject = {
+                            name: '',
+                            description: ''
+                        }
+                    } else {
+                        console.log('error in adding education project');
                     }
                 });
         }
@@ -631,11 +664,31 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             
         }
         
+        $scope.deleteEducationAchievement = function(){
+            $localStorage.achievementInEducationID = this.eduAchievement._id;
+            
+            var result = loginService.cvDeleteEducationAchievement()
+                .then(function(result){
+                    if(result){
+                        $scope.showEducationAchievements = $localStorage.cvEducationAchievements;
+                    }
+                })
+        }
+        
         $scope.closePaper = function(){
-            $scope.showEducationPapers = '';
             
             $scope.educationForm = true;
             $scope.papersField = false;
+        }
+        
+        $scope.closeEducationAchievement = function(){
+            $scope.educationForm = true;
+            $scope.educationAchievementsField = false;
+        }
+        
+        $scope.closeEducationProject = function(){
+            $scope.educationForm = true;
+            $scope.educationProjectsField = false;
         }
         
         
@@ -651,10 +704,29 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             
         }
         
+        $scope.editEducationAchievement = function(){
+            $scope.educationAchievement = {
+                name: this.eduAchievement.name
+            }
+            $localStorage.achievementInEducationID = this.eduAchievement._id;
+            $scope.educationAchievementSubmitButtons = false;
+            $scope.educationAchievementInfos = false;
+            $scope.educationAchievementEditButton = true;
+        }
+        
         $scope.cancelEditEducationPaper = function(){
             $scope.paperInfos = true;
             $scope.paperFieldEditButton = false;
             $scope.paperFieldSubmitButtons = true;
+        }
+        
+        $scope.cancelEditEducationAchievement = function(){
+            $scope.educationAchievement = {
+                name: ''
+            }
+            $scope.educationAchievementInfos = true;
+            $scope.educationAchievementEditButton = false;
+            $scope.educationAchievementSubmitButtons = true;
         }
         
         
@@ -672,6 +744,23 @@ app.controller("LoginController", function(loginService, $location, $localStorag
                     }
                 });
 
+        }
+        
+        
+        $scope.updateEducationAchievement = function(){
+            $scope.educationAchievementInfos = true;
+            $scope.educationAchievementEditButton = false;
+            $scope.educationAchievementSubmitButtons = true;
+            
+            var result = loginService.cvEditEducationAchievement(this.educationAchievement.name)
+                .then(function(result){
+                    if(result){
+                        $scope.educationAchivement = {
+                            name: ''
+                        }
+                        $scope.showEducationAchievements = $localStorage.cvEducationAchievements;
+                    }
+                });
         }
         
 

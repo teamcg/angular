@@ -14,6 +14,10 @@ var EducationSchema = new mongoose.Schema({
 	achievements: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'EducationAchievement'
+	}],
+	projects: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'EducationProject'
 	}]
 });
 
