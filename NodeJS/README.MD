@@ -60,5 +60,10 @@ Dec 23 <br>
 -- Added Education Projects Schema model <br>
 -- Added POST route for adding projects in Education <br>
 
+Dec 26 <br>
+-- Added POST route for Editing Education Project <br>
+
+Dec 27 <br>
+-- Added POST route for deleting education project <br>
 
 - John Lois Frades

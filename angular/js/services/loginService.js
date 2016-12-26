@@ -571,9 +571,46 @@ angular.module("main").service("loginService", function($http, $localStorage){
             .then(function(response){
                 $localStorage.cvEducationPapers = response.data.info.papers;
                 return true;
-        })
+        }); 
+    }
+    
+    this.cvGetEducationAchievement = function(){
         
+        var getEducationAchievement = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationachievement',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.educationID
+            }
+        }
         
+        return $http(getEducationAchievement)
+            .then(function(response){
+                $localStorage.cvEducationAchievements = response.data.info.achievements;
+                return true;
+        });
+    }
+    
+    
+    this.cvGetEducationProject = function(){
+        
+        var getEducationProject = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationproject',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.educationID
+            }
+        }
+        
+        return $http(getEducationProject)
+            .then(function(response){
+                $localStorage.cvEducationProjects = response.data.info.projects;
+                return true;
+        });
     }
     
     //Edit Education Paper
@@ -647,6 +684,41 @@ angular.module("main").service("loginService", function($http, $localStorage){
     }
     
     
+    //Edit Education Project
+    this.cvEditEducationProject = function(name, description){
+        var editEducationProject = {
+            method: 'POST',
+            url: 'http://localhost:3000/editeducationproject',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                educationProject: $localStorage.projectInEducationID,
+                educationProjectName: name,
+                educationProjectDescription: description
+            }
+        }
+        
+        var getEducationProject = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationproject',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.educationID
+            }
+        }
+        
+        return $http(editEducationProject)
+            .then(function(response){
+                return $http(getEducationProject)
+                    .then(function(response2){
+                        $localStorage.cvEducationProjects = response2.data.info.projects;
+                        return true;
+                });
+        });
+    }
+    
+    
     //Delete Education Paper
     this.cvDeleteEducationPaper = function(){
         var deleteEducationPaper = {
@@ -677,6 +749,39 @@ angular.module("main").service("loginService", function($http, $localStorage){
                         $localStorage.cvEducationPapers = response2.data.info.papers;
                         return true;
                 });        
+        });
+    }
+    
+    
+    //Delete Education Project
+    this.cvDeleteEducationProject = function(){
+        var deleteEducationProject = {
+            method: 'POST',
+            url: 'http://localhost:3000/deletecveducationproject',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                educationProjectID: $localStorage.projectInEducationID
+            }
+        }
+        
+        var getEducationProject = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcveducationproject',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                eduid: $localStorage.educationID
+            }
+        }
+        
+        return $http(deleteEducationProject)
+            .then(function(response){
+                return $http(getEducationProject)
+                    .then(function(response2){
+                        $localStorage.cvEducationProjects = response2.data.info.projects;
+                        return true;
+                });
         });
     }
     

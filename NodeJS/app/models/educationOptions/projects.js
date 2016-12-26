@@ -6,4 +6,12 @@ var EducationProjectSchema = new mongoose.Schema({
 });
 
 
+EducationProjectSchema.pre('remove', function (next) {
+  this.model('Education').update(
+    { projects: this }, 
+    { $pull: { projects: this._id } }, 
+    { multi: true }
+  ).exec(next)
+});
+
 module.exports = mongoose.model('EducationProject', EducationProjectSchema);

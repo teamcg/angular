@@ -476,6 +476,37 @@ router.post('/getcveducationproject', function(req, res){
 });
 
 
+//Edit CV education project
+router.post('/editeducationproject', function(req, res){
+	var eduProjData = {
+		name: req.body.educationProjectName,
+		description: req.body.educationProjectDescription
+	}
+
+	EducationProject.findByIdAndUpdate(req.body.educationProject, eduProjData, {new: true}, function(err, updatedEducationProject){
+			if(err){
+				console.log(err);
+			} else {
+				res.json({
+					success: true,
+					info: updatedEducationProject
+				});
+			}
+	});
+});
+
+
+//Delete CV Education project
+router.post('/deletecveducationproject', function(req, res){
+	EducationProject.findByIdAndRemove(req.body.educationProjectID, function(err, deletedEducationProject){
+		if(err){
+			console.log(err);
+		} else {
+			deletedEducationProject.remove();
+			res.json({success: true})
+		}
+	});
+});
 
 
 

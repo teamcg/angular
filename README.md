@@ -74,3 +74,10 @@ Dec 22 <br>
 Dec 23 <br>
 -- Added Edit and Delete function for Education Achievement in service and controller <br>
 -- Added Add function for Education Project in service and Controller <br>
+
+Dec 26 <br>
+-- Added Edit function for Education Project in service and controller <br>
+
+Dec 27 <br>
+-- Added Delete function for Education Project in service and controller <br>
+-- Added Get education project and Achievement function in service and controller for opening projects and achievement, it will query the database to get the latest info <br>

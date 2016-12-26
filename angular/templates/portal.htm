@@ -101,12 +101,13 @@
       
       
     <md-tabs  id="cvcontent" md-dynamic-height md-border-bottom ng-show='loginController.cv != "" && loginController.cv != null'>
-        
         <md-tab label="Personal Info">
+         
          <md-content class="md-padding">
+           
              <div class="alert alert-success" id="personalInfoAddedMessage" ng-if="personalInfoAddedMessage" role="alert">Successfully updated Personal Info!</div>
             <md-content layout-padding>
-     <div>
+
  
  
  
@@ -148,7 +149,7 @@
            <md-button class="md-raised md-primary" ng-click='piSubmit()'> Save </md-button>
            
 
-     </div>
+
    </md-content>
  
  
@@ -471,16 +472,16 @@
                 <md-button class="md-raised md-warn" ng-click="closeEducationProject()">Go Back</md-button>
             </div>
             <div ng-if="educationProjectEditButton">
-               <md-button class="md-raised md-primary" ng-click="updateEducationAchievement()">Update</md-button>
-                <md-button class="md-raised md-warn" ng-click="cancelEditEducationAchievement()">Cancel</md-button>
+               <md-button class="md-raised md-primary" ng-click="updateEducationProject()">Update</md-button>
+                <md-button class="md-raised md-warn" ng-click="cancelEditEducationProject()">Cancel</md-button>
             </div>
            
            
             <div ng-repeat="eduProject in showEducationProjects" ng-if="educationProjectInfos">
                 <h2>{{eduProject.name}}</h2>
                 <h3>{{eduProject.description}}</h3>
-                <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationAchievement()"></span>&nbsp;&nbsp;
-                <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducationAchievement()"></span>
+                <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationProject()"></span>&nbsp;&nbsp;
+                <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducationProject()"></span>
             </div>
      </div>
      
