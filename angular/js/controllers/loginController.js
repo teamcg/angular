@@ -1,5 +1,5 @@
 var app = angular.module("main");
-app.controller("LoginController", function(loginService, $location, $localStorage, $scope, $timeout){
+app.controller("LoginController", function(loginService, myProfileService, cvNameService, personalStatementService, personalInfoService, experienceService, educationService, skillService, $location, $localStorage, $scope, $timeout){
 
     
 //swal({
@@ -95,6 +95,17 @@ app.controller("LoginController", function(loginService, $location, $localStorag
     $scope.papersField = false;
     $scope.educationAchievementsField = false;
     
+    $scope.expResponsibilities = {
+        text: ''
+    }
+    
+    $scope.experienceForm = true;
+    $scope.expResponsibilitiesField = false;
+    $scope.expResponsibilitiesInfos = true;
+    
+    $scope.expResponsibilitiesFieldSubmitButtons = true;
+    $scope.expResponsibilitiesFieldEditButton = false;
+    
     $scope.paperFieldSubmitButtons = true;
     $scope.paperFieldEditButton = false;
     $scope.educationAchievementSubmitButtons = true;
@@ -159,7 +170,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
     
         loginController.createcv = function(){
             
-            var result = loginService.cvname(this.cvname)
+            var result = cvNameService.cvname(this.cvname)
                 .then(function(result){
                     if(result){
                         $scope.personalInfo.address = $localStorage.studentAddress;
@@ -177,7 +188,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         
         loginController.updateProfile = function(){
-            var result = loginService.profileUpdate(
+            var result = myProfileService.profileUpdate(
                 this.studentinfo.address, 
                 this.studentinfo.email, 
                 this.studentinfo.phone, 
@@ -201,7 +212,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         
         $scope.piSubmit = function(){
-            var result = loginService.cvpi(
+            var result = personalInfoService.cvpi(
                 this.personalInfo.address,
                 this.personalInfo.phone,
                 this.personalInfo.email,
@@ -224,7 +235,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         
         $scope.psSubmit = function(){
-            var result = loginService.cvps(this.cvpersonalstatement)
+            var result = personalStatementService.cvps(this.cvpersonalstatement)
                 .then(function(result){
                     if(result){
                     $scope.personalStatementAddedMessage = true;
@@ -244,7 +255,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         $scope.expsubmit = function(){
             if($scope.cvexperience.role !== "" && $scope.cvexperience.company !== "" && $scope.cvexperience.companydesc !== "" && $scope.cvexperience.city !== "" && $scope.cvexperience.country !== "" && $scope.cvexperience.startdate !== "" && $scope.cvexperience.enddate !== ""){
-                var result = loginService.cvexp( 
+                var result = experienceService.cvexp( 
                 this.cvexperience.role, 
                 this.cvexperience.company,
                 this.cvexperience.companydesc,
@@ -321,7 +332,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         $scope.expUpdatedSubmit = function(){
             $scope.listOfExperience = true;
-            var result = loginService.cvEditExperience(
+            var result = experienceService.cvEditExperience(
                 this.cvexperience.role, 
                 this.cvexperience.company,
                 this.cvexperience.companydesc,
@@ -388,7 +399,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             }).then(function () {
                 $localStorage.experienceid = experienceToBeDeleted.info._id
 
-                var result = loginService.cvDeleteExperience()
+                var result = experienceService.cvDeleteExperience()
                     .then(function(result){
                         if(result){
                             $scope.tableexp = $localStorage.cvexperience;
@@ -408,12 +419,56 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         }
         
         
+//EXPERIENCE options
+        
+        $scope.openExperienceResponsibilities = function(){
+            $localStorage.experienceID = this.info._id;
+            $scope.experienceForm = false;
+            $scope.expResponsibilitiesField = true;
+            
+            var result = experienceService.getExperienceResponsibilities()
+                .then(function(result){
+                    if(result){
+                        $scope.showExperienceResponsibilities = $localStorage.experienceResponsibilities;
+                    }
+                });
+
+            
+        }
+        
+        
+        
+        $scope.closeExpResp = function(){
+            $scope.expResponsibilities = {
+                text: ''
+            }
+            $scope.showExperienceResponsibilities = '';
+            $scope.experienceForm = true;
+            $scope.expResponsibilitiesField = false;
+        } 
+        
+        $scope.submitExpResponsibilities = function(){
+
+            var result = experienceService.addExperienceResponsibilities(this.expResponsibilities.text)
+                .then(function(result){
+                    if(result){
+                        $scope.showExperienceResponsibilities = $localStorage.experienceResponsibilities;
+                        $scope.expResponsibilities = {
+                            text: ''
+                        }
+                    }
+                });
+        }
+            
+        
+        
+        
         
         
         $scope.edusubmit = function(){
             if($scope.cveducation.qualification !== "" && $scope.cveducation.institution !== "" && $scope.cveducation.city !== "" && $scope.cveducation.country !== "" && $scope.cveducation.startdate !== "" && $scope.cveducation.enddate !== "") {
                 
-                var result = loginService.cvedu(
+                var result = educationService.cvedu(
                     this.cveducation.qualification,
                     this.cveducation.institution,
                     this.cveducation.city,
@@ -480,7 +535,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         $scope.submitEditedEducation = function(){
             $scope.editEducationMessage = false;
             $scope.listOfQualification = true;
-            var result = loginService.cvEditEducation(
+            var result = educationService.cvEditEducation(
              this.cveducation.qualification,
              this.cveducation.institution,
              this.cveducation.city,
@@ -547,7 +602,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             }).then(function () {
                 $localStorage.deleteeducationid = educationToBeDeleted.info._id;
 
-                var result = loginService.cvDeleteEducation()
+                var result = educationService.cvDeleteEducation()
                     .then(function(result){
                         if(result){
                             $scope.tableeducation = $localStorage.cveducation;
@@ -572,7 +627,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         $scope.openPapers = function(){
             $localStorage.educationID = this.info._id;
-            var result = loginService.cvGetEducationPaper()
+            var result = educationService.cvGetEducationPaper()
                 .then(function(result){
                     if(result){
                         $scope.showEducationPapers = $localStorage.cvEducationPapers;
@@ -585,7 +640,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         $scope.openEducationAchievements = function(){
             $localStorage.educationID = this.info._id;
-            var result = loginService.cvGetEducationAchievement()
+            var result = educationService.cvGetEducationAchievement()
                 .then(function(result){
                     if(result){
                         console.log('Hey Achievement');
@@ -600,7 +655,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         $scope.openEducationProjects = function(){
             $localStorage.educationID = this.info._id;
-            var result = loginService.cvGetEducationProject()
+            var result = educationService.cvGetEducationProject()
                 .then(function(result){
                     if(result){
                         console.log('hey Projects');
@@ -638,7 +693,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         
         
         $scope.submitPaper = function(){    
-            var result = loginService.cvAddEducationPaper(this.paper.name)
+            var result = educationService.cvAddEducationPaper(this.paper.name)
                 .then(function(result){
                     if(result){
                         $scope.showEducationPapers = $localStorage.cvEducationPapers;
@@ -654,7 +709,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         }
         
         $scope.submitEducationAchievement = function(){
-            var result = loginService.cvAddEducationAchievement(this.educationAchievement.name)
+            var result = educationService.cvAddEducationAchievement(this.educationAchievement.name)
                 .then(function(result){
                     if(result){
 
@@ -669,7 +724,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         }
         
         $scope.submitEducationProject = function(){
-            var result = loginService.cvAddEducationProject(
+            var result = educationService.cvAddEducationProject(
                 this.educationProject.name, 
                 this.educationProject.description
             )
@@ -689,7 +744,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         $scope.deleteEducationPaper = function(){
             $localStorage.paperInEducationID = this.papers._id;
             
-            var result = loginService.cvDeleteEducationPaper()
+            var result = educationService.cvDeleteEducationPaper()
                 .then(function(result){
                     if(result){
                         $scope.showEducationPapers = $localStorage.cvEducationPapers;
@@ -703,7 +758,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         $scope.deleteEducationProject = function(){
             $localStorage.projectInEducationID = this.eduProject._id;
             
-            var result = loginService.cvDeleteEducationProject()
+            var result = educationService.cvDeleteEducationProject()
                 .then(function(result){
                     if(result){
                         $scope.showEducationProjects = $localStorage.cvEducationProjects;
@@ -714,7 +769,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
         $scope.deleteEducationAchievement = function(){
             $localStorage.achievementInEducationID = this.eduAchievement._id;
             
-            var result = loginService.cvDeleteEducationAchievement()
+            var result = educationService.cvDeleteEducationAchievement()
                 .then(function(result){
                     if(result){
                         $scope.showEducationAchievements = $localStorage.cvEducationAchievements;
@@ -789,7 +844,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             $scope.paperInfos = true;
             $scope.paperFieldEditButton = false;
             $scope.paperFieldSubmitButtons = true;
-            var result = loginService.cvEditEducationPaper(this.paper.name)
+            var result = educationService.cvEditEducationPaper(this.paper.name)
                 .then(function(result){
                     if(result){
                         $scope.paper = {
@@ -806,7 +861,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             $scope.educationProjectSubmitButtons = true;
             $scope.educationProjectEditButton = false; 
             
-            var result = loginService.cvEditEducationProject(this.educationProject.name, this.educationProject.description)
+            var result = educationService.cvEditEducationProject(this.educationProject.name, this.educationProject.description)
                 .then(function(result){
                     if(result){
                         $scope.educationProject = {
@@ -824,7 +879,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
             $scope.educationAchievementEditButton = false;
             $scope.educationAchievementSubmitButtons = true;
             
-            var result = loginService.cvEditEducationAchievement(this.educationAchievement.name)
+            var result = educationService.cvEditEducationAchievement(this.educationAchievement.name)
                 .then(function(result){
                     if(result){
                         $scope.educationAchievement = {
@@ -839,7 +894,7 @@ app.controller("LoginController", function(loginService, $location, $localStorag
     
     
            $scope.skillsubmit = function(){
-            var result = loginService.cvskills(
+            var result = skillService.cvskills(
                 this.cvskill.name,
                 this.cvskill.description
             )

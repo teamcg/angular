@@ -7,7 +7,11 @@ var ExperienceSchema = new mongoose.Schema({
 	city: String,
 	country: String,
 	startdate: String,
-	enddate: String
+	enddate: String,
+	responsibilities: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'ExperienceResponsibilities'
+	}]
 });
 
 

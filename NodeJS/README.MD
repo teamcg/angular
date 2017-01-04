@@ -65,5 +65,7 @@ Dec 26 <br>
 
 Dec 27 <br>
 -- Added POST route for deleting education project <br>
+-- Added Experience Responsibilities model schema <br>
+-- Added POST route for adding and getting Experience Responsibilities <br>
 
 - John Lois Frades

@@ -18,6 +18,7 @@
         <md-tabs  md-dynamic-height md-border-bottom>
             
 <!--MY PROFILE-->
+         
           <md-tab label="My Profile">
             <md-content class="md-padding">
                 <div class="alert alert-success" id="myprofileAddedMessage" ng-if="myprofileAddedMessage" role="alert">Successfully updated profile!</div>
@@ -216,7 +217,7 @@
         
 <div id="experrormessage" ng-if="expErrorMessage" class="alert alert-danger" role="alert">Fill-up all the input fields to submit </div>
 <div class="alert alert-success" id="expAddedMessage" ng-if="experienceAddedMessage" role="alert">Successfully added experience!</div>
-        
+ <div ng-if="experienceForm">      
 
          <div layout-gt-sm="row">
 
@@ -300,11 +301,8 @@
                                             <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpBTN()"></span>&nbsp;&nbsp;
                                             <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExperience()"></span>
                                             <span style="font-size: 15px">/</span>
-<!--
-                                            <span class="glyphicon glyphicon-list-alt" ></span>
-                                            <span class="glyphicon glyphicon-briefcase"></span>
-                                            <i class="fa fa-trophy" aria-hidden="true"></i>
--->
+                                            <span class="glyphicon glyphicon-list-alt" ng-click="openExperienceResponsibilities()"></span>
+                                            <i class="fa fa-trophy" aria-hidden="true" ng-click="openExperienceAchievements()"></i>
                                         </td>
                                         <td class="expRole">{{info.role}}</td>
                                         <td class="expCompany">{{info.company}}</td>
@@ -321,7 +319,27 @@
                     </div>
                 </div>
     </div>		
+</div> 
+ <div ng-if="expResponsibilitiesField">
+       <md-input-container class="md-block" flex-gt-sm>
+        <label>Responsibilities</label>
+        <input ng-model="expResponsibilities.text">
+        <div ng-if="expResponsibilitiesFieldSubmitButtons">
+            <md-button class="md-raised md-primary" ng-click="submitExpResponsibilities()">Add Responsibilities</md-button>
+            <md-button class="md-raised md-warn" ng-click="closeExpResp()">Go Back</md-button>
+        </div>
+        <div ng-if="expResponsibilitiesFieldEditButton">
+           <md-button class="md-raised md-primary" ng-click="updateEducationPaper()">Update</md-button>
+            <md-button class="md-raised md-warn" ng-click="cancelEditEducationPaper()">Cancel</md-button>
+        </div>
+       </md-input-container>
 
+        <div ng-repeat="expResponsibilities in showExperienceResponsibilities" ng-if="expResponsibilitiesInfos">
+            <h2>{{expResponsibilities.text}}</h2>
+            <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpResponsibilities()"></span>&nbsp;&nbsp;
+            <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExpResponsibilities()"></span>
+        </div>
+</div>
 
 
 

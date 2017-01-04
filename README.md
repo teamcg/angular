@@ -81,3 +81,11 @@ Dec 26 <br>
 Dec 27 <br>
 -- Added Delete function for Education Project in service and controller <br>
 -- Added Get education project and Achievement function in service and controller for opening projects and achievement, it will query the database to get the latest info <br>
+-- Added add function for Experience Responsibilities in service and controller, and displays the current list <br>
+
+
+
+2017 <br>
+
+Jan 4 <br>
+-- Separated the services for CV (created separate CV's) <br>

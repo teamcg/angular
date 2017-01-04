@@ -4,6 +4,7 @@ var router = express.Router();
 var User = require('../app/models/users');
 var CV = require('../app/models/cv');
 var Experience = require('../app/models/experience');
+var ExperienceResponsibilities = require('../app/models/experienceOptions/responsibilities');
 var Education = require('../app/models/education');
 var EducationPaper = require('../app/models/educationOptions/papers');
 var EducationAchievement = require('../app/models/educationOptions/achievements');
@@ -211,6 +212,39 @@ router.post('/deletecvexperience', function(req, res){
 	});
 });
 
+
+//Add Responsibilities to Experience
+router.post('/addcvexperienceresponsibilities', function(req, res){
+	Experience.findById(req.body.expid, function(err, theExperience){
+		if(err){
+			console.log(err);
+		} else {
+			ExperienceResponsibilities.create({text: req.body.expResponsibilities}, function(err, newExpResp){
+				if(err){
+					console.log(err);
+				} else {
+					theExperience.responsibilities.push(newExpResp);
+					theExperience.save();
+					res.json({
+						success: true,
+						info: newExpResp
+					});
+				}
+			});
+		}
+	});
+});
+
+//GET responsibilities in Experience
+router.post('/getcvexperienceresponsibilities', function(req,res){
+	Experience.findById(req.body.expid).populate('responsibilities').exec(function(err, expResponsibilities){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({info: expResponsibilities});
+		}
+	});
+});
 
 
 //ADD Education
