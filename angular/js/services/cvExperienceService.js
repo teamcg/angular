@@ -196,7 +196,39 @@ app.service('experienceService', function($http, $localStorage){
     }
     
     
-    
+    this.addExperienceAchievements = function(text){
+        var addExpAch = {
+            method: 'POST',
+            url: 'http://localhost:3000/addcvexperienceachievements',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                expid:  $localStorage.experienceID,
+                expAchievements: text
+            }
+        }
+        
+        
+        var getExpAch = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcvexperienceachievements',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                expid:  $localStorage.experienceID
+            }
+        }
+        
+        
+        return $http(addExpAch)
+            .then(function(response){
+                return $http(getExpAch)
+                    .then(function(response2){
+                        $localStorage.experienceAchievements = response2.data.info.achievements;
+                        return true;
+                });
+        });
+    }
     
     
     

@@ -106,6 +106,15 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
     $scope.expResponsibilitiesFieldSubmitButtons = true;
     $scope.expResponsibilitiesFieldEditButton = false;
     
+    $scope.expAchievements  = {
+        text: ''
+    }
+    
+    $scope.expAchievementsField = false;
+    $scope.expAchievementsFieldSubmitButtons = true;
+    $scope.expAchInfos = true;
+    
+    
     $scope.paperFieldSubmitButtons = true;
     $scope.paperFieldEditButton = false;
     $scope.educationAchievementSubmitButtons = true;
@@ -461,7 +470,37 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
         }
             
         
+        $scope.openExperienceAchievements = function(){
+            
+            $localStorage.experienceID = this.info._id;
+            $scope.expAchievementsField = true;
+            $scope.experienceForm = false;
+            
+            
+        }        
         
+        $scope.closeExpAch = function(){
+            
+            $scope.expAchievementsField = false;
+            $scope.experienceForm = true;
+        }
+        
+        $scope.submitExpAchievements = function(){
+            
+            var result = experienceService.addExperienceAchievements(this.expAchievements.text)
+                .then(function(result){
+                    if(result){
+                        $scope.expAchievements  = {
+                            text: ''
+                        }
+                        
+                        $scope.showExpAch = $localStorage.experienceAchievements;
+                        
+                    } else {
+                        console.log('ach not working');
+                    }
+                })
+        }
         
         
         

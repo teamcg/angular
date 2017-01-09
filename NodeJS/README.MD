@@ -68,4 +68,9 @@ Dec 27 <br>
 -- Added Experience Responsibilities model schema <br>
 -- Added POST route for adding and getting Experience Responsibilities <br>
 
+Jan 9 <br>
+-- Added Achievements in Experience Model<br>
+-- Added two post routs for Adding and getting ExperienceAchievements<br>
+-- Added achievements on experience schema<br>
+
 - John Lois Frades

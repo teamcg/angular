@@ -5,6 +5,7 @@ var User = require('../app/models/users');
 var CV = require('../app/models/cv');
 var Experience = require('../app/models/experience');
 var ExperienceResponsibilities = require('../app/models/experienceOptions/responsibilities');
+var ExperienceAchievements = require('../app/models/experienceOptions/achievements');
 var Education = require('../app/models/education');
 var EducationPaper = require('../app/models/educationOptions/papers');
 var EducationAchievement = require('../app/models/educationOptions/achievements');
@@ -245,6 +246,47 @@ router.post('/getcvexperienceresponsibilities', function(req,res){
 		}
 	});
 });
+
+
+//ADD ACHIEVEMENT in Experience
+router.post('/addcvexperienceachievements', function(req, res){
+    Experience.findById(req.body.expid, function(err, theExperience){
+        if(err){
+            console.log(err);
+        } else {
+            var expAch = {
+                text: req.body.expAchievements
+            }
+            ExperienceAchievements.create(expAch, function(err, newExpAch){
+                if(err){
+                    console.log(err);
+                } else {
+                    theExperience.achievements.push(newExpAch);
+                    theExperience.save();
+                    res.json({
+                        success: true,
+                        info: newExpAch
+                    });
+                }
+            })
+        }
+    })
+})
+
+//Get Ach in EXp
+router.post('/getcvexperienceachievements', function(req, res){
+    Experience.findById(req.body.expid).populate('achievements').exec(function(err, theExperience){
+        if(err){
+            console.log(err);
+        } else {
+            res.json({
+                sucess: true,
+                info: theExperience
+            });
+        }
+    });
+});
+
 
 
 //ADD Education

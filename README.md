@@ -89,3 +89,9 @@ Dec 27 <br>
 
 Jan 4 <br>
 -- Separated the services for CV (created separate CV's) <br>
+
+
+Jan 4<br>
+-- Added input field for achievements in experience<br>
+-- Added function for controllor and service to post and get theExperience Achievements<br>
+

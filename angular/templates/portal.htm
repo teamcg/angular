@@ -340,9 +340,31 @@
             <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExpResponsibilities()"></span>
         </div>
 </div>
+      
+<!-- Experience achievements     -->
+      
+<div ng-if="expAchievementsField">
+       <md-input-container class="md-block" flex-gt-sm>
+        <label>Achievements</label>
+        <input ng-model="expAchievements.text">
+        <div ng-if="expAchievementsFieldSubmitButtons">
+            <md-button class="md-raised md-primary" ng-click="submitExpAchievements()">Add Achievements</md-button>
+            <md-button class="md-raised md-warn" ng-click="closeExpAch()">Go Back</md-button>
+        </div>
+        <div ng-if="expAchievementsFieldEditButton">
+           <md-button class="md-raised md-primary" ng-click="updateEducationPaper()">Update</md-button>
+            <md-button class="md-raised md-warn" ng-click="cancelEditEducationPaper()">Cancel</md-button>
+        </div>
+       </md-input-container>
 
+        <div ng-repeat="expAch in showExpAch" ng-if="expAchInfos">
+            <h2>{{expAch.text}}</h2>
+            <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpResponsibilities()"></span>&nbsp;&nbsp;
+            <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExpResponsibilities()"></span>
+        </div>
+</div>
 
-
+<!----end ach---->
 
 
   </md-content>
@@ -553,14 +575,7 @@
 </div>
                 
                 
-                
-                
-                
-                
-                
-                
-                
-                
+               
                 
                 
                 

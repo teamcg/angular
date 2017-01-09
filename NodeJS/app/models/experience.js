@@ -11,7 +11,11 @@ var ExperienceSchema = new mongoose.Schema({
 	responsibilities: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'ExperienceResponsibilities'
-	}]
+	}],
+    achievements: [{
+        type: mongoose.Schema.Types.ObjectId,
+		ref: 'ExperienceAchievements'
+    }]
 });
 
 
