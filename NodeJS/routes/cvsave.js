@@ -283,7 +283,6 @@ router.post('/getcvexperienceachievements', function(req, res){
                 sucess: true,
                 info: theExperience
             });
-            console.log("test");
         }
     });
 });
