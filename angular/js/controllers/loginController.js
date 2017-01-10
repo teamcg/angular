@@ -113,6 +113,7 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
     $scope.expAchievementsField = false;
     $scope.expAchievementsFieldSubmitButtons = true;
     $scope.expAchInfos = true;
+    $scope.expAchievementsFieldEditButton = false;
     
     
     $scope.paperFieldSubmitButtons = true;
@@ -502,7 +503,56 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
                 })
         }
         
+        /////editExpAchievements
         
+        $scope.editExpAchievements = function(){
+            
+            $localStorage.expAchievementID = this.expAch._id;
+            $scope.expAchievements = {
+                text: this.expAch.text
+            }
+            $scope.expAchievementsFieldEditButton = true;
+            $scope.expAchievementsFieldSubmitButtons = false;
+            $scope.expAchInfos = false;
+           // console.log($localStorage.expAchievementID);           
+            
+        }
+        
+        
+        
+        $scope.updateExpAchievements = function(){
+            
+            var result = experienceService.cvEditExperienceAchievements(this.expAchievements.text)
+                .then(function(result){
+                    if(result){
+                        $scope.expAchievements = {
+                            text: ''
+                        }
+                        $scope.expAchievementsFieldEditButton = false;
+                        $scope.expAchievementsFieldSubmitButtons = true;
+                        $scope.showExpAch =  $localStorage.cvExperienceAchievements;
+                        $scope.expAchInfos = true;
+                        //console.log("achievements");
+                    } else {
+                       //console.log("error");
+                    }
+                });
+            
+        }
+        
+        
+        $scope.deleteExpAchievements = function(){
+          //  $localStorage.expAchievementID = this.expAch._id;
+                
+            var result = experienceService.cvDeleteExperienceAchievements(this.expAch._id)
+                .then(function(result){
+                    if(result){
+                        $scope.showExpAch = $localStorage.cvExperienceAchievements;
+                    }
+                });
+        }
+        
+        ////////////
         
         $scope.edusubmit = function(){
             if($scope.cveducation.qualification !== "" && $scope.cveducation.institution !== "" && $scope.cveducation.city !== "" && $scope.cveducation.country !== "" && $scope.cveducation.startdate !== "" && $scope.cveducation.enddate !== "") {

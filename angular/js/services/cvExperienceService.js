@@ -229,15 +229,76 @@ app.service('experienceService', function($http, $localStorage){
                 });
         });
     }
+      
+    /////////////////////////////
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   this.cvEditExperienceAchievements = function(text){
+        
+       var editExpAch = {
+           method: 'POST',
+           url: 'http://localhost:3000/editcvexperienceachievements',
+           dataType: 'json',
+           data: {
+               expAchID: $localStorage.expAchievementID,
+               expAchText: text
+           }
+       }
+       
+        var getExpAch = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcvexperienceachievements',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                expid:  $localStorage.experienceID
+            }
+        }
+        
+        
+        return $http(editExpAch)
+            .then(function(response){
+                return $http(getExpAch)
+                    .then(function(response2){
+                        //console.log(responsea2.data);
+                        $localStorage.cvExperienceAchievements = response2.data.info.achievements; 
+                        return true;
+                })
+        })
+       
+   }
+   
+   
+   this.cvDeleteExperienceAchievements = function(id){
+       
+       var deleteExpAch = {
+           method: 'POST',
+           url: 'http://localhost:3000/deletecvexperienceachievements',
+           dataType: 'json',
+           contentType: 'application/json',
+           data: {
+               expAchID: id
+           }
+       }
+       
+        var getExpAch = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcvexperienceachievements',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                expid:  $localStorage.experienceID
+            }
+        }
+        
+        return $http(deleteExpAch)
+            .then(function(response){
+                return $http(getExpAch)
+                    .then(function(response2){
+                         $localStorage.cvExperienceAchievements = response2.data.info.achievements; 
+                         return true;
+                });
+        });
+   }
+   
+   
 });

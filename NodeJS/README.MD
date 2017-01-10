@@ -73,4 +73,8 @@ Jan 9 <br>
 -- Added two post routs for Adding and getting ExperienceAchievements<br>
 -- Added achievements on experience schema<br>
 
+Jan 10 <br>
+-- Added post route for editing experience achievement <br>
+-- Added post rout for deleting the experience achievemnts and the achievements in experience schema <br>
+
 - John Lois Frades

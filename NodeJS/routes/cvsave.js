@@ -288,6 +288,41 @@ router.post('/getcvexperienceachievements', function(req, res){
 });
 
 
+// Edit experience Achievement///////////////////
+
+router.post('/editcvexperienceachievements', function(req, res){
+    
+    var expAchUpdated = {
+        text: req.body.expAchText
+    }       
+
+    ExperienceAchievements.findByIdAndUpdate(req.body.expAchID, expAchUpdated, {new:true}, function(err, updatedExpAch){
+        if(err){
+            console.log(err);
+        } else {
+            res.json({
+                sucess: true,
+                info: updatedExpAch
+            });
+        }
+    });
+});
+
+
+
+router.post('/deletecvexperienceachievements', function(req, res){
+    ExperienceAchievements.findByIdAndRemove(req.body.expAchID, function(err, deletedExpAch){
+        if(err){
+            console.log(err);
+        } else {
+            deletedExpAch.remove();
+            res.json({
+                sucess: true
+            });
+        }
+    });
+});
+///////Experience End/////////////////
 
 //ADD Education
 router.post('/cveducation', function(req, res){
