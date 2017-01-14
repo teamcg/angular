@@ -11,6 +11,7 @@ var EducationPaper = require('../app/models/educationOptions/papers');
 var EducationAchievement = require('../app/models/educationOptions/achievements');
 var EducationProject = require('../app/models/educationOptions/projects');
 var Skill = require('../app/models/skill');
+var SkillExample = require('../app/models/skillExample');
 var moment = require('moment');
 
 
@@ -662,5 +663,25 @@ router.post('/getcvskill', function(req, res){
 });
 
 
+router.post('/addexampleskill', function(req, res){
+	var exSkillData = {
+		title: req.body.exSkillTitle,
+		description: req.body.exSkillDescription
+	}
 
-module.exports = router;
+	SkillExample.create(exSkillData, function(err, newExampleSkill){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: newExampleSkill
+			});
+		}
+	});
+});
+
+
+
+
+module.exports = router
