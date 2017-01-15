@@ -196,6 +196,81 @@ app.service('experienceService', function($http, $localStorage){
     }
     
     
+    // Edit experience responsibilities
+    
+    
+   this.cvEditExperienceResponsibilities = function(text){
+        
+       var editExpResp = {
+           method: 'POST',
+           url: 'http://localhost:3000/editcvexperienceresponsibilities',
+           dataType: 'json',
+           data: {
+               expRespID: $localStorage.expRespID,
+               expRespText: text
+           }
+       }
+       
+        var getExpResp = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcvexperienceresponsibilities',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                expid:  $localStorage.experienceID
+            }
+        }
+        
+        
+        return $http(editExpResp)
+            .then(function(response){
+                return $http(getExpResp)
+                    .then(function(response2){
+                        $localStorage.cvExperienceResponsibilities = response2.data.info.responsibilities; 
+                        return true;
+                });
+        });
+       
+   }
+   
+   //Delete expereience Responsibilities
+   
+   
+   
+    this.cvDeleteExperienceResponsibilities = function(id){
+       
+       var deleteExpResp = {
+           method: 'POST',
+           url: 'http://localhost:3000/deletecvexperienceresponsibilities',
+           dataType: 'json',
+           contentType: 'application/json',
+           data: {
+               expRespID: id
+           }
+       }
+       
+        var getExpResp = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcvexperienceresponsibilities',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                expid:  $localStorage.experienceID
+            }
+        }
+        
+        
+        return $http(deleteExpResp)
+            .then(function(response){
+                return $http(getExpResp)
+                    .then(function(response2){
+                        //console.log(responsea2.data);
+                        $localStorage.cvExperienceResponsibilities = response2.data.info.responsibilities; 
+                        return true;
+                });
+        });
+   }
+    
     this.addExperienceAchievements = function(text){
         var addExpAch = {
             method: 'POST',

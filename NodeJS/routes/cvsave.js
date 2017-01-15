@@ -249,6 +249,43 @@ router.post('/getcvexperienceresponsibilities', function(req,res){
 });
 
 
+
+// Edit experience responsibilities //
+
+router.post('/editcvexperienceresponsibilities', function(req, res){
+    
+    var expRespUpdated = {
+        text: req.body.expRespText
+    }       
+
+    ExperienceResponsibilities.findByIdAndUpdate(req.body.expRespID, expRespUpdated, {new:true}, function(err, updatedExpResponsibilities){
+        if(err){
+            console.log(err);
+        } else {
+            res.json({
+                sucess: true,
+                info: updatedExpResponsibilities
+            });
+        }
+    });
+});
+
+
+//Delete experience responsibilities
+
+router.post('/deletecvexperienceresponsibilities', function(req, res){
+    ExperienceResponsibilities.findByIdAndRemove(req.body.expRespID, function(err, deletedExpResponsibilities){
+        if(err){
+            console.log(err);
+        } else {
+            deletedExpResponsibilities.remove();
+            res.json({
+                sucess: true
+            });
+        }
+    });
+});
+
 //ADD ACHIEVEMENT in Experience
 router.post('/addcvexperienceachievements', function(req, res){
     Experience.findById(req.body.expid, function(err, theExperience){

@@ -75,10 +75,16 @@ Jan 9 <br>
 
 Jan 10 <br>
 -- Added post route for editing experience achievement <br>
--- Added post rout for deleting the experience achievemnts and the achievements in experience schema <br>
+-- Added post route for deleting the experience-achievemnts and the achievements in experience schema <br>
 
 Jan 14 <br>
 -- Added SkillExample model schema <br>
 -- Added POST route for adding SkillExample <br>
 
 - John Lois Frades
+
+Jan 15 <br>
+-- Added post route for editing experience responsibilities <br>
+-- Added post route for deleting the experience-responsibilities and the responsibilities in experience schema <br>
+
+-- Surinderpal Kaur Sidhu

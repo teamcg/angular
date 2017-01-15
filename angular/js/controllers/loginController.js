@@ -470,7 +470,54 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
                 });
         }
             
+        /////editExpResponsibilities
         
+        $scope.editExpResponsibilities = function(){
+            
+            $localStorage.expRespID = this.expResponsibilities._id;
+            $scope.expResponsibilities = {
+                text: this.expResponsibilities.text
+            }
+            $scope.expResponsibilitiesFieldEditButton = true;
+            $scope.expResponsibilitiesFieldSubmitButtons = false;
+            $scope.expResponsibilitiesInfos = false;
+           // console.log($localStorage.exResponsibilitiesID);           
+            
+        }
+        
+        
+         $scope.updatedExpResponsibilities = function(){
+            
+            var result = experienceService.cvEditExperienceResponsibilities(this.expResponsibilities.text)
+                .then(function(result){
+                    if(result){
+                        $scope.expResponsibilities = {
+                            text: ''
+                        }
+                        $scope.expResponsibilitiesFieldEditButton = false;
+                        $scope.expResponsibilitiesFieldSubmitButtons = true;
+                        $scope.showExperienceResponsibilities =  $localStorage.cvExperienceResponsibilities;
+                        $scope.expResponsibilitiesInfos = true;
+                        //console.log("Responsibilities");
+                    } else {
+                       //console.log("error");
+                    }
+                });
+            
+        }
+         
+         $scope.deleteExpResponsibilities = function(){
+          //  $localStorage.expResponsibilitiesID = this.expResponsibilities._id;
+                
+            var result = experienceService.cvDeleteExperienceResponsibilities(this.expResponsibilities._id)
+                .then(function(result){
+                    if(result){
+                        $scope.showExperienceResponsibilities = $localStorage.cvExperienceResponsibilities;
+                    }
+                });
+        }
+         
+         
         $scope.openExperienceAchievements = function(){
             
             $localStorage.experienceID = this.info._id;

@@ -95,7 +95,10 @@ Jan 9 <br>
 -- Added input field for achievements in experience<br>
 -- Added function for controllor and service to post and get theExperience Achievements<br>
 
-JAn 10 <br>
+Jan 10 <br>
 -- Added function in controller and service for editing experience and achievements <br>
 -- Added function for deleting achievements for experience.<br>
 
+Jan 15 <br>
+-- Added function in controller and service for editing experience and responsibilities <br>
+-- Added function for deleting responsibilities for experience.<br>
