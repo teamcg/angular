@@ -86,5 +86,7 @@ Jan 14 <br>
 Jan 15 <br>
 -- Added post route for editing experience responsibilities <br>
 -- Added post route for deleting the experience-responsibilities and the responsibilities in experience schema <br>
+-- Added POST route for adding Skill Example <br>
+-- Added GET route for querying the Skill Example <br>
 
 -- Surinderpal Kaur Sidhu

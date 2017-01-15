@@ -701,18 +701,31 @@ router.post('/getcvskill', function(req, res){
 
 
 router.post('/addexampleskill', function(req, res){
-	var exSkillData = {
-		title: req.body.exSkillTitle,
-		description: req.body.exSkillDescription
+	var SkillExData = {
+		title: req.body.skillExTitle,
+		description: req.body.skillExDescription
 	}
 
-	SkillExample.create(exSkillData, function(err, newExampleSkill){
+	SkillExample.create(SkillExData, function(err, newExampleSkill){
 		if(err){
 			console.log(err);
 		} else {
 			res.json({
 				success: true,
 				info: newExampleSkill
+			});
+		}
+	});
+});
+
+
+router.get('/showexampleskill', function(req, res){
+	SkillExample.find({}, function(err, theSkills){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				info: theSkills
 			});
 		}
 	});

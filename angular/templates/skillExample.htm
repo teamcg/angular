@@ -1,0 +1,44 @@
+<section id="logo" layout="row" layout-align="center center" layout-wrap layout-sm="column" >
+    <div layout-gt-xs="row">
+			<img src="images/logoLogin.png" style="">
+    </div>
+</section>
+		  
+     <div class="col-sm-6 col-sm-offset-3"  ng-controller="SkillExampleController as skillExampleCtrl" ng-cloak>
+
+         <section id="generatekey" layout="row" layout-align="center center" layout-wrap layout-sm="column" >
+
+           <md-input-container class="md-block"  flex-gt-sm> 
+
+                <md-input-container class="md-block"> 
+                     <label>Skill Title</label>
+                     <input class="inputBlackColor" type="text" id="username" autofocus ng-model='skillExample.title'>
+
+                </md-input-container>
+                                       <md-input-container class="md-block"> 
+                     <label>Skill Description</label>
+                     <input class="inputBlackColor" type="text" id="username" autofocus ng-model='skillExample.description'>
+
+                </md-input-container>
+
+
+                <md-button class="md-raised md-primary"  ng-click="skillExampleCtrl.submit()">Add</md-button>  
+
+            </md-input-container>
+             
+
+                       
+              </section>
+         
+         
+        <div ng-repeat="skill in skillExampleData">
+                <h1>{{skill.title}}</h1>
+                <h2>{{skill.description}}</h2>
+                 
+                 
+                 
+             </div>
+            </div>
+
+
+

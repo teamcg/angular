@@ -3,27 +3,31 @@ var app = angular.module("main", ["ngRoute", "ngStorage", "ngMaterial", "ngAnima
 
 
 app.config(function ($routeProvider, $httpProvider){
-	
-	$routeProvider
-	.when("/",{
-		templateUrl : "./templates/frontp.htm",
-		controller : "LoginController"
-	})
-	.when("/portal",{
-		templateUrl: "./templates/portal.htm",
-		controller: "LoginController"
-	})
-	.when("/gak",{
-		templateUrl: "./templates/genauthkey.htm",
-		controller: "GenAuthkeyController"
-	})
+  
+  $routeProvider
+  .when("/",{
+    templateUrl : "./templates/frontp.htm",
+    controller : "LoginController"
+  })
+  .when("/portal",{
+    templateUrl: "./templates/portal.htm",
+    controller: "LoginController"
+  })
+  .when("/gak",{
+    templateUrl: "./templates/genauthkey.htm",
+    controller: "GenAuthkeyController"
+  })
     .when("/register",{
         templateUrl: "./templates/register.htm",
         controller: "StudentRegController"
     })
-	.otherwise({
-		templateUrl : "/templates/error404.htm"
-	});
+    .when("/addskillexample", {
+        templateUrl: "./templates/skillExample.htm",
+        controller: "SkillExampleController"
+    })
+  .otherwise({
+    templateUrl : "/templates/error404.htm"
+  });
 
 
 });

@@ -100,5 +100,9 @@ Jan 10 <br>
 -- Added function for deleting achievements for experience.<br>
 
 Jan 15 <br>
--- Added function in controller and service for editing experience and responsibilities <br>
+-- Added function in controller and service for editing experience responsibilities <br>
 -- Added function for deleting responsibilities for experience.<br>
+
+Jan 16 <br>
+-- Added function in controller and service for adding skill example <br>
+-- Added a new file in Service, Controller and Template for SKILL EXAMPLE <br>
