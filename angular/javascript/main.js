@@ -1,6 +1,6 @@
 
 
-    
+
 
 
 
@@ -23,6 +23,13 @@ function checkPass(){
      }
 } 
 
+$('#menu-toggle').click(function(){
+    alert('hey');
+});
+
+
+//var d = document.getElementById('menu-toggle');
+//d.className += " toggled";
 
 //function expFormValidate(){
 //    var expCategory = document.getElementById('experienceCategory');

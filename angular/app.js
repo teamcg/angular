@@ -10,7 +10,7 @@ app.config(function ($routeProvider, $httpProvider){
     controller : "LoginController"
   })
   .when("/portal",{
-    templateUrl: "./templates/portal.htm",
+    templateUrl: "./templates/portalTest.htm",
     controller: "LoginController"
   })
   .when("/gak",{

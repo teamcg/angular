@@ -1,29 +1,63 @@
+ <div ng-controller='LoginController as loginController'>
+<!--
+                <md-toolbar class="md-hue-2">
+          <div class="md-toolbar-tools">
+            <h2>
+              <span>EDENZ CV Generator</span>
+            </h2>
+            <span flex></span>
+              <h3>{{loginController.studentinfo.firstname }} {{loginController.studentinfo.lastname}}</h3>
 
-<div ng-controller='LoginController as loginController'>
+          </div>
+        </md-toolbar>
+-->
 
-    <h1>{{}}</h1>
-    
-    
-<div ng-cloak style="font-size: 50px">
-    <md-toolbar class="md-hue-2">
-      <div class="md-toolbar-tools">
-        <h2>
-          <span>EDENZ CV Generator</span>
-        </h2>
-        <span flex></span>
-          <h3>{{loginController.studentinfo.firstname }} {{loginController.studentinfo.lastname}}</h3>
 
-      </div>
-    </md-toolbar>
-    </div>
-    <div>
-<md-content>
-        <md-tabs  md-dynamic-height md-border-bottom>
-            
-<!--MY PROFILE-->
+<!--
+        <div class="col-md-2">
+
+            <ul class="nav nav-pills nav-stacked sideUL">
+                <li ng-click="" class="sideItems">My Profile</li>
+                <li ng-click="" class="sideItems">My CV</li>
+            </ul>
+
+        </div> 
+-->
+     <div id="wrapper">
+        
+        <div id="sidebar-wrapper">
+
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                        Edenz CV Generator
+                    </a>
+                </li>
+                <div>
+                    <li ng-click="showMyProfile()"><a>
+                        My Profile</a></li>
+                    <li ng-click="showMyCV()"><a>My CV</a></li>
+                    <li ng-click="showCreateCV()"><a>Create a CV</a></li>
+                </div>
+            </ul>
+
+        </div> 
          
-          <md-tab label="My Profile">
-            <md-content class="md-padding">
+         
+         
+         
+         
+         
+
+        <div id="page-content-wrapper">
+            <div class="container-fluid">   
+                <div class="row">
+                    <div class="col-lg-12">
+                        
+                        
+<div ng-if="myProfileContent">              
+                        
+<md-content class="md-padding">
                 <div class="alert alert-success" id="myprofileAddedMessage" ng-if="myprofileAddedMessage" role="alert">Successfully updated profile!</div>
                 
                  <div layout="column" ng-cloak class="md-inline-form">
@@ -69,42 +103,62 @@
     </div>
   </md-content>
 
-</div>
-                
-                
-                
-                
-                
-                
-            </md-content>
-          </md-tab>
-<!--MY PROFILE-->   
-          <md-tab label="Create CV">
+</div>            
+</md-content>
+                        
+</div>     
+                        
+     <div ng-if="myCVContent">                  
             <md-content class="md-padding">
-<!--START HERE-->
-                
-<div ng-cloak>
-  <md-content>
-      
-      <section id="createcvname" layout="row" layout-align="center center" layout-wrap layout-sm="column" ng-if="loginController.cv === ''">
+                                    <h2>My CVs</h2>
+                        <table class="table">
+                            <tr>
+                              <th>CV Name</th>
+                              <th>Date created</th>
+                              <th>Date modified</th>
+                            </tr>
+                            <tr>
+                              <td><a href="javascript:void(0)">My Web-Dev CV</a></td>
+                              <td>31/04/2016 4:30pm</td>
+                              <td>08/11/2016 2:15pm</td>
+                            </tr>
+                            <tr>
+                              <td><a href="javascript:void(0)">My Sales CV</a></td>
+                              <td>20/05/2016 4:30pm</td>
+                              <td>16/10/2016 2:15pm</td>
+                            </tr>
+                            <tr>
+                              <td><a href="javascript:void(0)">My Mobile-Dev CV</a></td>
+                              <td>28/01/2016 4:30pm</td>
+                              <td>28/01/2016 2:15pm</td>
+                            </tr>
+                          </table>
+            </md-content>  
+         </div> 
+                        
+<div ng-if="createCVContent">
+    
+    <section id="createcvname" layout="row" layout-align="center center" layout-wrap layout-sm="column" ng-if="loginController.cv === ''">
           <md-input-container>
           <label>CV Name</label>
           <input  ng-model="loginController.cvname"/>
           </md-input-container>
-          <md-button class="md-raised md-primary" ng-click="loginController.createcv()">Create CV</md-button>
+          <md-button class="md-raised md-primary" ng-click="showNewCVContent()">Create CV</md-button>
+
       </section>
-      
-     <section id="createdcvname" layout-align="center center" layout-wrap layout-sm="column" ng-if="loginController.cv != null && loginController.cv != ''">
+    <input value="{{loginController.cv}}" ng-model="loginController.cvid" readonly hidden>
+                        
+</div>
+                        
+                        
+            <section id="createdcvname" layout-align="center center" layout-wrap layout-sm="column" ng-if="loginController.cv != null && loginController.cv != ''">
         <h2 class="text-center">{{loginController.cvname}}</h2>
-    </section>
-      
-      
-      
-      
-      <input value="{{loginController.cv}}" ng-model="loginController.cvid" readonly>
-      
-      
-    <md-tabs  id="cvcontent" md-dynamic-height md-border-bottom ng-show='loginController.cv != "" && loginController.cv != null'>
+    </section>                 
+                        
+                        
+<div>
+    <md-content>
+    <md-tabs id="cvcontent" md-dynamic-height md-border-bottom ng-show='loginController.cv != "" && loginController.cv != null'>
         <md-tab label="Personal Info">
          
          <md-content class="md-padding">
@@ -279,6 +333,7 @@
             <md-button type="submit" class="md-raised md-warn" ng-click="expUpdateCancel()">Cancel</md-button> 
         </div>
 
+<!--
         <div ng-if="listOfExperience" id="listOfExperience">
             <h3 class="text-center">List of Experiences</h3>
             <div class="row">
@@ -322,7 +377,13 @@
                         </div>
                     </div>
                 </div>
-    </div>		
+    </div>	
+-->
+     
+
+
+
+     
 </div> 
  <div ng-if="expResponsibilitiesField">
        <md-input-container class="md-block" flex-gt-sm>
@@ -368,13 +429,67 @@
         </div>
 </div>
 
+      
+      
+      
+      
+      
+      
 <!----end ach---->
 
 
   </md-content>
-                 
+            
+            
+<div>
+        <h2>List of Experiences</h2>
+       <ul id="experienceContent" ng-repeat="info in tableexp">
+         <span>
+             <strong>
+                 <h3>
+                     {{info.company}} - <em>{{info.role}}</em> 
+                     <span style="float:right">
+                         <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpBTN()"></span>&nbsp;&nbsp;
+                         <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExperience()"></span>
+                     </span>
+                 </h3>
+             </strong>
+           </span>
+         <hr />
+        <li>
+            <h5>
+                Company Description: {{info.companydescription}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                City: {{info.city}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                Country: {{info.country}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                Start Date: {{info.startdate}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                End Date: {{info.enddate}}
+            </h5>
+        </li>
+         
+         <hr class="style-four">                  
         </md-content>
+                     
+   
       </md-tab>
+     </ul>
+</div>
+
         
         
 
@@ -432,6 +547,7 @@
         </div> 
       
         
+<!--
     <div ng-if="listOfQualification" id="listOfQualification">
         <h3 class="text-center">List of Qualifications</h3>
         <div class="row">
@@ -478,6 +594,7 @@
                 </div>
             </div>
 	</div>					
+-->
 </div> 
      <div ng-if="papersField">
            <md-input-container class="md-block" flex-gt-sm>
@@ -553,76 +670,88 @@
      </div>
  
   </md-content>        
-        
-        
-        
-        
-        
-        
-        
-        
-
-
 
     </md-content>
+    
+    
+    <div>
+        <h2>List of Qualifications</h2>
+       <ul id="experienceContent" ng-repeat="info in tableeducation">
+         <span>
+             <strong>
+                 <h3>
+                     {{info.qualification}}
+                     <span style="float:right">
+                         <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationButton()"></span>&nbsp;&nbsp;
+                         <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducation()"></span>
+                     </span>
+                 </h3>
+             </strong>
+           </span>
+         <hr />
+        <li>
+            <h5>
+                Institution: {{info.institution}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                City: {{info.city}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                Country: {{info.country}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                Start Date: {{info.startdate}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                End Date: {{info.enddate}}
+            </h5>
+        </li>
+         
+         <hr class="style-four">                  
+        </md-content>
+                     
+   
+      </md-tab>
+     </ul>
+</div>
+    
+    
+    
+    
+    
+    
 </md-tab>
-        
-        
-        
-        
-        
-        
-        
-
     </md-tabs>
-  </md-content>
+    
+    
+  </md-content>  
+
+    
+    
+    
+    
+
+    
+    
+    
+    
 </div>
-                
-                
-               
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-<!--                END HERE-->
-            </md-content>
-          </md-tab>
-          <md-tab label="My CV">
-            <md-content class="md-padding">
-                                    <h2>My CVs</h2>
-                        <table class="table">
-                            <tr>
-                              <th>CV Name</th>
-                              <th>Date created</th>
-                              <th>Date modified</th>
-                            </tr>
-                            <tr>
-                              <td><a href="javascript:void(0)">My Web-Dev CV</a></td>
-                              <td>31/04/2016 4:30pm</td>
-                              <td>08/11/2016 2:15pm</td>
-                            </tr>
-                            <tr>
-                              <td><a href="javascript:void(0)">My Sales CV</a></td>
-                              <td>20/05/2016 4:30pm</td>
-                              <td>16/10/2016 2:15pm</td>
-                            </tr>
-                            <tr>
-                              <td><a href="javascript:void(0)">My Mobile-Dev CV</a></td>
-                              <td>28/01/2016 4:30pm</td>
-                              <td>28/01/2016 2:15pm</td>
-                            </tr>
-                          </table>
-            </md-content>
-          </md-tab>
-        </md-tabs>
-      </md-content>
-    </div>
+                        
+                        
+                        
+                        
+                        </div>
+                    </div>
+                </div>
+        </div>
 </div>
 
-
+</div>

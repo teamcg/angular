@@ -106,3 +106,7 @@ Jan 15 <br>
 Jan 16 <br>
 -- Added function in controller and service for adding skill example <br>
 -- Added a new file in Service, Controller and Template for SKILL EXAMPLE <br>
+
+Jan 17 <br>
+-- Added portalTest template for major UI rework <br>
+

@@ -21,6 +21,71 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
     
     
 	var loginController = this;
+    
+    
+    
+//    Temporary
+    
+    $scope.myProfileContent = false;
+    $scope.myCVcontent = false;
+    $scope.createCVContent = false;
+    $scope.newCVContent = false;
+    
+    
+    $scope.showMyProfile = function(){
+        $scope.myCVContent = false;
+        $scope.createCVContent = false;
+        $scope.myProfileContent = true;
+    }
+    
+    $scope.showMyCV = function(){
+        $scope.myProfileContent = false;
+        $scope.createCVContent = false;
+        $scope.myCVContent = true;
+        
+    }
+    
+    $scope.showCreateCV = function(){
+        $scope.myProfileContent = false;
+        $scope.myCVContent = false;
+        $scope.createCVContent = true;
+    }
+    
+    $scope.showNewCVContent = function(){
+        var d = document.getElementById('wrapper');
+        d.className += " toggled"; 
+        
+        
+        
+         var result = cvNameService.cvname(loginController.cvname)
+                .then(function(result){
+                    if(result){
+                        $scope.personalInfo.address = $localStorage.studentAddress;
+                        $scope.personalInfo.phone = $localStorage.studentPhone;
+                        $scope.personalInfo.email = $localStorage.studentEmail;
+                        $scope.personalInfo.linkedin = $localStorage.studentLinkedin;
+                        $scope.personalInfo.website = $localStorage.studentWebsite;
+                        loginController.cv = $localStorage.currentcv;
+                    } else {
+                        console.log('error!');
+                    }
+                });
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 	loginController.username = "";
 	loginController.password = "";
@@ -188,7 +253,6 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
                         $scope.personalInfo.email = $localStorage.studentEmail;
                         $scope.personalInfo.linkedin = $localStorage.studentLinkedin;
                         $scope.personalInfo.website = $localStorage.studentWebsite;
-                        console.log(result);
                         loginController.cv = $localStorage.currentcv;
                     } else {
                         console.log('error!');
