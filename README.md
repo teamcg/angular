@@ -110,3 +110,6 @@ Jan 16 <br>
 Jan 17 <br>
 -- Added portalTest template for major UI rework <br>
 
+Jan 19 <br>
+-- Changed the table of Education to a Unordered List <br>
+

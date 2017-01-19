@@ -101,7 +101,7 @@
       
       
       
-      <input value="{{loginController.cv}}" ng-model="loginController.cvid" readonly>
+      <input value="{{loginController.cv}}" ng-model="loginController.cvid" readonly hidden>
       
       
     <md-tabs  id="cvcontent" md-dynamic-height md-border-bottom ng-show='loginController.cv != "" && loginController.cv != null'>
@@ -279,6 +279,7 @@
             <md-button type="submit" class="md-raised md-warn" ng-click="expUpdateCancel()">Cancel</md-button> 
         </div>
 
+<!--
         <div ng-if="listOfExperience" id="listOfExperience">
             <h3 class="text-center">List of Experiences</h3>
             <div class="row">
@@ -323,7 +324,11 @@
                     </div>
                 </div>
     </div>		
+-->
 </div> 
+
+
+
  <div ng-if="expResponsibilitiesField">
        <md-input-container class="md-block" flex-gt-sm>
         <label>Responsibilities</label>
@@ -372,7 +377,66 @@
 
 
   </md-content>
-                 
+
+   <div>
+        <h2>List of Experiences</h2>
+       <ul id="experienceContent" ng-repeat="info in tableexp">
+         <span>
+             <strong>
+                 <h3>
+                     {{info.company}} - <em>{{info.role}}</em> 
+                     <span style="float:right">
+                         <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpBTN()"></span>&nbsp;&nbsp;
+                         <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExperience()"></span>
+                     </span>
+                 </h3>
+             </strong>
+           </span>
+         <hr />
+        <li>
+            <h5>
+                Company Description: {{info.companydescription}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                City: {{info.city}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                Country: {{info.country}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                Start Date: {{info.startdate}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                End Date: {{info.enddate}}
+            </h5>
+        </li>
+         
+         <hr class="style-four">                  
+        </md-content>
+                     
+   
+      </md-tab>
+     </ul>
+</div>    
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
         </md-content>
       </md-tab>
         
@@ -432,6 +496,7 @@
         </div> 
       
         
+<!--
     <div ng-if="listOfQualification" id="listOfQualification">
         <h3 class="text-center">List of Qualifications</h3>
         <div class="row">
@@ -478,6 +543,7 @@
                 </div>
             </div>
 	</div>					
+-->
 </div> 
      <div ng-if="papersField">
            <md-input-container class="md-block" flex-gt-sm>
@@ -556,8 +622,103 @@
         
         
         
+    <div>
+        <h2>List of Qualifications</h2>
+       <ul id="experienceContent" ng-repeat="info in tableeducation">
+         <span>
+             <strong>
+                 <h3>
+                     {{info.qualification}}
+                     <span style="float:right">
+                         <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationButton()"></span>&nbsp;&nbsp;
+                         <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducation()"></span>
+                     </span>
+                 </h3>
+             </strong>
+           </span>
+         <hr />
+        <li>
+            <h5>
+                Institution: {{info.institution}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                City: {{info.city}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                Country: {{info.country}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                Start Date: {{info.startdate}}
+            </h5>
+        </li>
+        <li>
+            <h5>
+                End Date: {{info.enddate}}
+            </h5>
+        </li>
+         
+        <h3>
+            Papers
+            <span style="font-size: 17px; color: blue" class="glyphicon glyphicon-plus-sign" ng-click="openPapers()"></span>
+        </h3>   
+            <ul>
+                <li>
+                    hey
+                </li>
+                <li>Yoow</li>
+            </ul>
+        <h3>
+            Achievements
+            <span style="font-size: 17px; color: blue" class="glyphicon glyphicon-plus-sign" ng-click="openEducationProjects()"></span>
+        </h3>   
+            <ul>
+                <li>
+                    hey
+                </li>
+                <li>Yoow</li>
+            </ul>
+        <h3>
+            Projects
+            <span style="font-size: 17px; color: blue" class="glyphicon glyphicon-plus-sign" ng-click="openEducationAchievements()"></span>
+        </h3>   
+            <ul>
+                <li>
+                    hey
+                </li>
+                <li>Yoow</li>
+            </ul>
         
+         
+         
+         
+         <hr class="style-four">   
+         
+                        
+                                                      
+        </md-content>
+              
+   
+      </md-tab>
+     </ul>
+</div>     
+    
+       
+       
+       
+       
+       
+       
         
+            
+                
+                    
+                            
         
         
         
