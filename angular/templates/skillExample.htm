@@ -31,13 +31,27 @@
               </section>
          
          
+<!--
         <div ng-repeat="skill in skillExampleData">
                 <h1>{{skill.title}}</h1>
-                <h2>{{skill.description}}</h2>
-                 
-                 
-                 
-             </div>
+                <h2>{{skill.description}}</h2>           
+        </div>
+-->
+           
+           <table class="table  table-hover">
+               <thead>
+                   <tr>
+                       <th>Skill</th>
+                       <th>Skill Description</th>
+                   </tr>
+               </thead>
+               <tbody ng-repeat="skill in skillExampleData">
+                   <tr>
+                       <td>{{skill.title}}</td>
+                       <td>{{skill.description}}</td>
+                   </tr>
+               </tbody>
+           </table>
             </div>
 
 

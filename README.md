@@ -100,7 +100,7 @@ Jan 10 <br>
 -- Added function for deleting achievements for experience.<br>
 
 Jan 15 <br>
--- Added function in controller and service for editing experience responsibilities <br>
+-- Added function in controller and seravice for editing experience responsibilities <br>
 -- Added function for deleting responsibilities for experience.<br>
 
 Jan 16 <br>
@@ -112,4 +112,8 @@ Jan 17 <br>
 
 Jan 19 <br>
 -- Changed the table of Education to a Unordered List <br>
+
+Jan 20 <br>
+-- revert back to old design <br>
+-- added example skill button on skill, pops-up modal, and click on the example skills <br>
 

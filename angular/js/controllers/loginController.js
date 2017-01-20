@@ -681,6 +681,7 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
                     if(result){
 
                         $scope.tableeducation = $localStorage.cveducation;
+                        console.log($scope.tableeducation);
                         $scope.cveducation = {
                             qualification: '',
                             institution: '',
@@ -825,6 +826,7 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
         
     //Education Additional Options    
         
+        
         $scope.openPapers = function(){
             $localStorage.educationID = this.info._id;
             var result = educationService.cvGetEducationPaper()
@@ -893,10 +895,13 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
         
         
         $scope.submitPaper = function(){    
+            $localStorage.educationID = this.info._id;
             var result = educationService.cvAddEducationPaper(this.paper.name)
                 .then(function(result){
                     if(result){
+                        
                         $scope.showEducationPapers = $localStorage.cvEducationPapers;
+                        console.log($scope.showEducationPapers);
                         $scope.paper = {
                             name: ''
                         }
@@ -1101,7 +1106,7 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
             
             .then(function(result){
                 if(result){
-
+                    
                     $scope.tableskill = $localStorage.cvskill;
                     
                     $scope.skillsAddedMessage = true;
@@ -1110,13 +1115,29 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
                         $scope.skillsAddedMessage = false;
                     }, 1500);
                     
+                    
+                    $scope.cvskill = {
+                        name: '',
+                        description: ''
+                    }
+                    
+                    
                 } else {
                     console.log('ERROR SKILL SUBMIT');
                 }
             });
             
         }
-    
+           
+           
+           $scope.skillAdd = function(){
+               console.log(this.skill);
+               $scope.cvskill = {
+                   name: this.skill.title,
+                   description: this.skill.description
+               }
+           }
+           
     
 });
 
