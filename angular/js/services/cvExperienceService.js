@@ -305,7 +305,28 @@ app.service('experienceService', function($http, $localStorage){
         });
     }
       
-    /////////////////////////////
+    
+    this.getExperienceAchievements = function(){
+        
+        var getExpAch = {
+            method: 'POST',
+            url: 'http://localhost:3000/getcvexperienceachievements',
+            dataType: 'json',
+            contentType: 'application/json',
+            data: {
+                expid:  $localStorage.experienceID
+            }
+        }
+        
+        return $http(getExpAch)
+            .then(function(response){
+                $localStorage.experienceAchievements = response.data.info.achievements;
+                return true;
+        });
+    }
+    
+    
+    
     
    this.cvEditExperienceAchievements = function(text){
         

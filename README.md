@@ -117,3 +117,6 @@ Jan 20 <br>
 -- revert back to old design <br>
 -- added example skill button on skill, pops-up modal, and click on the example skills <br>
 
+Jan 21 <br>
+-- Added get experience achievement service function for when clicking the achievement icon. <br>
+

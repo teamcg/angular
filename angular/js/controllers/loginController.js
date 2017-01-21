@@ -583,11 +583,19 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
          
          
         $scope.openExperienceAchievements = function(){
-            
             $localStorage.experienceID = this.info._id;
+            
+            var result = experienceService.getExperienceAchievements()
+                .then(function(result){
+                if(result){
+                    $scope.showExpAch = $localStorage.experienceAchievements
+                }
+            });
+            
             $scope.expAchievementsField = true;
             $scope.experienceForm = false;
             
+
             
         }        
         
@@ -895,7 +903,7 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
         
         
         $scope.submitPaper = function(){    
-            $localStorage.educationID = this.info._id;
+
             var result = educationService.cvAddEducationPaper(this.paper.name)
                 .then(function(result){
                     if(result){

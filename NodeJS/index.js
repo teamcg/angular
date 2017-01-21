@@ -18,6 +18,9 @@ var tokenAuthRoute = require('./routes/tokenAuth');
 var authkeyRoute = require('./routes/generatekey');
 var registerRoute = require('./routes/register');
 var cvRoute = require('./routes/cvsave');
+var cvExperienceRoute = require('./routes/cvExperience');
+var cvEducationRoute = require('./routes/cvEducation');
+var cvSkillRoute = require('./routes/cvSkill');
 
 
 
@@ -56,6 +59,9 @@ app.use(tokenAuthRoute);
 app.use(authkeyRoute);
 app.use(registerRoute);
 app.use(cvRoute);
+app.use(cvExperienceRoute);
+app.use(cvEducationRoute);
+app.use(cvSkillRoute);
 
 
 

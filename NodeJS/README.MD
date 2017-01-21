@@ -81,7 +81,7 @@ Jan 14 <br>
 -- Added SkillExample model schema <br>
 -- Added POST route for adding SkillExample <br>
 
-- John Lois Frades
+
 
 Jan 15 <br>
 -- Added post route for editing experience responsibilities <br>
@@ -89,4 +89,14 @@ Jan 15 <br>
 -- Added POST route for adding Skill Example <br>
 -- Added GET route for querying the Skill Example <br>
 
--- Surinderpal Kaur Sidhu
+
+Jan 20 <br>
+-- changed made on GET CV EDUCATION, where it populates educationpaper and educationachievement <br>
+
+Jan 21 <br>
+-- Created a seperate file for Experience, Education and Skill route. <br>
+
+
+
+-- John Lois Frades & Surinderpal Kaur Sidhu
+
