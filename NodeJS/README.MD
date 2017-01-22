@@ -96,7 +96,9 @@ Jan 20 <br>
 Jan 21 <br>
 -- Created a seperate file for Experience, Education and Skill route. <br>
 
-
+Jan 23 <br>
+-- Added POST route for updating and deleting skills <br>
+-- Added a pre-schema on skill model, to be also deleted on CV <br>
 
 -- John Lois Frades & Surinderpal Kaur Sidhu
 

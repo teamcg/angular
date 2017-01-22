@@ -196,15 +196,26 @@
          <label>Description</label>
 <!--                <textarea id="todolist" class="todolist" name="todolist" ng-model="cvskill.description"  rows="10" md-select-on-focus ></textarea>-->
            <input ng-model="cvskill.description">     
-             <md-button class="md-raised md-primary" ng-click='skillsubmit()'> Save </md-button>
+             <div ng-if="submitSkillButton">
+                <md-button class="md-raised md-primary" ng-click='skillsubmit()'> Save </md-button>
+            </div>
         </md-input-container>
         <md-button class="md-raised md-primary" data-toggle="modal" data-target="#skillsModal"> Example </md-button>
 </form>
         
-        <div ng-repeat="info in tableskill">
-        <h3>{{info.name}}</h3>
-        <h4>{{info.description}}</h4>
+        <div ng-if="skillTable" ng-repeat="info in tableskill">
+            <h3>{{info.name}}</h3>
+            <h4>{{info.description}}</h4>
+            <span class="glyphicon glyphicon glyphicon-pencil" ng-click="skillEditMode()"></span>&nbsp;&nbsp;
+            <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteSkill()"></span>
         </div>
+        
+        <div ng-if="updateSkillButtons">
+            <md-button class="md-raised md-primary" ng-click='skillEditSubmit()'> Update </md-button>
+            <md-button class="md-raised md-primary" ng-click='cancelEditSkill()'> Cancel </md-button>
+        </div>
+        
+        
         
     </md-content>
   </md-tab>       

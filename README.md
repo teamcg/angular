@@ -120,3 +120,9 @@ Jan 20 <br>
 Jan 21 <br>
 -- Added get experience achievement service function for when clicking the achievement icon. <br>
 
+Jan 23 <br>
+-- Added Delete and edit function for skills <br>
+
+
+- John lois Frades & Surinda! <br>
+

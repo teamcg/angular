@@ -50,6 +50,37 @@ router.post('/getcvskill', function(req, res){
 });
 
 
+router.post('/editcvskill', function(req,res){
+	var updatedSkillData = {
+		name: req.body.name,
+		description: req.body.description
+	}
+
+	console.log(updatedSkillData);
+
+	Skill.findByIdAndUpdate(req.body.id, updatedSkillData, {new: true}, function(err, updatedSkill){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: updatedSkill
+			});
+		}
+	});
+});
+
+
+router.post('/deletecvskill', function(req, res){
+	Skill.findByIdAndRemove(req.body.id, function(err, deletedSkill){
+		if(err){
+			console.log(err);
+		} else {
+			deletedSkill.remove();
+			res.json({sucess: true});
+		}
+	})
+})
 
 
 

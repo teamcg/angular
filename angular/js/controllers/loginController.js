@@ -203,6 +203,13 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
     $scope.educationAchievementInfos = true;
     $scope.educationProjectInfos = true;
     
+    
+    $scope.skillTable = true;
+    $scope.updateSkillButtons = false;
+    $scope.submitSkillButton = true;
+    
+    
+    
     loginController.studentinfo = {
         firstname: $localStorage.studentFirstname,
         lastname: $localStorage.studentLastname,
@@ -1139,11 +1146,64 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
            
            
            $scope.skillAdd = function(){
-               console.log(this.skill);
                $scope.cvskill = {
                    name: this.skill.title,
                    description: this.skill.description
                }
+           }
+           
+           
+           $scope.skillEditMode = function(){
+               $localStorage.skillID = this.info._id;
+               
+               $scope.cvskill = {
+                   name: this.info.name,
+                   description: this.info.description
+               }
+               
+               $scope.skillTable = false;
+               $scope.submitSkillButton = false;
+               $scope.updateSkillButtons = true;
+               
+           }
+           
+           
+           $scope.skillEditSubmit = function(){
+               
+               var result = skillService.editcvskill(this.cvskill.name, this.cvskill.description)
+                .then(function(result){
+                    if(result){
+                        $scope.tableskill = $localStorage.cvskill;
+                        $scope.cvskill = {
+                            name: '',
+                            description: ''
+                        }
+                        $scope.skillTable = true;
+                        $scope.submitSkillButton = true;
+                        $scope.updateSkillButtons = false;
+                    }
+                });
+           }
+           
+           $scope.cancelEditSkill = function(){
+                $scope.cvskill = {
+                   name: '',
+                   description: ''
+               }
+               
+               $scope.skillTable = true;
+               $scope.submitSkillButton = true;
+               $scope.updateSkillButtons = false;
+           }
+           
+           
+           $scope.deleteSkill = function(){
+               var result = skillService.deletecvskill(this.info._id)
+                .then(function(result){
+                    if(result){
+                       $scope.tableskill = $localStorage.cvskill;
+                    }
+                });
            }
            
     
