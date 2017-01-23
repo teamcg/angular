@@ -116,4 +116,35 @@ router.get('/showexampleskill', function(req, res){
 });
 
 
+router.post('/editexampleskill', function(req, res){
+
+	var newSkillEx = {
+		title: req.body.title,
+		description: req.body.description
+	}
+
+
+	SkillExample.findByIdAndUpdate(req.body.id, newSkillEx, {new: true}, function(err, updatedSkillEx){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: updatedSkillEx
+			});
+		}
+	});
+});
+
+
+router.post('/deleteexampleskill', function(req, res){
+	SkillExample.findByIdAndRemove(req.body.id, function(err, deletedSkillExample){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({success: true});
+		}
+	});
+});
+
 module.exports = router;

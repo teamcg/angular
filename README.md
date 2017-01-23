@@ -122,6 +122,9 @@ Jan 21 <br>
 
 Jan 23 <br>
 -- Added Delete and edit function for skills <br>
+-- Added confirmation dialog alert when deleting experience responsibilities & achievement. <br>
+-- Added confirmation dialog alert when deleting education paper, project & achievement. <br>
+-- Added edit and delete function for skill example <br>
 
 
 - John lois Frades & Surinda! <br>

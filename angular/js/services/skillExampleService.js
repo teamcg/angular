@@ -53,7 +53,69 @@ app.service('skillExampleService', function($http, $localStorage){
         });
     }
     
+    this.editSkillExample = function(title, description){
+        
+        var editSkill = {
+            method: 'POST',
+            url: 'http://localhost:3000/editexampleskill',
+            dataType: 'json',
+            contentType: 'applicaiton/json',
+            data: {
+                id: $localStorage.exampleSkillID,
+                title: title,
+                description: description
+            }
+        }
+        
+        var showSkill = {
+            method: 'GET',
+            url: 'http://localhost:3000/showexampleskill',
+            dataType: 'json',
+            contentType: 'application/json'
+        }
+        
+        
+        return $http(editSkill)
+            .then(function(response){
+                return $http(showSkill)
+                    .then(function(response2){
+                        $localStorage.skillExample = response2.data.info;
+                        return true;
+                });
+        });
+    }
     
+    
+    this.deleteSkillExample = function(id){
+        
+        var deleteSkillEx = {
+            method: 'POST',
+            url: 'http://localhost:3000/deleteexampleskill',
+            dataType: 'json',
+            contenType: 'application/json',
+            data: {
+                id: id
+            }
+        }
+        
+        var showSkill = {
+            method: 'GET',
+            url: 'http://localhost:3000/showexampleskill',
+            dataType: 'json',
+            contentType: 'application/json'
+        }
+        
+        return $http(deleteSkillEx)
+            .then(function(response){
+                return $http(showSkill)
+                    .then(function(response2){
+                        $localStorage.skillExample = response2.data.info;
+                        return true;
+                });
+        });
+        
+        
+    }
     
     
     

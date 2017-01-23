@@ -21,9 +21,13 @@
 
                 </md-input-container>
 
-
+               <div ng-if="exSkillSubmitButton">
                 <md-button class="md-raised md-primary"  ng-click="skillExampleCtrl.submit()">Add</md-button>  
-
+               </div>
+               
+               <div ng-if="exSkillEditButton">
+                   <md-button class="md-raised md-primary"  ng-click="updateExampleSkill()">Update</md-button>  
+               </div>
             </md-input-container>
              
 
@@ -41,18 +45,49 @@
            <table class="table  table-hover">
                <thead>
                    <tr>
+                       <th></th>
                        <th>Skill</th>
                        <th>Skill Description</th>
                    </tr>
                </thead>
                <tbody ng-repeat="skill in skillExampleData">
                    <tr>
+                       <td>
+                           <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExampleSkill()"></span>
+                           <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExampleSkill()()"></span>
+                       </td>
                        <td>{{skill.title}}</td>
                        <td>{{skill.description}}</td>
                    </tr>
                </tbody>
            </table>
-            </div>
+         
+         
+         
+         
+    
+    
+</div>   
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+         
+</div>
 
 
 

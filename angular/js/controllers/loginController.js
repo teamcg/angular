@@ -578,14 +578,38 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
         }
          
          $scope.deleteExpResponsibilities = function(){
-          //  $localStorage.expResponsibilitiesID = this.expResponsibilities._id;
-                
-            var result = experienceService.cvDeleteExperienceResponsibilities(this.expResponsibilities._id)
+             var expRespToBeDeleted = this;
+             //Sweet Alert before deleting
+            swal({
+              title: 'Do you want to delete the selected responsibility?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '<span class="glyphicon glyphicon-ok"></span>',
+              cancelButtonText: '<span class="glyphicon glyphicon-remove"></span>'
+            }).then(function () {
+
+            var result = experienceService.cvDeleteExperienceResponsibilities(expRespToBeDeleted.expResponsibilities._id)
                 .then(function(result){
                     if(result){
                         $scope.showExperienceResponsibilities = $localStorage.cvExperienceResponsibilities;
                     }
                 });
+                
+                     swal({
+                      type: 'success',
+                      title: 'Experience Responsibility successfully deleted!',
+                      timer: 1000,
+                      showConfirmButton: false
+                    });
+                
+                
+                });
+
+             
+                
+
         }
          
          
@@ -668,14 +692,33 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
         
         
         $scope.deleteExpAchievements = function(){
-          //  $localStorage.expAchievementID = this.expAch._id;
+            var expAchToBeDeleted = this;
+            
+            swal({
+              title: 'Do you want to delete the selected achievement?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '<span class="glyphicon glyphicon-ok"></span>',
+              cancelButtonText: '<span class="glyphicon glyphicon-remove"></span>'
+            }).then(function () {
+                var result = experienceService.cvDeleteExperienceAchievements(expAchToBeDeleted.expAch._id)
+                    .then(function(result){
+                        if(result){
+                            $scope.showExpAch = $localStorage.cvExperienceAchievements;
+                        }
+                    });
+
                 
-            var result = experienceService.cvDeleteExperienceAchievements(this.expAch._id)
-                .then(function(result){
-                    if(result){
-                        $scope.showExpAch = $localStorage.cvExperienceAchievements;
-                    }
+                  swal({
+                  type: 'success',
+                  title: 'Achievement successfully deleted!',
+                  timer: 1000,
+                  showConfirmButton: false
                 });
+            });
+            
         }
         
         ////////////
@@ -964,37 +1007,103 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
         $scope.deleteEducationPaper = function(){
             $localStorage.paperInEducationID = this.papers._id;
             
-            var result = educationService.cvDeleteEducationPaper()
-                .then(function(result){
-                    if(result){
-                        $scope.showEducationPapers = $localStorage.cvEducationPapers;
-                    } else {
-                        console.log('Delete paper education error');
-                    }
-                    
-                });  
+            swal({
+              title: 'Do you want to delete the selected paper?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '<span class="glyphicon glyphicon-ok"></span>',
+              cancelButtonText: '<span class="glyphicon glyphicon-remove"></span>'
+            }).then(function () {
+                
+                var result = educationService.cvDeleteEducationPaper()
+                    .then(function(result){
+                        if(result){
+                            $scope.showEducationPapers = $localStorage.cvEducationPapers;
+                        } else {
+                            console.log('Delete paper education error');
+                        }
+
+                    });  
+                
+                  swal({
+                  type: 'success',
+                  title: 'Paper successfully deleted!',
+                  timer: 1000,
+                  showConfirmButton: false
+                });
+            });
+            
         }
         
         $scope.deleteEducationProject = function(){
             $localStorage.projectInEducationID = this.eduProject._id;
             
+            
+            swal({
+              title: 'Do you want to delete the selected project?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '<span class="glyphicon glyphicon-ok"></span>',
+              cancelButtonText: '<span class="glyphicon glyphicon-remove"></span>'
+            }).then(function () {
+                
             var result = educationService.cvDeleteEducationProject()
                 .then(function(result){
                     if(result){
                         $scope.showEducationProjects = $localStorage.cvEducationProjects;
                     }
                 });
+                
+                  swal({
+                  type: 'success',
+                  title: 'Project successfully deleted!',
+                  timer: 1000,
+                  showConfirmButton: false
+                });
+            });
+            
+            
+            
+            
+            
+
         }
         
         $scope.deleteEducationAchievement = function(){
             $localStorage.achievementInEducationID = this.eduAchievement._id;
             
-            var result = educationService.cvDeleteEducationAchievement()
-                .then(function(result){
-                    if(result){
-                        $scope.showEducationAchievements = $localStorage.cvEducationAchievements;
-                    }
-                })
+            
+            
+            swal({
+              title: 'Do you want to delete the selected achievement?',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '<span class="glyphicon glyphicon-ok"></span>',
+              cancelButtonText: '<span class="glyphicon glyphicon-remove"></span>'
+            }).then(function () {
+                
+                var result = educationService.cvDeleteEducationAchievement()
+                    .then(function(result){
+                        if(result){
+                            $scope.showEducationAchievements = $localStorage.cvEducationAchievements;
+                        }
+                    });
+                
+                  swal({
+                  type: 'success',
+                  title: 'Achievement successfully deleted!',
+                  timer: 1000,
+                  showConfirmButton: false
+                });
+            });
+            
+
         }
         
         
@@ -1198,14 +1307,38 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
            
            
            $scope.deleteSkill = function(){
-               var result = skillService.deletecvskill(this.info._id)
+               
+            var skillToBeDeleted = this;
+               
+               swal({
+              title: 'Do you want to delete the selected skill',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '<span class="glyphicon glyphicon-ok"></span>',
+              cancelButtonText: '<span class="glyphicon glyphicon-remove"></span>'
+            }).then(function () {
+
+               var result = skillService.deletecvskill(skillToBeDeleted.info._id)
                 .then(function(result){
                     if(result){
                        $scope.tableskill = $localStorage.cvskill;
                     }
                 });
-           }
+                
+                  swal({
+                  type: 'success',
+                  title: 'Skill successfully deleted!',
+                  timer: 1000,
+                  showConfirmButton: false
+                });
+            });   
+
+         }
            
+           
+
     
 });
 
