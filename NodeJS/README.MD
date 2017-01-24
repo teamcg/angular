@@ -102,5 +102,12 @@ Jan 23 <br>
 -- Added delete skill example route <br>
 -- Added edit skill example route <br>
 
+Jan 24 <br>
+-- Added adds folder to the CV folder when the user registers. Saves as Fullname + the student id <br>
+-- Added /cvexpand route for checking the whole content of the CV <br>
+-- Added POST route for generating cv. (format not fnished) <br>
+-- Added POST route for getting the CV files inside the folder <br>
+
+
 -- John Lois Frades & Surinderpal Kaur Sidhu
 

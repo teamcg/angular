@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../app/models/users');
 var Authkey = require('../app/models/authkey');
+var fs = require('fs');
 
 
 
@@ -57,6 +58,10 @@ router.post('/register', function(req, res) {
             message: 'Email already used!'
           });
         } else {
+
+          var fullnameAndId = req.body.firstname + req.body.lastname + '.' + req.body.studentid;
+
+
           var newUser = new User({
             email: req.body.email,
             studentid: req.body.studentid,
@@ -67,7 +72,8 @@ router.post('/register', function(req, res) {
             website: req.body.website,
             address: req.body.address,
             phone: req.body.phone,
-            authcode: req.body.authcode
+            authcode: req.body.authcode,
+            folder: fullnameAndId.replace(/\s/g,'')
       });
 
           newUser.save(function(err) {
@@ -79,6 +85,10 @@ router.post('/register', function(req, res) {
 
           foundKey.used = true;
           foundKey.save();
+
+          var named = "./CV/" + fullnameAndId;
+          fs.mkdir(named.replace(/\s/g,''));
+
           res.json({ 
             success: true, 
             data: newUser 
