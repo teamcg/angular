@@ -1,5 +1,5 @@
 var app = angular.module("main");
-app.controller("LoginController", function(loginService, myProfileService, cvNameService, personalStatementService, personalInfoService, experienceService, educationService, skillService, $location, $localStorage, $scope, $timeout){
+app.controller("LoginController", function(loginService, myProfileService, cvNameService, personalStatementService, personalInfoService, experienceService, educationService, skillService, cvGenService, $location, $localStorage, $scope, $timeout){
 
     
 //swal({
@@ -21,8 +21,7 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
     
     
 	var loginController = this;
-    
-    
+
     
 //    Temporary
     
