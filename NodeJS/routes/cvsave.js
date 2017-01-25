@@ -398,4 +398,36 @@ router.post('/studentfile', function(req, res){
 
 
 
+
+
+// router.get('/CV/:file', function (req, res){
+
+//   var path=require('path');
+
+//     file = req.params.file;
+
+//     var dirname = path.resolve(".")+'/CV/';
+
+//     var img = fs.readFileSync(dirname  + file);
+
+//     res.writeHead(200, {'Content-Type': 'image/jpg' });
+
+//     res.end(img, 'binary');
+
+// });
+
+
+router.get('/CV/:file(*)', function(req, res, next){ // this routes all types of file 
+
+  var path = require('path');
+  var file = req.params.file;
+  var path = path.resolve(".")+'/CV/' + file;
+  
+  res.download(path);
+
+
+});
+
+
+
 module.exports = router

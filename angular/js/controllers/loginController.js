@@ -2,24 +2,8 @@ var app = angular.module("main");
 app.controller("LoginController", function(loginService, myProfileService, cvNameService, personalStatementService, personalInfoService, experienceService, educationService, skillService, cvGenService, $location, $localStorage, $scope, $timeout){
 
     
-//swal({
-//  title: 'Do you want to delete experience?',
-//  type: 'warning',
-//  showCancelButton: true,
-//  confirmButtonColor: '#3085d6',
-//  cancelButtonColor: '#d33',
-//  confirmButtonText: 'Yes'
-//}).then(function () {
-//      swal({
-//      type: 'success',
-//      title: 'Experience successfully deleted!',
-//      timer: 1000,
-//      showConfirmButton: false
-//    });
-//});
-    
-    
-    
+
+
 	var loginController = this;
 
     
@@ -75,7 +59,7 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
     
     
     
-    
+ //End temporary   
     
     
     
@@ -1336,6 +1320,39 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
 
          }
            
+           
+        $scope.generateCV = function(){
+            
+            var result = cvGenService.generateCV()
+                .then(function(result){
+                    if(result){
+                       location.reload(); 
+                    }
+                });
+            
+        }
+           
+           
+        $scope.getCVList = function(){
+            var result = cvGenService.getCV()
+                .then(function(result){
+                    if(result){
+                       $scope.cvlist = $localStorage.cvlist;
+                    }
+                });
+        }
+        
+        $scope.downloadCV = function(){
+            
+            var result = cvGenService.downloadCV(this.cv)
+                .then(function(result){
+                    if(result){
+
+                    }
+                });
+            
+            console.log(this.cv);
+        }
            
 
     

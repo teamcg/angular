@@ -126,6 +126,10 @@ Jan 23 <br>
 -- Added confirmation dialog alert when deleting education paper, project & achievement. <br>
 -- Added edit and delete function for skill example <br>
 
+Jan 25 <br>
+-- Added save tab on the CV to generate the currentCV <br>
+-- created a function in service and controller for generating cv <br>
+-- created a function in service and controller for getting the list of students CV <br>
 
 - John lois Frades & Surinda! <br>
 

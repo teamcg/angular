@@ -696,19 +696,20 @@
                 <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducationAchievement()"></span>
             </div>
      </div>
- 
   </md-content>        
-        
-        
-        
-                      
-                                                      
-              
-   
-      </md-tab>
- 
+    </md-content>
     
-       
+</md-tab>
+ 
+<md-tab label="Save CV">     
+    <md-content class="md-padding">
+       <md-content layout-padding>
+           <button ng-click="generateCV()">Save CV</button>
+        </md-content>
+        </md-content>
+
+ </md-tab>
+
        
        
        
@@ -737,9 +738,12 @@
 
     </md-tabs>
   </md-content>
+                
+                
+                
 </div>
                 
-                
+          
                
                 
                 
@@ -754,29 +758,28 @@
 <!--                END HERE-->
             </md-content>
           </md-tab>
-          <md-tab label="My CV">
+        
+        
+        
+        
+ 
+          <md-tab ng-click="getCVList()" label="My CV">
             <md-content class="md-padding">
-                                    <h2>My CVs</h2>
+                    <h2>My CVs</h2>
                         <table class="table">
                             <tr>
                               <th>CV Name</th>
-                              <th>Date created</th>
-                              <th>Date modified</th>
+                              <th></th>
                             </tr>
-                            <tr>
-                              <td><a href="javascript:void(0)">My Web-Dev CV</a></td>
-                              <td>31/04/2016 4:30pm</td>
-                              <td>08/11/2016 2:15pm</td>
-                            </tr>
-                            <tr>
-                              <td><a href="javascript:void(0)">My Sales CV</a></td>
-                              <td>20/05/2016 4:30pm</td>
-                              <td>16/10/2016 2:15pm</td>
-                            </tr>
-                            <tr>
-                              <td><a href="javascript:void(0)">My Mobile-Dev CV</a></td>
-                              <td>28/01/2016 4:30pm</td>
-                              <td>28/01/2016 2:15pm</td>
+                            <tr ng-repeat="cv in cvlist">
+                              <td><a ng-click="downloadCV()">{{cv}}</a></td>
+                                <td >
+                                    <span style="float:right">
+                                        <button>Edit</button>
+                                        <button>Delete</button>
+                                        <button>Download</button>
+                                    </span>
+                                </td>
                             </tr>
                           </table>
             </md-content>
@@ -785,6 +788,9 @@
       </md-content>
     </div>
     
+
+
+
     
     
 

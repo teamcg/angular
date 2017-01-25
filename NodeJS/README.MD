@@ -108,6 +108,10 @@ Jan 24 <br>
 -- Added POST route for generating cv. (format not fnished) <br>
 -- Added POST route for getting the CV files inside the folder <br>
 
+Jan 25 <br>
+-- Added route for downloading CV and sending it to the client side (AngularJS) <br>
+-- Install FileSave.js <br>
+
 
 -- John Lois Frades & Surinderpal Kaur Sidhu
 
