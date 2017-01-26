@@ -1,8 +1,22 @@
-<section id="logo" layout="row" layout-align="center center" layout-wrap layout-sm="column" >
-    <div layout-gt-xs="row">
-			<img src="images/logoLogin.png" style="">
-    </div>
-</section>
+<!--
+
+
+
+
+   
+    <div class="container col-sm-6 col-sm-offset-3">
+        <md-input-container class="md-block"> 
+
+            <label>Category</label>
+            <input autofocus ng-model=''>
+
+        </md-input-container>
+        
+            <md-button class="md-raised md-primary"  ng-click="">Add Category</md-button> 
+    </div> 
+   
+      
+      
 		  
      <div class="col-sm-6 col-sm-offset-3"  ng-controller="SkillExampleController as skillExampleCtrl" ng-cloak>
 
@@ -12,12 +26,12 @@
 
                 <md-input-container class="md-block"> 
                      <label>Skill Title</label>
-                     <input class="inputBlackColor" type="text" id="username" autofocus ng-model='skillExample.title'>
+                     <input class="inputBlackColor" type="text" autofocus ng-model='skillExample.title'>
 
                 </md-input-container>
                                        <md-input-container class="md-block"> 
                      <label>Skill Description</label>
-                     <input class="inputBlackColor" type="text" id="username" autofocus ng-model='skillExample.description'>
+                     <input class="inputBlackColor" type="text" autofocus ng-model='skillExample.description'>
 
                 </md-input-container>
 
@@ -34,13 +48,7 @@
                        
               </section>
          
-         
-<!--
-        <div ng-repeat="skill in skillExampleData">
-                <h1>{{skill.title}}</h1>
-                <h2>{{skill.description}}</h2>           
-        </div>
--->
+
            
            <table class="table  table-hover">
                <thead>
@@ -68,26 +76,125 @@
     
     
 </div>   
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
-         
+        
+        
+<div ng-cloak class="container" style="font-size: 50px">
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Add Skill to selected Category</span>
+        </h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
 </div>
+-->
+        
+<!--
+<div class="md-padding container" ng-cloak>
+  <div>
+    <h1 class="md-title">Pick an item below</h1>
+    <div layout="row">
+      <md-input-container>
+        <label>Items</label>
+        <md-select ng-model="selectedItem" md-selected-text="showSkillCategory()">
+          <md-optgroup label="items">
+            <md-option ng-value="skillCat" ng-repeat="skillCat in showExSkillCategory">{{skillCat.category}}</md-option>
+          </md-optgroup>
+        </md-select>
+      </md-input-container>
+    </div>
+  </div>
+</div>
+-->
+    
+         
+              
+                        
+<!--
+<div layout="column" layout-align="center center" style="padding:40px" ng-cloak>
+  <div layout="column" layout-align="center center">
+    <md-select placeholder="Select Category" ng-model="" md-on-open="showSkillCategory()" style="min-width: 200px;">
+      <md-option ng-value="skill" ng-repeat="skill in showExSkillCategory">{{skill.category}}</md-option>
+    </md-select>
+  </div>
+</div>
+         
+-->
+<!--
+         
+         <button ng-click="showSkillCategory()"></button>
+-->
+         
+         
+<div ng-cloak class="container" style="font-size: 50px">
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Add Category</span>
+        </h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+</div>   
+      
+<div ng-controller="SkillExampleController as skillExampleCtrl">         
+<div class="col-sm-6 col-sm-offset-3">       
+    <input ng-model="exSkillCategory">
+    <button ng-click="addSkillCategory()">Add Category</button> 
+  
+</div>   
+
+    <h2>Categories:</h2>
+    <div ng-repeat="skill in showExSkillCategory">
+            <h3>{{skill.category}}</h3>  
+    </div>                                                      
+                      
+         
+         
+<div ng-cloak class="container" style="font-size: 50px">
+    <md-toolbar class="md-hue-2">
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Add Skill</span>
+        </h2>
+        <span flex></span>
+      </div>
+    </md-toolbar>
+</div>  
+         
+         
+     
+ 
+ <div>              
+<select ng-model="skillCategory">
+<option value="" disabled selected>Select Category</option>
+<option  ng-repeat="skill in showExSkillCategory" value="{{skill._id}}">{{skill.category}}</option>
+</select>
+        <label>Skill Name</label>
+        <input ng-model="skill.name">
+        
+        <label>Skill Description</label>
+        <input ng-model="skill.desc">
+        
+        <button ng-click="addSkillNameDesc()">Add Skill</button>
+        <div ng-repeat="skill in showExSkillCategory">
+                    <h1>{{skill._id}}</h1>
+            
+        </div>
+</div>  
+
+         
+</div>           
+         
+         
+         
+         
+         
+         
+         
+         
+         
 
 
 

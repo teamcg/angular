@@ -112,6 +112,10 @@ Jan 25 <br>
 -- Added route for downloading CV and sending it to the client side (AngularJS) <br>
 -- Install FileSave.js <br>
 
+Jan 27 <br>
+-- Reworked skill Example, added category function, when user click on the category, it will populate the data under that category <br>
+-- Reworked the skill example database model. <br>
+
 
 -- John Lois Frades & Surinderpal Kaur Sidhu
 

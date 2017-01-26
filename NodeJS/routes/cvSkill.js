@@ -4,7 +4,8 @@ var router = express.Router();
 var User = require('../app/models/users');
 var CV = require('../app/models/cv');
 var Skill = require('../app/models/skill');
-var SkillExample = require('../app/models/skillExample');
+var SkillExample = require('../app/models/ExampleSkill/skillExample');
+var SkillExampleNameDesc = require('../app/models/ExampleSkill/exSkill');
 var moment = require('moment');
 
 
@@ -81,6 +82,63 @@ router.post('/deletecvskill', function(req, res){
 		}
 	})
 })
+
+
+
+//Skill Example
+
+
+router.post('/addexskillcategory', function(req, res){
+	SkillExample.create({category: req.body.skillcategory}, function(err, exSkillCategory){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: exSkillCategory
+			});
+		}
+	});
+});
+
+router.post('/addexskillnamedesc', function(req, res){
+	SkillExample.findById(req.body.skillcategoryid, function(err, exSkillCategory){
+		if(err){
+			console.log(err);
+		} else {
+			var skillNameDesc = {
+				name: req.body.skillname,
+				description: req.body.skilldescription
+			}
+
+			SkillExampleNameDesc.create(skillNameDesc, function(err, exSkill){
+				if(err){
+					console.log(err);
+				} else {
+					exSkillCategory.skill.push(exSkill);
+					exSkillCategory.save();
+					res.json({
+						success: true,
+						info: exSkill
+					});
+				}
+			});
+		}
+	});
+});
+
+router.get('/getexskillcategory', function(req, res){
+	SkillExample.find({}, function(err, skillCategory){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				info: skillCategory
+			});
+		}
+	});
+});
+
 
 
 

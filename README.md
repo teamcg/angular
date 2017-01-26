@@ -131,5 +131,8 @@ Jan 25 <br>
 -- created a function in service and controller for generating cv <br>
 -- created a function in service and controller for getting the list of students CV <br>
 
+Jan 27 <br>
+-- Reworking the Skill Example, making it per category <br>
+
 - John lois Frades & Surinda! <br>
 

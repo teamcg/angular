@@ -1,8 +1,12 @@
 var mongoose = require('mongoose');
 
 var skillExampleSchema = new mongoose.Schema({
-	title: String,
-	description: String
+	category: String,
+	skill: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'ExSkill'
+	}]
+
 });
 
 module.exports = mongoose.model('SkillExample', skillExampleSchema);
