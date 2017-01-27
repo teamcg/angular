@@ -116,6 +116,10 @@ Jan 27 <br>
 -- Reworked skill Example, added category function, when user click on the category, it will populate the data under that category <br>
 -- Reworked the skill example database model. <br>
 
+Jan 28 <br>
+-- reconfigured the '/getexskillcategory' route, added populate for skills <br>
+-- DELETED the old example skill routes <br>
+
 
 -- John Lois Frades & Surinderpal Kaur Sidhu
 

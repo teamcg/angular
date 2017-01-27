@@ -134,5 +134,9 @@ Jan 25 <br>
 Jan 27 <br>
 -- Reworking the Skill Example, making it per category <br>
 
+Jan 28 <br>
+-- Working skill example by category <br>
+-- DELETED the old Functions in controller and services for skill example <br>
+
 - John lois Frades & Surinda! <br>
 

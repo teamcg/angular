@@ -85,7 +85,26 @@ router.post('/deletecvskill', function(req, res){
 
 
 
+
+
+
+
+
 //Skill Example
+
+
+router.get('/getexskillcategory', function(req, res){
+	SkillExample.find().populate('skill').exec(function(err, theSkill){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: theSkill
+			});
+		}
+	});
+});
 
 
 router.post('/addexskillcategory', function(req, res){
@@ -127,82 +146,14 @@ router.post('/addexskillnamedesc', function(req, res){
 	});
 });
 
-router.get('/getexskillcategory', function(req, res){
-	SkillExample.find({}, function(err, skillCategory){
-		if(err){
-			console.log(err);
-		} else {
-			res.json({
-				info: skillCategory
-			});
-		}
-	});
-});
 
 
 
 
-router.post('/addexampleskill', function(req, res){
-	var SkillExData = {
-		title: req.body.skillExTitle,
-		description: req.body.skillExDescription
-	}
-
-	SkillExample.create(SkillExData, function(err, newExampleSkill){
-		if(err){
-			console.log(err);
-		} else {
-			res.json({
-				success: true,
-				info: newExampleSkill
-			});
-		}
-	});
-});
 
 
-router.get('/showexampleskill', function(req, res){
-	SkillExample.find({}, function(err, theSkills){
-		if(err){
-			console.log(err);
-		} else {
-			res.json({
-				info: theSkills
-			});
-		}
-	});
-});
 
 
-router.post('/editexampleskill', function(req, res){
 
-	var newSkillEx = {
-		title: req.body.title,
-		description: req.body.description
-	}
-
-
-	SkillExample.findByIdAndUpdate(req.body.id, newSkillEx, {new: true}, function(err, updatedSkillEx){
-		if(err){
-			console.log(err);
-		} else {
-			res.json({
-				success: true,
-				info: updatedSkillEx
-			});
-		}
-	});
-});
-
-
-router.post('/deleteexampleskill', function(req, res){
-	SkillExample.findByIdAndRemove(req.body.id, function(err, deletedSkillExample){
-		if(err){
-			console.log(err);
-		} else {
-			res.json({success: true});
-		}
-	});
-});
 
 module.exports = router;
