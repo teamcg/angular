@@ -138,6 +138,8 @@ Jan 28 <br>
 -- Working skill example by category <br>
 -- DELETED the old Functions in controller and services for skill example <br>
 -- Reworked the Example button on skill portal. It now have category selection <br>
+-- Added PERSONAL STATEMENT EXAMPLE template, controller <br>
+-- Added add personal statement example function controller and service <br>
 
 - John lois Frades & Surinda! <br>
 

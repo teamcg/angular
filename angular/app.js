@@ -25,6 +25,10 @@ app.config(function ($routeProvider, $httpProvider){
         templateUrl: "./templates/skillExample.htm",
         controller: "SkillExampleController"
     })
+    .when("/addpsexample", {
+        templateUrl: "./templates/psExample.htm",
+        controller: "PSExampleController"
+    })
   .otherwise({
     templateUrl : "/templates/error404.htm"
   });

@@ -119,6 +119,7 @@ Jan 27 <br>
 Jan 28 <br>
 -- reconfigured the '/getexskillcategory' route, added populate for skills <br>
 -- DELETED the old example skill routes <br>
+-- Added personal statement example. similar to skill example. <br>
 
 
 -- John Lois Frades & Surinderpal Kaur Sidhu

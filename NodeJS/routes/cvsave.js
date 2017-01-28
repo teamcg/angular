@@ -12,6 +12,7 @@ var EducationAchievement = require('../app/models/educationOptions/achievements'
 var EducationProject = require('../app/models/educationOptions/projects');
 var Skill = require('../app/models/skill');
 var SkillExample = require('../app/models/ExampleSkill/skillExample');
+var PSExample = require('../app/models/personalstatementexample');
 var moment = require('moment');
 var officegen = require('officegen');
 var async = require('async');
@@ -426,6 +427,34 @@ router.get('/CV/:file(*)', function(req, res, next){ // this routes all types of
   res.download(path);
 
 
+});
+
+
+router.post('/addpersonalstatementexample', function(req, res){
+	PSExample.create({text: req.body.pstext}, function(err, thePS){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: thePS
+			});
+		}
+	});
+});
+
+
+router.get('/getpersonalstatementexample', function(req, res){
+	PSExample.find({}, function(err, thePS){
+		if(err){
+			console.log(err);
+		} else {
+			res.json({
+				success: true,
+				info: thePS
+			});
+		}
+	});
 });
 
 
