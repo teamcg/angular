@@ -1353,8 +1353,14 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
             
             console.log(this.cv);
         }
-           
-
+        
+        
+        $scope.getSkillExample = function(){
+            $scope.cvskill = {
+                name: this.theskill.name,
+                description: this.theskill.description
+            }
+        }
     
 });
 

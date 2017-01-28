@@ -23,10 +23,10 @@ function checkPass(){
      }
 } 
 
-$('#menu-toggle').click(function(){
-    alert('hey');
-});
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 
 //var d = document.getElementById('menu-toggle');
 //d.className += " toggled";

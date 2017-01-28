@@ -137,6 +137,7 @@ Jan 27 <br>
 Jan 28 <br>
 -- Working skill example by category <br>
 -- DELETED the old Functions in controller and services for skill example <br>
+-- Reworked the Example button on skill portal. It now have category selection <br>
 
 - John lois Frades & Surinda! <br>
 

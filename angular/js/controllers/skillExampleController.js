@@ -59,5 +59,7 @@ app.controller('SkillExampleController', function(skillExampleService, $location
         $scope.checkThis = function (){
             console.log(this.theskill._id);
         }
+        
+       
     
 });
