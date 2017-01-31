@@ -121,6 +121,9 @@ Jan 28 <br>
 -- DELETED the old example skill routes <br>
 -- Added personal statement example. similar to skill example. <br>
 
+Jan 31 <br>
+-- Reworked the generate word route <br>
+
 
 -- John Lois Frades & Surinderpal Kaur Sidhu
 

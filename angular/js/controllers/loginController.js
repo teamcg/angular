@@ -1326,7 +1326,8 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
             var result = cvGenService.generateCV()
                 .then(function(result){
                     if(result){
-                       location.reload(); 
+                       // location.reload(); 
+                       console.log('CV successfully generated');
                     }
                 });
             
