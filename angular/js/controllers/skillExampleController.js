@@ -19,8 +19,7 @@ app.controller('SkillExampleController', function(skillExampleService, $location
        //New SKill
        
        $scope.showSkillCategory = function(){
-//           console.log('hahhah');
-//           
+        
            var result = skillExampleService.getSkillCategory()
             .then(function(result){
                 if(result){

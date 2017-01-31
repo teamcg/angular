@@ -141,5 +141,8 @@ Jan 28 <br>
 -- Added PERSONAL STATEMENT EXAMPLE template, controller <br>
 -- Added add personal statement example function controller and service <br>
 
+Jan 31 <br>
+-- Added EXAMPLE button on personal statement to show the modal of the list of personal statement example <br>
+
 - John lois Frades & Surinda! <br>
 

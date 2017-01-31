@@ -34,6 +34,27 @@ app.service('PSExampleService', function($http, $localStorage){
                 }
         });
     }
+
+    this.getPS = function(){
+
+        var getPSExample = {
+            method: 'GET',
+            url: 'http://localhost:3000/getpersonalstatementexample',
+            dataType: 'json',
+            contentType: 'application/json'
+        }
+
+        return $http(getPSExample)
+            .then(function(response){
+                if(response.data.success){
+                    $localStorage.psexample = response.data.info;
+                    return true;
+                } else {
+                    console.log('get PS Example error service');
+                    return false;
+                }
+            });
+    }
     
 
     

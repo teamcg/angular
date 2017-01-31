@@ -1,4 +1,6 @@
 
+var a = document.querySelector('#clickME');
+
 
 
 
@@ -25,7 +27,7 @@ function checkPass(){
 
 
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
+
 })
 
 //var d = document.getElementById('menu-toggle');
