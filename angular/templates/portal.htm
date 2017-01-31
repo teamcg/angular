@@ -168,22 +168,22 @@
         
         
         
-      
-      <md-tab label="Personal Statement">
-        <md-content class="md-padding">
-            <div class="alert alert-success" id="personalStatementAddedMessage" ng-if="personalStatementAddedMessage" role="alert">Successfully updated Personal Statement!</div>
-        
-        <md-input-container class="md-block">
-         <label>Personal Statement</label>
-                <textarea ng-model="cvpersonalstatement" value="{{cvpersonalstatement}}"  md-select-on-focus ></textarea>
-             <md-button class="md-raised md-primary" ng-click='psSubmit()'> Save </md-button>
-             <md-button ng-controller="PSExampleController" class="md-raised md-primary" style="float: right" data-toggle="modal" data-target="#PSEModal"> Example </md-button>
-        </md-input-container>
-        <h3><strong>Personal Statement:</strong> {{cvpersonalstatement}} </h3>
-        
-        </md-content>
-      </md-tab>
-       
+        <md-tab label="Personal Statement">
+          <md-content class="md-padding">
+              <div class="alert alert-success" id="personalStatementAddedMessage" ng-if="personalStatementAddedMessage" role="alert">Successfully updated Personal Statement!</div>
+          
+          <md-input-container class="md-block">
+           <label>Personal Statement</label>
+                  <textarea ng-model="cvpersonalstatement" md-select-on-focus></textarea>
+
+               <md-button class="md-raised md-primary" ng-click='psSubmit()'> Save </md-button>
+               <md-button class="md-raised md-primary" style="float: right" data-toggle="modal" data-target="#PSEModal"> Example </md-button>
+          </md-input-container>
+          <h3><strong>Personal Statement:</strong>{{cvpersonalstatement}}</h3>
+          
+          </md-content>
+        </md-tab>
+
 <!--SKILLS-->
          <md-tab label="Key Skills & Competencies">
     <md-content class="md-padding">
@@ -313,13 +313,20 @@
                                 <tbody ng-repeat='info in tableexp'>
                                     <div class="expContent"> 
                                         <tr class="text-center">
-                                        <td class="text-center">  
-                                            <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpBTN()" data-toggle="tooltip" data-placement="top" title="Edit"></span>&nbsp;&nbsp;
-                                            <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExperience()"></span>
-                                            <span style="font-size: 15px">/</span>
-                                            <span class="glyphicon glyphicon-list-alt" ng-click="openExperienceResponsibilities()"></span>
-                                            <i class="fa fa-trophy" aria-hidden="true" ng-click="openExperienceAchievements()"></i>
-                                        </td>
+                                          <td class="text-center">  
+                                              <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editExpBTN()" data-toggle="tooltip" data-placement="top" title="Edit"></span>&nbsp;&nbsp;
+                                              <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteExperience()"></span>
+                                              <span style="font-size: 15px">/</span>      
+                                                  <span class="glyphicon glyphicon-list-alt" data-toggle="tooltip" title="Responsibilities" ng-click="openExperienceResponsibilities()">
+                                                  <md-tooltip md-direction="top">
+                                                    Responsibilities
+                                                      </md-tooltip></span>           
+                                                  <i class="fa fa-trophy" aria-hidden="true" title="Ahievements" ng-click="openExperienceAchievements()">
+                                                  <md-tooltip md-direction="top">
+                                                    Ahievements
+                                                  </md-tooltip>
+                                                  </i>        
+                                          </td>
                                         <td class="expRole">{{info.role}}</td>
                                         <td class="expCompany">{{info.company}}</td>
                                         <td class="expCompanyDesc">{{info.companydescription}}</td>
@@ -604,10 +611,22 @@
                                 <td class="text-center">  
                                     <span class="glyphicon glyphicon glyphicon-pencil" ng-click="editEducationButton()"></span>&nbsp;&nbsp;
                                     <span class="glyphicon glyphicon glyphicon-trash" ng-click="deleteEducation()"></span>
-                                    <span style="font-size: 15px">/</span>
-                                    <span class="glyphicon glyphicon-list-alt" ng-click="openPapers()"></span> 
-                                    <span class="glyphicon glyphicon-briefcase" ng-click="openEducationProjects()"></span>
-                                    <i class="fa fa-trophy" ng-click="openEducationAchievements()" aria-hidden="true"></i>
+                                    <span style="font-size: 15px">/</span>  
+                                    <span class="glyphicon glyphicon-list-alt" ng-click="openPapers()">
+                                        <md-tooltip md-direction="top">
+                                                  Papers
+                                         </md-tooltip>
+                                    </span> 
+                                    <span class="glyphicon glyphicon-briefcase" ng-click="openEducationProjects()">
+                                        <md-tooltip md-direction="top">
+                                                  Projects
+                                        </md-tooltip>
+                                    </span>
+                                    <i class="fa fa-trophy" ng-click="openEducationAchievements()" aria-hidden="true">
+                                        <md-tooltip md-direction="top">
+                                                  Ahievements
+                                        </md-tooltip>
+                                    </i>
                                     
                                 </td>
                                 <td class="text-center">{{info.qualification}}</td>
@@ -806,11 +825,14 @@
       </div>
       <div class="modal-body" ng-controller="SkillExampleController as skillExampleCtrl">
         <div class="panel-group" id="accordion">
-            <div ng-repeat="skill in showExSkillCategory" class="panel panel-default">
+            <div ng-repeat="skill in showExSkillCategory" class="panel panel-primary">
             <div class="panel-heading">
               <h5 class="panel-title">
                 <h5 class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{skill._id}}">
-                {{skill.category}}</h5>
+                  <strong>
+                  {{skill.category}}
+                  </strong>
+                </h5>
               </h5>
             </div>
             <div id="{{skill._id}}" class="panel-collapse collapse">
@@ -846,14 +868,14 @@
         <h4 class="modal-title" id="myModalLabel">Example of Personal Statements</h4>
       </div>
       <div class="modal-body" ng-controller="PSExampleController">
-        <table>
+        <table class="table table-striped table-responsive">
           <thead>
             <tr>
               <th>Personal Statement</th>
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="PSE in showExPS">
+            <tr ng-repeat="PSE in showExPS" data-dismiss="modal" ng-click="getPSExample()">
               <td>{{PSE.text}}</td>
             </tr>
           </tbody>

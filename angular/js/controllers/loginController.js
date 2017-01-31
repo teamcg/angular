@@ -1362,6 +1362,10 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
                 description: this.theskill.description
             }
         }
+
+        $scope.getPSExample = function(){
+            $scope.cvpersonalstatement = this.PSE.text;
+        }
     
 });
 

@@ -37,7 +37,7 @@ app.controller('SkillExampleController', function(skillExampleService, $location
                         $scope.showExSkillCategory = $localStorage.exskillcategory
                         $scope.exSkillCategory = '';
                     }
-                })
+                });
         }
         
         
@@ -55,10 +55,5 @@ app.controller('SkillExampleController', function(skillExampleService, $location
         }
         
         
-        $scope.checkThis = function (){
-            console.log(this.theskill._id);
-        }
-        
-       
     
 });
