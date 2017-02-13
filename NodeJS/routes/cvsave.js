@@ -93,7 +93,10 @@ router.post('/cvpersonalinfo', function(req, res){
 		phone: req.body.phone,
 		email: req.body.email,
 		website: req.body.website,
-		linkedin: req.body.linkedin
+		linkedin: req.body.linkedin,
+		visastatus: req.body.visastatus,
+		driverlicence: req.body.driverlicence,
+		interest: req.body.interest
 	}
 
 
@@ -228,254 +231,213 @@ router.post('/gencv', function(req, res){
 					    var docx = officegen('docx');
 
 					    var pObj = docx.createP();
-					    pObj.addText(theCV.firstname.toString() + ' ', {font_face: 'Arial', font_size: 20});
-					    pObj.addText(theCV.lastname.toString(), {font_face: 'Arial', font_size: 20});
+					    pObj.addText(theCV.firstname.toString() + ' ', {font_face: 'Segoe UI', font_size: 18, bold: true, color: '#244061'});
+					    pObj.addText(theCV.lastname.toString(), {font_face: 'Segoe UI', font_size: 18, bold: true, color: '#244061'});
 					    pObj.addLineBreak();
 					    pObj.addLineBreak();
-					    pObj.addText('A: ' + theCV.address.toString(), {font_face: 'Segoe UI', font_size: 10});
-					    pObj.addLineBreak();
-					    pObj.addText('E: ' + theCV.email.toString(), {font_face: 'Segoe UI', font_size: 10});
-					    pObj.addLineBreak();
-					    pObj.addText('M: ' + theCV.phone.toString(), {font_face: 'Segoe UI', font_size: 10});
-					    pObj.addLineBreak();
+					    if(theCV.address !== null && theCV.address !== undefined && theCV.address !== ""){
+						    pObj.addText('A: ' + theCV.address.toString(), {font_face: 'Segoe UI', font_size: 10});
+						    pObj.addLineBreak();				    	
+					    }
+
+					    if(theCV.email !== null && theCV.email !== undefined && theCV.email !== ""){
+						    pObj.addText('E: ' + theCV.email.toString(), {font_face: 'Segoe UI', font_size: 10});
+						    pObj.addLineBreak();					    	
+					    }
+
+					    if(theCV.phone !== null && theCV.phone !== undefined && theCV.phone !== ""){
+					    	pObj.addText('P: ' + theCV.phone.toString(), {font_face: 'Segoe UI', font_size: 10});
+					    	pobj.addLineBreak();					    						    	
+					    }
+
+					    if(theCV.linkedin !== null && theCV.linkedin !== undefined && theCV.linkedin !== ""){
+					    	pObj.addText('L: ' + theCV.linkedin.toString(), {font_face: 'Segoe UI', font_size: 10});
+						    pObj.addLineBreak();
+					    }
+
+
+					    if(theCV.website !== null && theCV.website !== undefined && theCV.website !== ""){
+					    	pObj.addText('W: ' + theCV.website.toString(), {font_face: 'Segoe UI', font_size: 10});
+						    pObj.addLineBreak();
+					    }
+
+
 					    pObj.addLineBreak();
 
-					    //Personal statement
-					    pObj.addText('            Personal Statement', {font_face: 'Segoe UI', font_size: 11, bold: true, color: '#244061'});
-					    pObj.addLineBreak();
-					    pObj.addLineBreak();
-					    pObj.addText('                         ' + theCV.personalstatement.toString(), {font_face: 'Segoe UI', font_size: 10});
-				    	pObj.addLineBreak();
-				    	pObj.addLineBreak();
 
-					    //Skills
-					    pObj.addText('            Summary of Qualities and Skills', {font_face: 'Segoe UI', font_size: 11, bold: true, color: '#244061'});
-					    pObj.addLineBreak();
-					    pObj.addLineBreak();
-					    theCV.skills.forEach(function(theSkill){
-					    	pObj.addText('-       ');
-					    	pObj.addText(theSkill.name.toString(), {bold: true, underline: true, font_face: 'Segoe UI', font_size: 10, color: '#244061' });
-					    	pObj.addText(' - ' + theSkill.description.toString(), {font_face: 'Segoe UI', font_size: 10 });
+					    if(theCV.personalstatement !== undefined && theCV.personalstatement !== null && theCV.personalstatement !== ""){
+						    //Personal statement
+						    pObj.addText('            Personal Statement', {font_face: 'Segoe UI', font_size: 11, bold: true, color: '#244061'});
+						    pObj.addLineBreak();
+						    pObj.addLineBreak();
+						    pObj.addText('                         ' + theCV.personalstatement.toString(), {font_face: 'Segoe UI', font_size: 10});
 					    	pObj.addLineBreak();
-					    });
-					    pObj.addLineBreak();
-					    pObj.addLineBreak();				    
+					    	pObj.addLineBreak();
+					    } 
+
+
+					    if(theCV.skills !== undefined && theCV.skills !== null && theCV.skills !== ""){
+						    //Skills
+						    pObj.addText('            Summary of Qualities and Skills', {font_face: 'Segoe UI', font_size: 11, bold: true, color: '#244061'});
+						    pObj.addLineBreak();
+
+						    theCV.skills.forEach(function(theSkill){
+					    		var pObj = docx.createListOfDots ();
+						    	pObj.addText(theSkill.name.toString(), {bold: true, underline: true, font_face: 'Segoe UI', font_size: 10, color: '#244061' });
+						    	pObj.addText(' - ' + theSkill.description.toString(), {font_face: 'Segoe UI', font_size: 10 });
+						    });		
+						    var pObj = docx.createP();
+				    		
+						    pObj.addLineBreak();
+						    pObj.addLineBreak();	
+					    }
+			    
+
 
 
 					    //Experience
-					    if(theCV.experience.length > 0){
-
+					    if(theCV.experience !== undefined && theCV.experience !== null && theCV.experience !== ""){
 					    pObj.addText('            Full-Time Work', {font_face: 'Segoe UI', font_size: 11, bold: true, color: '#244061'});
 					    pObj.addLineBreak();
-					    pObj.addLineBreak();
 					    theCV.experience.forEach(function(experience){
+					    	var pObj = docx.createP();
 					    	pObj.addText(experience.role.toString(), {font_face: 'Segoe UI', font_size: 10, bold: true, underline: true, color: '#244061'});
 					    	pObj.addText('     ' + experience.startdate.toString() + ' - ' + experience.enddate.toString(), {font_face: 'Segoe UI', font_size: 10});
 							pObj.addLineBreak();
-							pObj.addText(experience.company.toString() + ', ' + experience.city.toString());
-					    	pObj.addLineBreak();
-					    	pObj.addLineBreak();
+							pObj.addText(experience.company.toString() + ', ' + experience.city.toString() + ', ' + experience.country.toString());
 
 					    	//Responsibilities
 					    	if(experience.responsibilities.length > 0){
+					    		var pObj = docx.createP();
 					    		pObj.addText('Responsibilities:', {font_face: 'Segoe UI', font_size: 10, underline: true});
-				    			pObj.addLineBreak();
 					    		experience.responsibilities.forEach(function(expResp){
-					    			pObj.addText('-     ' + expResp.text.toString(), {font_face: 'Segoe UI', font_size: 10});
-					    			pObj.addLineBreak();
+					    			var pObj = docx.createListOfDots ();
+					    			pObj.addText(expResp.text.toString(), {font_face: 'Segoe UI', font_size: 10});
 					    		});
-					    		pObj.addLineBreak();
+
 					    	}
+
+
 
 					    	//Achievements
 					    	if(experience.achievements.length > 0){
+					    		var pObj = docx.createP();
 					    		pObj.addText('Achievements:', {font_face: 'Segoe UI', font_size: 10, underline: true});
-				    			pObj.addLineBreak();
 					    		experience.achievements.forEach(function(expAch){
-					    			pObj.addText('-     ' + expAch.text.toString(), {font_face: 'Segoe UI', font_size: 10});
-					    			pObj.addLineBreak();
+					    			var pObj = docx.createListOfDots();
+					    			pObj.addText(expAch.text.toString(), {font_face: 'Segoe UI', font_size: 10});
 					    		});
+
 					    	}
-					    	pObj.addLineBreak();
 					    
 					    }); //End Experience Iteration
 
 
-
+					    
 
 
 					    } //End Experience IF statement
 
 
 					    //Education
-					    if(theCV.education.length > 0){
+					    if(theCV.education !== undefined && theCV.education !== null && theCV.education !== ""){
+					    	var pObj = docx.createP();
+					    	pObj.addLineBreak();
 					    	pObj.addText('            Education and Training', {font_face: 'Segoe UI', font_size: 11, bold: true, color: '#244061'});
-					    	pObj.addLineBreak();
-					    	pObj.addLineBreak();
 					    	theCV.education.forEach(function(education){
-					    		pObj.addText('*  ' + education.qualification.toString() + ', ', {font_face: 'Segoe UI', font_size: 10, bold:true});
+					    		var pObj = docx.createP();
+					    		pObj.addLineBreak();
+					    		pObj.addText(education.qualification.toString(), {font_face: 'Segoe UI', font_size: 10, bold: true, underline: true, color: '#244061'});
+					    		pObj.addText('     ' + education.startdate.toString() + ' - ' + education.enddate.toString(), {font_face: 'Segoe UI', font_size: 10});
+					    		pObj.addLineBreak();
 					    		pObj.addText(education.institution.toString(), {font_face: 'Segoe UI', font_size: 10});
 					    		pObj.addText(', ' + education.city.toString() + ', ' + education.country.toString(), {font_face: 'Segoe UI', font_size: 10});
-					    		pObj.addText(' ' + education.startdate.toString() + ' - ' + education.enddate.toString(), {font_face: 'Segoe UI', font_size: 10});
-					    		pObj.addLineBreak();
+					    		
 					    		pObj.addLineBreak();
 
 					    		//Papers
 					    		if(education.papers.length > 0){
+					    			var pObj = docx.createP();
 					    			pObj.addText('Papers:', {font_face: 'Segoe UI', font_size: 10, underline: true});
-					    			pObj.addLineBreak();
 					    			education.papers.forEach(function(papers){
-					    				pObj.addText('-     ' + papers.name.toString(), {font_face: 'Segoe UI', font_size: 10});
-					    				pObj.addLineBreak();
+					    				var pObj = docx.createListOfDots();
+					    				pObj.addText(papers.name.toString(), {font_face: 'Segoe UI', font_size: 10});
 					    			}); //End education papers iteration
 
 					    		} //End education papers IF statement
-					    		pObj.addLineBreak();
+
 
 					    		if(education.projects.length > 0){
+					    			var pObj = docx.createP();
 									pObj.addText('Projects:', {font_face: 'Segoe UI', font_size: 10, underline: true});
-					    			pObj.addLineBreak();
 					    			education.projects.forEach(function(projects){
-					    				pObj.addText('-     ' + projects.name.toString(), {font_face: 'Segoe UI', font_size: 10});
+					    				var pObj = docx.createListOfDots();
+					    				pObj.addText(projects.name.toString(), {font_face: 'Segoe UI', font_size: 10});
 					    				pObj.addText(' -- ' + projects.description.toString(), {font_face: 'Segoe UI', font_size: 10});
-					    				pObj.addLineBreak();
+					    				
 					    			}); //End education project iteration
 
 					    		} //End education projects IF statement
-					    		pObj.addLineBreak();
+
 
 					    		if(education.achievements.length > 0){
+					    			var pObj = docx.createP();
 					    			pObj.addText('Achievements:', {font_face: 'Segoe UI', font_size: 10, underline: true});
-					    			pObj.addLineBreak();
 					    			education.achievements.forEach(function(achievements){
-					    				pObj.addText('-     ' + achievements.name.toString(), {font_face: 'Segoe UI', font_size: 10});
-					    				pObj.addLineBreak();
+					    				var pObj = docx.createListOfDots();
+					    				pObj.addText(achievements.name.toString(), {font_face: 'Segoe UI', font_size: 10});
+					    				
 					    			}); //End education achievement iteration
 
 					    		} //End education achievements IF statement
-					    		pObj.addLineBreak();
+
+
 
 					    	}); //End Education Iteration
 					    } //End Education IF Statement
+					    console.log(theCV.interest !== null && theCV.interest !== undefined && theCV.interest !== "" )
+					    console.log(theCV.driverlicence !== null && theCV.driverlicence !== undefined && theCV.driverlicence !== "")
+					    console.log(theCV.visastatus !== null && theCV.visastatus !== undefined && theCV.visastatus !== "")
+					    console.log(theCV.interest !== null || theCV.interest !== undefined || theCV.interest !== "" || 
+					    	theCV.driverlicence !== null || theCV.driverlicence !== undefined || theCV.driverlicence !== "" ||
+					    	theCV.visastatus !== null || theCV.visastatus !== undefined || theCV.visastatus !== "")
+					    if(theCV.interest !== null || theCV.interest !== undefined || theCV.interest !== "" || 
+					    	theCV.driverlicence !== null || theCV.driverlicence !== undefined || theCV.driverlicence !== "" ||
+					    	theCV.visastatus !== null || theCV.visastatus !== undefined || theCV.visastatus !== ""){
 
 
+		
+							    	var pObj = docx.createP();
+							    	pObj.addLineBreak();
+							    	pObj.addText('            Personal Details', {font_face: 'Segoe UI', font_size: 11, bold: true, color: '#244061'});
+							    	pObj.addLineBreak();
+							    	pObj.addLineBreak();
 
+							    	if(theCV.visastatus !== null && theCV.visastatus !== undefined && theCV.visastatus !== ""){
+							    		pObj.addText('Visa Status', {font_face: 'Segoe UI', font_size: 10, underline: true});
+							    		pObj.addText(': ' + theCV.visastatus.toString(), {font_face: 'Segoe UI', font_size: 10});
+							    		pObj.addLineBreak();
+							    	}
+
+							    	if(theCV.driverlicence !== null && theCV.driverlicence !== undefined && theCV.driverlicence !== ""){
+							    		pObj.addText('Driver Licence', {font_face: 'Segoe UI', font_size: 10, underline: true});
+							    		pObj.addText(': ' + theCV.driverlicence.toString(), {font_face: 'Segoe UI', font_size: 10});
+							    		pObj.addLineBreak();
+							    	}
+
+							    	if(theCV.interest !== null && theCV.interest !== undefined && theCV.interest !== ""){
+							    		pObj.addText('Interests', {font_face: 'Segoe UI', font_size: 10, underline: true});
+							    		pObj.addText(': ' + theCV.interest.toString(), {font_face: 'Segoe UI', font_size: 10});
+							    		pObj.addLineBreak();
+							    	}
+					    }
+
+
+					    var pObj = docx.createP();
 					    pObj.addText('            Referees', {font_face: 'Segoe UI', font_size: 11, bold: true, color: '#244061'});
 				    	pObj.addLineBreak();
 				    	pObj.addLineBreak();
 				    	pObj.addText('Available on request', {font_face: 'Segoe UI', font_size: 10});
-
-
-
-
-
-					  //   //Education
-					  //   pObj.addText('Education', {bold: true});
-					  //   pObj.addLineBreak();
-					  //   theCV.education.forEach(function(theEducation){
-					  //   	pObj.addText(theEducation.qualification.toString());
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addText(theEducation.institution.toString());
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addText(theEducation.city.toString());
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addText(theEducation.country.toString());
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addText(theEducation.startdate.toString());
-					  //   	pObj.addText(' - ');
-					  //   	pObj.addText(theEducation.enddate.toString());
-					  //   	pObj.addLineBreak();
-
-
-					  //   	//Papers
-					  //   	pObj.addText('          Papers', {bold: true});
-					  //   	pObj.addLineBreak();
-					  //   	theEducation.papers.forEach(function(thePaper){
-					  //   		pObj.addText('          ' + '-' + thePaper.name.toString());
-					  //   		pObj.addLineBreak();
-					  //   	});
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addLineBreak();
-
-					  //   	//Projects
-					  //   	pObj.addText('          Projects', {bold: true});
-					  //   	pObj.addLineBreak();
-					  //   	theEducation.projects.forEach(function(theProject){
-					  //   		pObj.addText('          ' + '-' + theProject.name.toString());
-					  //   		pObj.addLineBreak();
-					  //   		pObj.addText('          ' + '-' + theProject.description.toString());
-					  //   		pObj.addLineBreak();
-					  //   	});
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addLineBreak();
-
-					  //   	//Achievements
-					  //   	pObj.addText('          Achievements', {bold: true});
-					  //   	pObj.addLineBreak();
-					  //   	theEducation.achievements.forEach(function(theAchievement){
-					  //   		pObj.addText('          ' + '-' + theAchievement.name.toString());
-					  //   		pObj.addLineBreak();
-					  //   	});
-							// pObj.addLineBreak();
-					  //   	pObj.addLineBreak();					    	
-					  //   });
-
-
-					  //   //Experience
-					  //   pObj.addText('Experience', {bold: true});
-					  //   pObj.addLineBreak();
-					  //   theCV.experience.forEach(function(theExperience){
-					  //   	pObj.addText(theExperience.role.toString(), {bold: true});
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addText(theExperience.company.toString());
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addText(theExperience.companydescription.toString());
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addText(theExperience.city.toString());
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addText(theExperience.country.toString());
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addText(theExperience.startdate.toString());
-					  //   	pObj.addText(' - ');
-					  //   	pObj.addText(theExperience.enddate.toString());
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addLineBreak();
-
-
-					  //   	//Achievements
-					  //   	pObj.addText('          Achievements', {bold: true});
-					  //   	pObj.addLineBreak();
-					  //   	theExperience.achievements.forEach(function(theAchievement){
-					  //   		pObj.addText('          ' + '-' + theAchievement.text.toString());
-					  //   		pObj.addLineBreak();
-					  //   	});
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addLineBreak();
-
-					  //   	//Responsibilities
-					  //   	pObj.addText('          Responsibilities', {bold: true});
-					  //   	pObj.addLineBreak();
-					  //   	theExperience.responsibilities.forEach(function(theResponsibility){
-					  //   		pObj.addText('          ' + '-' + theResponsibility.text.toString());
-					  //   		pObj.addLineBreak();
-					  //   	});
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addLineBreak();
-
-					  //   });
-
-
-					  //   //Skills
-					  //   pObj.addText('Skills', {bold: true});
-					  //   pObj.addLineBreak();
-					  //   theCV.skills.forEach(function(theSkill){
-					  //   	pObj.addText('-' + theSkill.name.toString());
-					  //   	pObj.addLineBreak();
-					  //   	pObj.addText('-' + theSkill.description.toString());
-					  //   	pObj.addLineBreak();
-					  //   });
-					  //   pObj.addLineBreak();
-					  //   pObj.addLineBreak();
 
 
 

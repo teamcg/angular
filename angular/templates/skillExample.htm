@@ -1,5 +1,6 @@
+<div class="container">
 
-<div ng-cloak class="container" style="font-size: 50px">
+<div ng-cloak style="font-size: 50px">
     <md-toolbar class="md-hue-2">
       <div class="md-toolbar-tools">
         <h2>
@@ -10,16 +11,14 @@
     </md-toolbar>
 </div>   
       
-<div class="container" ng-controller="SkillExampleController as skillExampleCtrl">         
-<div >       
+<div ng-controller="SkillExampleController as skillExampleCtrl" ng-init="showSkillCategory()">              
     <input ng-model="exSkillCategory">
-    <button ng-click="addSkillCategory()">Add Category</button> 
-</div>   
+    <button ng-click="addSkillCategory()">Add Category</button>  
 
-    <h2>Categories:</h2>
-    <div ng-repeat="skill in showExSkillCategory">
-            <h3>{{skill.category}}</h3>  
-    </div>                                                      
+    <h4>Categories:</h4>
+         <ul ng-repeat="skill in showExSkillCategory">
+           <li>{{skill.category}}</li>
+         </ul>                                                    
                       
          
          
@@ -52,31 +51,31 @@
 <button ng-click="addSkillNameDesc()">Add Skill</button>
 
 
-<div class="panel-group container" id="accordion">
-    <div ng-repeat="skill in showExSkillCategory" class="panel panel-primary">
-    <div class="panel-heading">
-      <h5 class="panel-title">
-        <h5 class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#{{skill._id}}">
-        {{skill.category}}</h5>
-      </h5>
-    </div>
-    <div id="{{skill._id}}" class="panel-collapse collapse">
-        <table class="table table-striped table-responsive">
-            <thead>
-              <tr>
-                <th>Skill</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-click="checkThis()" ng-repeat="theskill in skill.skill">
-                <td>{{theskill.name}}</td>
-                <td>{{theskill.description}}</td>
-              </tr>
-            </tbody>
-      </table>
-    </div>
-  </div>
+  <div class="ui accordion" ng-controller="SkillExampleController as skillExampleCtrl">
+    <div ng-repeat="skill in showExSkillCategory">
+      <div class="title">
+        <i class="dropdown icon"></i>
+        {{skill.category}}
+      </div>
+      <div class="content">
+        <div id="{{skill._id}}" class="transition visible">
+                <table class="table table-striped table-responsive">
+                    <thead>
+                      <tr>
+                        <th>Skill</th>
+                        <th>Description</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-click="getSkillExample()" data-dismiss="modal" ng-repeat="theskill in skill.skill">
+                        <td>{{theskill.name}}</td>
+                        <td>{{theskill.description}}</td>
+                      </tr>
+                    </tbody>
+              </table>
+            </div>
+      </div>
+    </div>   
 </div>
 
  
@@ -93,14 +92,11 @@
          
 </div>           
          
+       </div>  
          
          
          
          
          
          
-         
-         
-
-
-
+        

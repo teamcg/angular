@@ -1,4 +1,3 @@
-Simple setup of JSON Web Token on NodeJS <br>
 
 
 Nov 27 <br>
@@ -123,6 +122,24 @@ Jan 28 <br>
 
 Jan 31 <br>
 -- Reworked the generate word route <br>
+
+Feb 4 <br>
+-- Bullet point working in CV generator <br>
+
+Feb 7 <br>
+-- Added Interest Schema model <br>
+-- Added Interest post route <br>
+-- Added Edit and delete interest route <br>
+-- added the pre-schema to also delete the interest into the CV <br>
+
+Feb 8 <br>
+-- Removed the interest schema model, post route <br>
+-- merged the Interest into Personal Info <br>
+-- added visa status, driver licence on the personal info <br>
+-- Reworked the generate word document <br>
+
+Feb 13 <br>
+-- Reworked the code on generating the word document (still in progress). It generates an error when the personal details field are empty <br>
 
 
 -- John Lois Frades & Surinderpal Kaur Sidhu

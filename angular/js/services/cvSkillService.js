@@ -29,10 +29,8 @@ app.service('skillService', function($http, $localStorage){
         
         return $http(CVskill)
             .then(function(response){
-                console.log(response);
                 return $http(cvUpdateSkill)
                     .then(function(response2){
-                    console.log(response2.data.info.skills);
                     $localStorage.cvskill = response2.data.info.skills;
                      return true;
                 }, function(error2){

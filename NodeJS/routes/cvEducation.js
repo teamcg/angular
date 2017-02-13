@@ -20,8 +20,8 @@ router.post('/cveducation', function(req, res){
 		institution: req.body.institution,
 		city: req.body.city,
 		country: req.body.country,
-		startdate: moment(req.body.startdate).format('L'),
-		enddate: moment(req.body.enddate).format('L')
+		startdate: moment(req.body.startdate).format('MMMM YYYY'),
+		enddate: moment(req.body.enddate).format('MMMM YYYY')
 	}
 
 	CV.findById(req.body.id, function(err, theCV){
@@ -110,8 +110,8 @@ router.post('/editcveducation', function(req, res){
 		institution: req.body.institution,
 		city: req.body.city,
 		country: req.body.country,
-		startdate: moment(req.body.startdate).format('L'),
-		enddate: moment(req.body.enddate).format('L')
+		startdate: moment(req.body.startdate).format('MMMM YYYY'),
+		enddate: moment(req.body.enddate).format('MMMM YYYY')
 	}
 
 

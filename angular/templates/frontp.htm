@@ -1,9 +1,3 @@
-<!-- <section id="logo" layout="row" layout-align="center center" layout-wrap layout-sm="column" >
-    <div layout-gt-xs="row">
-			<img src="images/logoLogin.png" style="">
-    </div>
-</section> -->
-
 
 <div ng-cloak>
     <md-toolbar class="md-hue-2">
@@ -17,48 +11,53 @@
 
 
 <div>
-    <section id="content" layout="row" layout-align="center center" layout-wrap layout-sm="column">
-            <div ng-cloak class="col-md-3 col-sm-3 col-xs-3" ng-controller="LoginController as loginController" ng-cloak >
-                <form>
-                <section id="signinForm" layout-align="center center">
+  <section id="content" layout="row" layout-align="center center" layout-wrap layout-sm="column">
+    <div ng-cloak class="col-md-3 col-sm-3 col-xs-3" ng-controller="LoginController as loginController" ng-cloak >
+      <form ng-submit='loginController.signin()'>
+        <section id="signinForm" layout-align="center center">
+          <div layout-gt-xs="row">
+            <md-input-container class="md-block"  flex-gt-xs>
+              <h2 class="text-center">Sign in</h2>
+                <md-input-container class="md-block" flex-gt-sm> 
+                  <label>Student Id</label>
+                  <input class="inputBlackColor" type="text"  name="username" id="username" ng-model="loginController.username">
+                </md-input-container>
 
-
-                    <div layout-gt-xs="row">
-                      <md-input-container class="md-block"  flex-gt-xs>
-
-                            <h2 class="text-center">Sign in</h2>
-                            <md-input-container class="md-block" flex-gt-sm> 
-                                 <label>Student Id</label>
-                                    <input class="inputBlackColor" type="text"  name="username" id="username" required ng-model="loginController.username">
-                            </md-input-container>
-
-                            <md-input-container class="md-block" flex-gt-sm> 
-                                    <label>Password</label>
-                                    <input class="inputBlackColor" type="password" name="password" id="password" required  ng-model="loginController.password">
-                                <a href="/forgotpass">Forgot your password?</a>
-                                <h6  style="color:red">{{loginController.msg}}</h6>
-                            </md-input-container>
-                          <div class='text-center'>
-                            <md-button class="md-raised md-primary" ng-click="loginController.signin()" >Sign in</md-button>
-                          </div>
-                          
-
-                        </md-input-container> 
-                    </div>
-    </form>
-    </section>
+                <md-input-container class="md-block" flex-gt-sm> 
+                  <label>Password</label>
+                  <input class="inputBlackColor" type="password" name="password" id="password"  ng-model="loginController.password">
+                  <a href="/forgotpass">Forgot your password?</a>
+                  <h6  style="color:red">{{loginController.msg}}</h6>
+                </md-input-container>
+                <div class='text-center'>
+                  <md-button class="md-raised md-primary" ng-click="loginController.signin()">Sign in</md-button>
+                </div>
+            </md-input-container> 
+          </div>
+        </section>
+      </form>
+    </div>
+  </section>
 </div>
             <!--SIGN IN ENDS-->
     
+<div class="text-center">
+  <h5>No account? Register <a href="" data-toggle="modal" data-target="#registerModal">here</a></h5>
+</div>
+
+
+
+
+
     
     
-    <div class="col-md-2 col-sm-2 col-xs-2" align="middle">
+<!--     <div class="col-md-2 col-sm-2 col-xs-2" align="middle">
 			<img src="images/split.png" style="height:300px;">
 	</div>
-    
+     -->
     
             <!-- REGISTER -->
-    
+<!--     
     <div ng-cloak class="col-md-3 col-sm-3 col-xs-3" ng-controller="RegisterController as registerController">
         
          <section id="registerForm" layout-align="center center">
@@ -84,7 +83,7 @@
             </div>
         </section>
     </div>
-</section>
+ -->
 
 
 
@@ -111,4 +110,71 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Register MODAL -->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Authorisation to Register</h4>
+      </div>
+      <div class="modal-body" ng-controller="RegisterController as registerController">
+          <h6>Ask the Admin for authorisation code if you don't have one...</h6>
+                 <section id="registerForm" layout-align="center center">
+            <div layout-gt-xs="row">
+            <div class="container">
+              <md-input-container class="md-block" flex-gt-xs>
+                    <md-input-container class="md-block" flex-gt-sm> 
+                         <label>Student Id</label>
+                            <input class="inputBlackColor" type="text" name="username" id="username" ng-model="registerController.studentid">
+                    </md-input-container>
+
+                    <md-input-container class="md-block" flex-gt-sm> 
+                            <label>Authorisation Code</label>
+                            <input class="inputBlackColor" type="password" nahbme="password" id="passwprd" ng-model="registerController.authcode">
+                            <h6 style="color: red">{{registerController.msg}}</h6>
+                    </md-input-container>
+                    <div class="text-center">
+                        <md-button class="md-raised md-primary" ng-click="registerController.register()" data-dismiss="modal">
+                            Authorise
+                        </md-button>
+                    </div>
+                </md-input-container> 
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
   
+    

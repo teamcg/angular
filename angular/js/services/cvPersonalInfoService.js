@@ -2,7 +2,7 @@ var app = angular.module('main');
 
 app.service('personalInfoService', function($http, $localStorage){
     
-    this.cvpi = function(address, phone, email, website, linkedin){
+    this.cvpi = function(address, phone, email, website, linkedin, visastatus, driverlicence, interests){
         var currentCV = $localStorage.currentcv;
         
         var CVpersonalinfo = {
@@ -18,7 +18,10 @@ app.service('personalInfoService', function($http, $localStorage){
                 phone: phone,
                 email: email,
                 website: website,
-                linkedin: linkedin
+                linkedin: linkedin,
+                visastatus: visastatus,
+                driverlicence: driverlicence,
+                interest: interests
             }
         }
         

@@ -1,7 +1,10 @@
 var app = angular.module("main");
 app.controller("LoginController", function(loginService, myProfileService, cvNameService, personalStatementService, personalInfoService, experienceService, educationService, skillService, cvGenService, $location, $localStorage, $scope, $timeout){
 
-    
+//SEMANTIC UI ACCORDION
+    $('.ui.accordion')
+        .accordion()
+    ;
 
 
 	var loginController = this;
@@ -221,7 +224,6 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
 	}
 
     	loginController.gak = function(){
-		console.log("goToGenAuthCode");
 		
 		$location.path("/gak");
 	
@@ -281,7 +283,10 @@ app.controller("LoginController", function(loginService, myProfileService, cvNam
                 this.personalInfo.phone,
                 this.personalInfo.email,
                 this.personalInfo.website,
-                this.personalInfo.linkedin
+                this.personalInfo.linkedin,
+                this.personalInfo.visastatus,
+                this.personalInfo.driverlicence,
+                this.personalInfo.interests
             )
                 
                 .then(function(result){

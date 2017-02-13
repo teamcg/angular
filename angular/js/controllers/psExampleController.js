@@ -46,7 +46,6 @@ app.controller('PSExampleController', function(PSExampleService, $location, $loc
             });
     }
 
-    $scope.showw();
 
     
     

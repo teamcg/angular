@@ -1,7 +1,9 @@
 var app = angular.module('main');
 
 app.controller('SkillExampleController', function(skillExampleService, $location, $scope, $localStorage){
-    
+        $('.ui.accordion')
+            .accordion()
+        ;
     $scope.exSkilCategory = '';
     $scope.skill = {
         name: '',
@@ -27,7 +29,7 @@ app.controller('SkillExampleController', function(skillExampleService, $location
                 }
             });
        }
-       $scope.showSkillCategory();
+       // $scope.showSkillCategory();
     
         $scope.addSkillCategory = function(){
             

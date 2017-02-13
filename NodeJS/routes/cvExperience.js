@@ -26,8 +26,8 @@ router.post('/cvexperience', function(req, res){
 		company: req.body.company,
 		city: req.body.city,
 		country: req.body.country,
-		startdate: moment(req.body.startdate).format('L'), 
-		enddate: moment(req.body.enddate).format('L')
+		startdate: moment(req.body.startdate).format('MMMM YYYY'), 
+		enddate: moment(req.body.enddate).format('MMMM YYYY')
 	}
 
 	CV.findById(req.body.id, function(err, theCV){
@@ -77,8 +77,8 @@ router.post('/editcvexperience', function(req, res){
 		company: req.body.company,
 		city: req.body.city,
 		country: req.body.country,
-		startdate: moment(req.body.startdate).format('L'),
-		enddate: moment(req.body.enddate).format('L')
+		startdate: moment(req.body.startdate).format('MMMM YYYY'),
+		enddate: moment(req.body.enddate).format('MMMM YYYY')
 	}
 
 

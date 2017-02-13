@@ -13,6 +13,9 @@ var CVSchema = new mongoose.Schema({
 	email: String,
 	linkedin: String,
 	personalstatement: String,
+	visastatus: String,
+	driverlicence: String,
+	interest: String,
 	experience:[
 		{
 			type: mongoose.Schema.Types.ObjectId,

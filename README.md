@@ -144,5 +144,17 @@ Jan 28 <br>
 Jan 31 <br>
 -- Added EXAMPLE button on personal statement to show the modal of the list of personal statement example <br>
 
+Feb 7 <br>
+-- Added INTEREST tab on portal <br>
+-- Working Add, Edit and Delete Interest <br>
+
+Feb 8 <br>
+-- removed the Interest Tab on portal <br>
+-- Added visa status, driver licence and interest on personal info <br>
+
+Feb 13 <br>
+-- Reworked the frontpage design <br>
+
+
 - John lois Frades & Surinda! <br>
 
